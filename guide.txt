@@ -1,0 +1,2 @@
+Work on post view count in the posts route;
+add neccessary comments

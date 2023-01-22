@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Login | BloggyStories </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta content="BloggyStories" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg">
+    <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+        rel="stylesheet" />
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css">
+
+    <!-- Bootstrap Css -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+</head>
+
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal"> -->
+    <div class="auth-page">
+        <div class="container-fluid p-0">
+            <div class="row g-0 justify-content-center">
+                <div class="col-xxl-3 col-lg-4 col-md-5">
+                    <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                        <div class="w-100">
+                            <div class="d-flex flex-column">
+                                <div class="mb-4 text-center mt-5">
+                                    <a href="/" class="d-flex justify-content-center align-items-center auth-logo">
+                                        <img src="/IMAGES/logo.svg" alt="" height="80">
+                                    </a>
+                                </div>
+                                <div class="auth-content my-auto">
+                                    <div class="text-center">
+                                        <h5 class="mb-0">Welcome Back !</h5>
+                                        <p class="text-muted mt-2">Sign in to continue to BloggyStories.</p>
+                                    </div>
+                                    <form class="needs-validation mt-4 pt-2" novalidate="" >
+                                        <div class="mb-3">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" required="" class="form-control" id="username"
+                                                placeholder="Enter username">
+                                            <div class="invalid-feedback">
+                                                Please Enter Username
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-start">
+                                                <div class="flex-grow-1">
+                                                    <label class="form-label">Password</label>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="">
+                                                        <a href="auth-recoverpw.html" class="text-muted">Forgot
+                                                            password?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group auth-pass-inputgroup">
+                                                <input type="password" required="" class="form-control" id="password"
+                                                    placeholder="Enter password" aria-label="Password"
+                                                    aria-describedby="password-addon">
+                                                <div class="invalid-feedback">
+                                                    Please Enter A Password
+                                                </div>
+                                                <button class="btn btn-light shadow-none ms-0" type="button"
+                                                    id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check">
+                                                    <label class="form-check-label" for="remember-check">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"
+                                                id="auth-login-btn">Log In</button>
+                                        </div>
+                                    </form>
+                                    <div class="text-center">
+                                        <a href="/" class="btn btn-secondary w-100">Cancel</a>
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <p class="text-muted mb-0">Don't have an account ? <a href="/membership"
+                                                class="text-primary fw-semibold"> Signup now </a> </p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 mt-md-5 text-center">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end auth full page content -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container fluid -->
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
+
+    <!-- password addon init -->
+    <script src="/assets/js/pages/pass-addon.init.js"></script>
+    <script src="/JS/functions.js"></script>
+
+</body>
+
+</html>

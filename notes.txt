@@ -1,0 +1,36 @@
+What are your custom requirements for this blog?
+Project BloggyStories requirement: phase 2 
+
+1. Create a BloggyStories homepage and display welcome message 
+2. This website has Home, About page . 
+3. This home page display all registered bloggers enabled blogs posts. 
+4. Each post content must have category and blogger name ( creator of the content ) and date 
+5. Pagination and right side filters using the categories 
+6. A create account button for new bloggers. User should be able to create/register account using gmail with forget password 
+7. If they click , it should display two cards , 1. Free 2. 10$ for lifetime 
+8. For Free , basic features with tick marks
+9. For paid , basic features + extra features with tick marks
+10. For paid , lets add stripe payment later 
+11. Once, user successfully created account. They can create blog , manage blog , blog view count . Enable or disable a post. Edit his/her post
+
+Special suggestion from previous delivery: 
+1. https://xdsoft.net/jodit/ - instead of this 3rd party software.
+2. We can have a simple markdown Write Post section. Refer: https://www.youtube.com/watch?v=1NrHkjlWVhM
+
+Route should be :
+1. Home page , bloggystories.com
+2. About Page , bloggystories.com/about
+3. Super admin, bloggystories.com/superadmin
+4. Create new account , bloggystories.com/register
+5. Login account, bloggystories.com/login
+6. After login ( as user1 ) , bloggystories.com/user1
+
+Super admin : that’s me
+    1. User account management , can enable / disable / delete user 
+    2. User blog post approval / rejection with message [ when user create a new blog / edit a blog . It should go for Super admin approval. Only the blog is approved by Super admin the post will be visible to world ] 
+    3. 
+
+
+Also handle basic error , field validations , alerts in the website 
+<svg class="w-24" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 96px; border-style: none; border-width: 0;" width="96">
+                        </svg>

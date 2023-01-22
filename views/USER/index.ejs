@@ -1,0 +1,529 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Dashboard | BloggyStories </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta content="BloggyStories" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg">
+
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+        rel="stylesheet" />
+
+
+    <!-- plugin css -->
+    <link href="/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"
+        type="text/css">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css">
+
+    <!-- Bootstrap Css -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+</head>
+
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="/" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="/IMAGES/logo.svg" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="/IMAGES/logo.svg" alt="" height="24"> <span
+                                    class="logo-txt">BloggyStories</span>
+                            </span>
+                        </a>
+
+                        <a href="/" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="/IMAGES/logo.svg" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="/IMAGES/logo.svg" alt="" height="24"> <span
+                                    class="logo-txt">BloggyStories</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                    <form class="app-search d-none d-lg-block">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-primary" type="button"><i
+                                    class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="dropdown d-inline-block d-lg-none ms-2">
+                        <button type="button" class="btn header-item" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="search" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..."
+                                            aria-label="Search Result">
+
+                                        <button class="btn btn-primary" type="submit"><i
+                                                class="mdi mdi-magnify"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="dropdown d-none d-lg-inline-block ms-1">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i data-feather="grid" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                            <div class="p-2">
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/github.png" alt="Github">
+                                            <span>GitHub</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/bitbucket.png" alt="bitbucket">
+                                            <span>Bitbucket</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/dribbble.png" alt="dribbble">
+                                            <span>Dribbble</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/dropbox.png" alt="dropbox">
+                                            <span>Dropbox</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                                            <span>Mail Chimp</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="/assets/images/brands/slack.png" alt="slack">
+                                            <span>Slack</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon position-relative"
+                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i data-feather="bell" class="icon-lg"></i>
+                            <span class="badge bg-danger rounded-pill">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                            aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"> Notifications </h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="#!" class="small text-reset text-decoration-underline"> Unread (3)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar="" style="max-height: 230px;">
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="/assets/images/users/avatar-3.jpg"
+                                                class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">James Lemire</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">It will seem like simplified English.</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="bx bx-cart"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Your order is placed</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">If several languages coalesce the grammar</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                <i class="bx bx-badge-check"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Your item is shipped</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">If several languages coalesce the grammar</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="/assets/images/users/avatar-6.jpg"
+                                                class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">Salena Layfield</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours
+                                                        ago</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top d-grid">
+                                <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                    <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                            id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="<%- userData.profile_image  %> "
+                                alt="<%- userData.name  %>">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium"><%- userData.name %></span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a class="dropdown-item" href="apps-contacts-profile.html"><i
+                                    class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                            <a class="dropdown-item" href="auth-lock-screen.html"><i
+                                    class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i
+                                    class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <%- include('includes/leftsidebar.ejs') %>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <span class="text-muted mb-3 lh-1 d-block text-truncate">
+                                                    Impressions</span>
+                                                <h4 class="mb-3">
+                                                    <span class="counter-value" data-target="3000">0</span>
+                                                </h4>
+                                            </div>
+
+                                            <!-- <div class="col-6">
+                                                <div id="mini-chart1" data-colors='["#5156be"]' class="apex-charts mb-2"></div>
+                                            </div> -->
+                                        </div>
+                                        <div class="text-nowrap">
+                                            <span class="badge bg-soft-success text-success">100%</span>
+                                            <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-6">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <span class="text-muted mb-3 lh-1 d-block text-truncate">Total
+                                                    Views</span>
+                                                <h4 class="mb-3">
+                                                    <span class="counter-value" data-target="638">0</span>
+                                                </h4>
+                                            </div>
+                                            <div class="col-6">
+                                                <div id="mini-chart2" data-colors='["#5156be"]'
+                                                    class="apex-charts mb-2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-nowrap">
+
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col-->
+
+                            <div class="col-xl-3 col-md-6">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <span class="text-muted mb-3 lh-1 d-block text-truncate">Published
+                                                    Posts</span>
+                                                <h4 class="mb-3">
+                                                    <span class="counter-value" data-target="4">0</span>
+                                                </h4>
+                                            </div>
+                                            <div class="col-6">
+                                                <div id="mini-chart3" data-colors='["#5156be"]'
+                                                    class="apex-charts mb-2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <div class="col-xl-3 col-md-6">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <span class="text-muted mb-3 lh-1 d-block text-truncate">Most Single
+                                                    Views</span>
+                                                <h4 class="mb-3">
+                                                    <span class="counter-value" data-target="12">0</span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row-->
+
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="d-flex flex-wrap align-items-center mb-4">
+                                            <h5 class="card-title me-2">My Articles</h5>
+                                        </div>
+
+                                        <div class="row align-items-center">
+                                            <div class="col-sm">
+                                                <p class="bg-page-bg p-3 rounded-1">
+                                                    <a href="#" class="text-white">How to book a new house</a>
+                                                </p>
+                                                <p class="bg-page-bg p-3 rounded-1">
+                                                    <a href="#" class="text-white">Creating node applications</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card -->
+                            </div>
+
+                            <div class="col-xl-7">
+                                <!-- card -->
+                                <div class="card card-h-100">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between mb-4">
+                                            <h5 class="card-title me-2">Admin Message's</h5>
+                                            <select id="sortAdminMessage" class="form-select w-25">
+                                                <option value="new">Newest First</option>
+                                                <option value="old">Oldest First</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="row align-items-center">
+                                            <div class="col-sm">
+                                                <div
+                                                    class="d-flex align-items-center justify-content-between bg-page-bg p-3 rounded-1">
+                                                    <p class="text-truncate w-50 m-0">
+                                                        Your Post was rejected due to use of improper words and
+                                                        sentences
+                                                    </p>
+                                                    <a href="/" class="text-white-50">
+                                                        Read More..
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card -->
+                            </div>
+                        </div> <!-- end row-->
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © BloggyStories.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+
+    <!-- apexcharts -->
+    <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Plugins js-->
+    <script src="/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- dashboard init -->
+    <script src="/assets/js/pages/dashboard.init.js"></script>
+
+    <script src="/assets/js/app.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+
+</html>

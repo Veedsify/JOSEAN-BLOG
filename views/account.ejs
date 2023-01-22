@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document Title -->
+    <title>Josean's Martinez</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg" type="image/x-icon">
+    <!-- GOOGLE FONTS API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/CSS/style.css">
+
+
+    <!-- SCRIPTS -->
+    <script src="/JS/jquery.js" defer></script>
+    <script src="/JS/script.js" defer></script>
+
+</head>
+
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+    <%- include('includes/preloader.ejs') %>
+        <header>
+            <%- include('includes/navbar.ejs') %>
+        </header>
+        <main>
+            <section class="post-section">
+                <h2 class="post-title">Accounts 🧑‍💻</h2>
+                <div class="row justify-content-center gap-1 gap-lg-3 mt-5">
+                    <div
+                        class="col-md-4 bg-white  p-3 p-md-4 rounded-2 mb-3 d-flex flex-column align-items-center justify-content-center">
+                        <i data-feather="user" class="text-black-50 scale-for-account mb-3"></i>
+                        <p class="text-black-50">Login to BloggyStorries</p>
+                        <a href="/login" class="btn btn-primary w-100">Login</a>
+                    </div>
+                    <div
+                        class="col-md-4 bg-primary p-3 p-md-4 rounded-2 mb-3 d-flex flex-column align-items-center justify-content-center">
+                        <i data-feather="user-plus" class="scale-for-account mb-3 text-white"></i>
+                        <p class="text-white text-center">Create and account with BloggyStories.</p>
+                        <a href="/membership" class="btn bg-white text-black-50 w-100">Create Account</a>
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+        <footer>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Account</a></li>
+            </ul>
+        </footer>
+
+        <!-- SCRIPTS -->
+        <script src="/assets/libs/feather-icons/feather.min.js"></script>
+
+        <script>
+            feather.replace()
+        </script>
+</body>
+
+</html>

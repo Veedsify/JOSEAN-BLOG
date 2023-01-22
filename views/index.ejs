@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document Title -->
+    <title>Josean's Martinez</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg" type="image/x-icon">
+    <!-- GOOGLE FONTS API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    
+    <link rel="stylesheet" href="/CSS/style.css">
+
+    <!-- SCRIPTS -->
+    <script src="/JS/jquery.js" defer></script>
+    <script src="/JS/script.js" defer></script>
+
+</head>
+
+<body>
+    <%- include('includes/preloader.ejs') %>
+        <header>
+            <%- include('includes/navbar.ejs') %>
+        </header>
+        <main>
+            <section class="hero">
+
+                <div class="text-region container">
+
+                    <div class="text-holder">
+
+                        <h1 class="text-white hero-title">Welcome to <br> BloggyStories.</h1>
+                        <p class="hero-desc">
+                            Learn to code, scalable projects
+                        </p>
+                        <button class="read-post">Read Post</button>
+                    </div>
+
+                </div>
+            </section>
+            <section class="post-section">
+                <h2 class="post-title">Josean's Blog Posts ✍🏽</h2>
+                <div class="post-filter">
+                    <div class="all-aticles">
+                        <article class="post-grid">
+                            <!--  Start OF Post One  -->
+                            <% posts.forEach(post=>{ %>
+                                <div class="blog-container" data-link="/posts/${ post.slug_id  %> ">
+                                    <a class="post-link" href="/posts/<%- post.slug_id  %>">
+
+                                        <img loading="lazy" src="<%- post.image %>" alt="<%- post.title  %> "
+                                            class="blog-image">
+                                        <div class="blog-info">
+                                            <div class="blog-category">
+                                                <%- post.category %>
+                                            </div>
+                                            <div class="blog-title"><%- post.title %></div>
+                                            <div class="blog-date">Published On: <%- post.date %></div>
+                                            <hr class="line">
+                                        </div>
+                                    </a>
+                                    <div class="authors-info">
+                                        <img src="/IMAGES/hero.jpg" alt="" class="author-image">
+                                        <strong><a href="/">Tony Stark</a></strong>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </article>
+                        <div class="loadmore">
+                            <button class="load-more-post" id="load-more-post">Load More..</button>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <h4>Categories</h4>
+                        <div class="filter-btns">
+                            <button class="catBtn" data-filter="all">Recent</button>
+                            <% categories.forEach( category=> { %>
+                                <button class="catBtn" data-filter="<%= category._id  %>">
+                                    <%= category._id %>
+                                </button>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+        
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </footer>
+</body>
+
+</html>
