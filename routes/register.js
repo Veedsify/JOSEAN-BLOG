@@ -24,8 +24,8 @@ function checkEmail(req, res, next) {
 
     User.find({ email: email }, (err, email) => {
         if (email.length > 0) {
-            res.redirect('/login')
-            res.send('<script>alert(`Good Morning`)<script>')
+            let script = VirtualAJax("runResponse({ type: 'alert', text: 'User Already Exists', css: 'bad' })")
+            return res.render('auth-register', { script })
         } else {
             next()
         }
@@ -38,8 +38,8 @@ function checkUserName(req, res, next) {
 
     User.find({ user_name: username }, (err, usernames) => {
         if (usernames.length > 0) {
-            res.redirect('/login')
-            res.send('<script>alert(`Good Morning`)<script>')
+            let script = VirtualAJax("runResponse({ type: 'alert', text: 'User Already Exists', css: 'bad' })")
+            return res.render('auth-register', { script })
         } else {
             next()
         }
@@ -55,7 +55,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
     let hashedPassword = getHash(password)
     let vcodeId = randomChars(19)
     let resetId = getHash(fullname)
-    let valid = validateFields(fullname, email, username, password)
+    let valid = validateFields(fullname, email, username, password, res)
 
     if (valid === 'proceed') {
         if (req.session.plan !== 'paid') {
@@ -71,7 +71,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 verified: 'false',
                 status: 'hidden',
                 statusAdmin: 'public',
-                profile_image: '',
+                profile_image: '/IMAGES/user.png',
                 reset_id: resetId,
                 duration: 5000000,
                 tfa: 'off'
@@ -100,7 +100,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 verified: 'false',
                 status: 'hidden',
                 statusAdmin: 'public',
-                profile_image: '',
+                profile_image: '/IMAGES/user.png',
                 reset_id: resetId,
                 duration: '',
                 tfa: 'off'
@@ -117,7 +117,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 }
             })
         }
-    }else{
+    } else {
         return res.json(valid)
     }
 
@@ -158,19 +158,49 @@ router.post('/resendmail', (req, res) => {
         }
     })
 })
+
+router.get('/validate/:id', (req, res) => {
+
+    let aouth = req.query.aouth
+
+    User.updateOne({ vcodeId: req.params.id,reset_id: aouth },{verified:'true',status:'public'}, (err, user) => {
+        if(!err){
+            res.render('auth-confirm-mail');
+        }
+    });
+
+
+})
 // Validate Fields
-function validateFields(fullname, email, username, password){
-    if(fullname.length < 0){
-        return res.json({ type: 'alert',text: 'Please enter a full name', css: 'bad' })
-    }else if(email.length <= 0){
-        return res.json({ type: 'alert',text: 'Please enter a email address', css: 'bad' })
-    }else if(username.length <= 0){
-        return res.json({ type: 'alert',text: 'Please enter a username', css: 'bad' })
-    }else if(password.length <= 0){
-        return res.json({ type: 'alert',text: 'Please enter a password', css: 'bad' })
-    }else if(username.length <= 0 ){
-        return  res.json({ type: 'alert',text: 'Please enter a username', css: 'bad'})
+function validateFields(fullname, email, username, password, res) {
+    if (fullname.length < 0) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Please enter a full name', css: 'bad' })") })
+    } else if (email.length <= 0) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Please enter a email address', css: 'bad' })") })
+    } else if (username.length <= 0) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Please enter a username', css: 'bad' })") })
+    } else if (password.length <= 0) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Please enter a password', css: 'bad' })") })
     }
+
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Email is not valid', css: 'bad' })") })
+    }
+    if (username.length < 8) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Username has to be at least 8', css: 'bad' })") })
+    }
+    if (password.length < 8) {
+        return res.render('auth-register', { script: VirtualAJax("runResponse({ type: 'alert', text: 'Password has to be at least 8', css: 'bad' })") })
+    }
+
+    return 'proceed';
+}
+
+function VirtualAJax(script) {
+    let final = `<script>${script}</script>`;
+    return final;
 }
 
 module.exports = router;

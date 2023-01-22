@@ -970,8 +970,8 @@ footer ul {
   transform: translateX(-50%);
   font-weight: bold;
   transition: 0.5s ease;
-  -webkit-animation: fadeAlert 1.5s ease-in-out forwards;
-          animation: fadeAlert 1.5s ease-in-out forwards;
+  -webkit-animation: fadeAlert 0.7s ease-in-out forwards;
+          animation: fadeAlert 0.7s ease-in-out forwards;
 }
 
 @-webkit-keyframes fadeAlert {

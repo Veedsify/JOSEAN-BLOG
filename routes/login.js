@@ -31,6 +31,44 @@ router.get('/confirm', (req, res) => {
     })
 })
 
+router.post('/resendmail', (req, res) => {
+    let auth = req.cookies.auth
+    User.find({ reset_id: auth }, (err, rows) => {
+        if (err) {
+            res.redirect('/login')
+        } else if (rows.length > 0) {
+            rows.forEach(user => {
+                let code = getRandomInt(1111, 9999)
+                req.session.code = code
+                sendVcodeEmail(user.name, user.email, code)
+                res.json({
+                    type: 'alert',
+                    text: 'Email has been resent',
+                    css: 'good'
+                })
+            });
+        }
+    })
+})
+
+router.post('/code', (req, res) => {
+
+    let vcode = req.body.vcode
+
+    if(typeof vcode !== undefined || vcode !== ''){
+        if(req.session.code != vcode){
+            res.json({ type: 'alert', text: 'Code is not valid', css: 'bad'})
+        }else{
+            req.session.tfa = 'verified'
+            req.session.code = null
+            let adminLink = '/'+req.session.user.role
+            res.json({ type: 'link', link: adminLink})
+        }
+    }else{
+        res.json({ type: 'alert', text: 'Please enter your verification code', css: 'bad'})
+    }
+})
+
 router.post('/new', checkStatus, async (req, res) => {
 
     let user = req.body.username
@@ -41,14 +79,12 @@ router.post('/new', checkStatus, async (req, res) => {
         password: getHash(pass)
     }
 
-    console.log(parameters)
-
     User.findOne(parameters, function (err, user) {
-        console.log(user)
         if (user) {
             if (user.tfa !== 'on') {
                 req.session.user = user
                 req.cookies.auth = user.reset_id
+                res.session.tfa = 'skipped'
                 if (user.role === 'superadmin') {
                     res.json({
                         type: 'link',
@@ -61,6 +97,7 @@ router.post('/new', checkStatus, async (req, res) => {
                 let code = getRandomInt(1111, 9999)
                 req.session.code = code
                 req.cookies.auth = user.reset_id
+                req.session.user = user
                 sendVcodeEmail(user.name, user.email, code)
                 res.json({
                     type: 'link',

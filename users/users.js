@@ -37,9 +37,14 @@ function checkAdmin(req, res, next) {
 }
 
 function checkSession(req, res, next) {
-    if(typeof req.session.user !== undefined || req.session.user !==''){
-        next()
-    }else{
+    if (typeof req.session.user !== undefined || req.session.user !== '') {
+        if (req.session.tfa === 'skipped' || req.session.tfa === 'verified') {
+            next()
+        } else {
+            req.session.destroy()
+            res.redirect('/login')
+        }
+    } else {
         req.session.destroy()
         res.redirect('/login')
     }

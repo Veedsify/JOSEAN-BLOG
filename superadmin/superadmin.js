@@ -14,13 +14,24 @@ router.use(checkSession)
 router.use(userData)
 
 router.get('/', (req, res) => {
-    let script = `<script>runResponse({
-        type:'alert',
-        text:'Welcome Admin 😏',
-        css: 'good'
-    })</script>`;
-    req.session.code = ''
-    res.render('SUPERADMIN/index', { script: script })
+
+    let loginConfirm = req.protocol+"://"+req.get('host')+'/login/confirm'
+    let loginPage = req.protocol+"://"+req.get('host')+'/login'
+
+    if(req.get('referrer') == loginConfirm || req.get('referrer') == loginPage) {
+        let script = `<script>runResponse({
+            type:'alert',
+            text:'Welcome Admin 😏',
+            css: 'good'
+        })</script>`;
+    
+        req.session.code = ''
+        res.render('SUPERADMIN/index', { script: script })
+    }else{
+        let script = ``;
+        req.session.code = ''
+        res.render('SUPERADMIN/index', { script: script })
+    }
 })
 
 
@@ -46,7 +57,12 @@ function checkAdmin(req, res, next) {
 
 function checkSession(req, res, next) {
     if (typeof req.session.user !== undefined || req.session.user !== '') {
-        next()
+        if (req.session.tfa === 'skipped' || req.session.tfa === 'verified') {
+            next()
+        } else {
+            req.session.destroy()
+            res.redirect('/login')
+        }
     } else {
         req.session.destroy()
         res.redirect('/login')
