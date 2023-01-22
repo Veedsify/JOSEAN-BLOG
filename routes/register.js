@@ -118,11 +118,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
             })
         }
     }else{
-        return res.json({
-            type:'alert',
-            text: valid,
-            css: 'bad'
-        })
+        return res.json(valid)
     }
 
 
@@ -165,7 +161,15 @@ router.post('/resendmail', (req, res) => {
 // Validate Fields
 function validateFields(fullname, email, username, password){
     if(fullname.length < 0){
-        
+        return res.json({ type: 'alert',text: 'Please enter a full name', css: 'bad' })
+    }else if(email.length <= 0){
+        return res.json({ type: 'alert',text: 'Please enter a email address', css: 'bad' })
+    }else if(username.length <= 0){
+        return res.json({ type: 'alert',text: 'Please enter a username', css: 'bad' })
+    }else if(password.length <= 0){
+        return res.json({ type: 'alert',text: 'Please enter a password', css: 'bad' })
+    }else if(username.length <= 0 ){
+        return  res.json({ type: 'alert',text: 'Please enter a username', css: 'bad'})
     }
 }
 
