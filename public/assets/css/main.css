@@ -1,5 +1,5 @@
 
-/* classes attached to <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark"> */
+/* classes attached to <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable"> */
 
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */

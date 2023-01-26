@@ -17,9 +17,10 @@ router.use('/user', userRouter)
 router.use('/superadmin', superAdminRouter)
 
 
-router.get('/logout',(req,res)=>{
+router.get('/logout', (req, res) => {
   req.session.destroy()
   res.locals.userData = ''
+  res.clearCookie('auth')
   res.render('auth-logout');
 })
 
@@ -27,9 +28,12 @@ let limitSize = 3
 
 // Returns a list of all enabled blogs.
 router.get('/', function (req, res) {
-  Blog.find({ status: 'enabled' }, function (err, blog) {
+  Blog.find({ status: 'enabled', statusAdmin: 'public' }, function (err, blog) {
     if (!err) {
-      Blog.aggregate([{ $group: { "_id": "$category" } }], (err, rows) => {
+      Blog.aggregate([
+        { $match: { status: "enabled", statusAdmin: "public" } },
+        { $group: { _id: "$category" } }
+      ], (err, rows) => {
         res.render('index', { posts: blog, categories: rows });
       });
     }
@@ -43,7 +47,7 @@ router.post('/loadnewpost', (req, res) => {
   if (category === 'all') {
 
     // List all enabled blogs.
-    Blog.find({ status: 'enabled' }, function (err, blog) {
+    Blog.find({ status: 'enabled', statusAdmin: 'public' }, function (err, blog) {
       setTimeout(() => {
         res.json(blog);
       }, 2000);
@@ -51,7 +55,7 @@ router.post('/loadnewpost', (req, res) => {
 
   } else {
 
-    Blog.find({ status: 'enabled', category: category }, function (err, blog) {
+    Blog.find({ status: 'enabled', category: category, statusAdmin: 'public' }, function (err, blog) {
       setTimeout(() => {
         res.json(blog);
       }, 2000);
@@ -67,7 +71,7 @@ router.post('/getblogs', function (req, res) {
   let getCategory = req.body.category
   if (getCategory !== 'all') {
     // Return a list of enabled blogs.
-    Blog.find({ status: 'enabled', category: getCategory }, function (err, blog) {
+    Blog.find({ status: 'enabled', category: getCategory, statusAdmin: 'public' }, function (err, blog) {
       setTimeout(() => {
         res.json(blog);
       }, 2000);
@@ -76,7 +80,7 @@ router.post('/getblogs', function (req, res) {
   } else {
 
     // List all enabled blogs.
-    Blog.find({ status: 'enabled' }, function (err, blog) {
+    Blog.find({ status: 'enabled', statusAdmin: 'public' }, function (err, blog) {
       setTimeout(() => {
         res.json(blog);
       }, 2000);
@@ -84,7 +88,7 @@ router.post('/getblogs', function (req, res) {
 
   }
 });
-router.get('/account', (req, res)=>{
+router.get('/account', (req, res) => {
   res.render('account')
 })
 

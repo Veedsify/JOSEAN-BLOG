@@ -17,7 +17,7 @@
         rel="stylesheet">
 
     <!-- STYLESHEETS -->
-    
+
     <link rel="stylesheet" href="/CSS/style.css">
 
     <!-- SCRIPTS -->
@@ -69,8 +69,10 @@
                                         </div>
                                     </a>
                                     <div class="authors-info">
-                                        <img src="/IMAGES/hero.jpg" alt="" class="author-image">
-                                        <strong><a href="/">Tony Stark</a></strong>
+                                        <img src="<%- post.author_image %>" alt="<%- post.author_name %>"
+                                            class="author-image">
+                                        <strong><a href="/<%- post.author_username %>"><%- post.author_name
+                                                    %></a></strong>
                                     </div>
                                 </div>
                                 <% }) %>
@@ -94,7 +96,7 @@
             </section>
         </main>
         <footer>
-        
+
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>

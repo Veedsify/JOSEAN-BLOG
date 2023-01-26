@@ -1,68 +1,12 @@
 let blogPost = document.querySelectorAll('[data-link]')
 
 // Click on a blog.
-blogPost?.forEach(blog => {
-    blog.addEventListener('click', () => {
-        let newUrl = blog.getAttribute('data-link')
-        location.href = newUrl
-    })
-})
-
-let postImage = document.querySelector('#post-image')
-
-// Creates a preview of the image.
-postImage?.addEventListener('change', (e) => {
-    let url = URL.createObjectURL(postImage.files[0])
-    document.querySelector('.preview').src = url
-})
-
-
-// Generates a code response.
-function codeRes(response) {
-
-    if (response.type == 'alert') {
-        let newAlert = document.createElement('div')
-        newAlert.className = 'alert'
-        newAlert.classList.add(response.status)
-        newAlert.innerHTML = response.message
-
-        document.body.appendChild(newAlert);
-
-        setTimeout(() => {
-            let alert = document.querySelector('.alert')
-
-            if (alert) {
-                alert.remove()
-            }
-
-        }, 3000);
-    } else if (response.type == 'url') {
-        location.href = response.link
-    }
-
-}
-
-// Click on the publish button
-$("#publish").click(function (e) {
-    e.preventDefault();
-
-    let confirmation = window.confirm("Are you sure you want to publish?")
-
-    if (confirmation === true) {
-        let form = $("#newpost")
-        let title = $('#post-title').val()
-        let category = $('#post-category').val()
-        let post = $('#post').val()
-        let postImage = $('#post-image').val()
-
-        if (title.length != '' && category.length != '' && post.length != '' && postImage.length != '') {
-            form.submit();
-        } else {
-            alert('All Fields Are Required')
-        }
-
-    }
-});
+// blogPost?.forEach(blog => {
+//     blog.addEventListener('click', () => {
+//         let newUrl = blog.getAttribute('data-link')
+//         location.href = newUrl
+//     })
+// })
 
 
 let copyBtn = document.querySelectorAll('.copybtn')
@@ -169,8 +113,8 @@ function createPost(post) {
                 </div>
             </a>
             <div class="authors-info">
-                <img src="/IMAGES/hero.jpg" alt="" class="author-image">
-                <strong><a href="/">Tony Stark</a></strong>
+                <img src="${post.author_image}" alt="${post.author_name}" class="author-image">
+                <strong><a href="/${post.author_username}">${post.author_name}</a></strong>
             </div>
         </div>
     `;

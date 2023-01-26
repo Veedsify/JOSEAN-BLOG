@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8">
-        <title>User Grid | BloggyStories </title>
+        <title>Read Email | BloggyStories </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta content="BloggyStories" name="author">
@@ -24,7 +24,7 @@
 
     </head>
 
-    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index-1.html" class="logo logo-dark">
+                            <a href="/<%- nav %>" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -46,7 +46,7 @@
                                 </span>
                             </a>
 
-                            <a href="index-1.html" class="logo logo-light">
+                            <a href="/<%- nav %>" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -253,7 +253,8 @@
             </header>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%- include('includes/leftsidebar.ejs')  %> 
+            <%- include('includes/'+ nav +'.ejs') %>
+
             <!-- Left Sidebar End -->
 
             
@@ -270,12 +271,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">User Grid</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Audit Post</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
-                                            <li class="breadcrumb-item active">Authors</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Audit</a></li>
+                                            <li class="breadcrumb-item active">Post</li>
                                         </ol>
                                     </div>
 
@@ -284,74 +285,79 @@
                         </div>
                         <!-- end page title -->
 
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <h5 class="card-title">User List <span class="text-muted fw-normal ms-2">(834)</span></h5>
-                                </div>
-                            </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Right Sidebar -->
+                                <div class="email-rightbar mb-3">
 
-                            <div class="col-md-6">
-                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                                    <div>
-                                        <a href="#" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <img class="rounded-circle avatar-sm" src="/assets/images/users/avatar-2.jpg" alt="Generic placeholder image">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h5 class="font-size-14 mb-0">Humberto D. Champion</h5>
+                                                    <small class="text-muted">support@domain.com</small>
+                                                </div>
+                                            </div>
+
+                                            <article id="blog-article">
+
+                                            </article>
+                                            
+
+                                            <div class="d-flex gap-3">
+                                                <button id="deny" class="btn btn-danger waves-effect mt-4">Disapprove Post</button>
+                                                <button id="approve" class="btn btn-success waves-effect mt-4">Approve Post</button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
+                                <!-- card -->
 
                             </div>
+                            <!-- end Col -->
+
                         </div>
                         <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        
-                                        <div class="mx-auto mb-4">
-                                            <img src="/assets/images/users/avatar-2.jpg" alt="" class="avatar-xl rounded-circle img-thumbnail">
-                                        </div>
-                                        <h5 class="font-size-16 mb-1 d-flex align-items-center justify-content-center"><a href="#" class="text-dark">Phyllis Gatlin</a><span class="dot ms-2 d-inline-block bg-danger rounded-circle" style="height: 5px;width: 5px;"></span></h5>
-                                        <p class="text-muted mb-2">Full Stack Developer</p>
-                                        
-                                    </div>
-
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-user me-1"></i> Enable</button>
-                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-envelope-alt me-1"></i>Disable</button>
-                                        <button type="button" class="btn btn-outline-light bg-danger text-white text-truncate"><i class="uil uil-envelope-alt me-1"></i>Delete</button>
-
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                            <!-- end col -->
-                            <div class="col-xl-3 col-sm-6">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        
-                                        <div class="mx-auto mb-4">
-                                            <img src="/assets/images/users/avatar-1.jpg" alt="" class="avatar-xl rounded-circle img-thumbnail">
-                                        </div>
-                                        <h5 class="font-size-16 mb-1 d-flex align-items-center justify-content-center"><a href="#" class="text-dark">James Nix</a><span class="dot ms-2 d-inline-block bg-success rounded-circle" style="height: 5px;width: 5px;"></span></h5>
-                                        <p class="text-muted mb-2">Full Stack Developer</p>
-                                        
-                                    </div>
-
-                                    <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-user me-1"></i> Enable</button>
-                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-envelope-alt me-1"></i>Disable</button>
-                                        <button type="button" class="btn btn-outline-light bg-danger text-white text-truncate"><i class="uil uil-envelope-alt me-1"></i>Delete</button>
-
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-                        </div>
                         
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
 
+                <!-- Modal -->
+                <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-size-16" id="composemodalTitle">New Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="To">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Subject">
+                                    </div>
+                                    <div class="mb-3 email-editor">
+                                        <div id="email-editor"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send <i class="fab fa-telegram-plane ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
                 
                 <footer class="footer">
                     <div class="container-fluid">
@@ -373,8 +379,6 @@
         </div>
         <!-- END layout-wrapper -->
 
-        
-
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
@@ -387,10 +391,16 @@
         <script src="/assets/libs/feather-icons/feather.min.js"></script>
        
 
+        <!--ckeditor js-->
+        <script src="/assets/libs/%40ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+
+        <!-- email editor init -->
+        <script src="/assets/js/pages/email-editor.init.js"></script>
+
         <script src="/assets/js/app.js"></script>
 <script>
-     feather.replace()
- </script>
+        feather.replace()
+      </script>
 
     </body>
 </html>

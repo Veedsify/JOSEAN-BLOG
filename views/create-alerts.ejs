@@ -24,7 +24,7 @@
 
     </head>
 
-    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index-1.html" class="logo logo-dark">
+                            <a href="/<%- nav %>" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -46,7 +46,7 @@
                                 </span>
                             </a>
 
-                            <a href="index-1.html" class="logo logo-light">
+                            <a href="/<%- nav %>" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -252,7 +252,7 @@
             </header>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%- include('includes/leftsidebar.ejs') %>
+            <%- include('includes/'+ nav +'.ejs') %>
 
             <!-- Left Sidebar End -->
 

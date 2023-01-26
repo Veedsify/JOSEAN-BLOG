@@ -14,6 +14,7 @@ const blogSchema = new mongoose.Schema({
     impressions: String,
     author_name: String,
     author_image: String,
+    author_username: String
 });
 
 

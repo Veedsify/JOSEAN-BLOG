@@ -4,22 +4,26 @@ const { User, Blog } = require('../db/db');
 const getRandomInt = require('../function/randomNum');
 const convertSlug = require('../function/slug');
 var router = express.Router();
+let blogRouter = require('./blog')
 
 
 
-router.use(checkAdmin)
+
 router.use(checkSession)
+router.use(checkAdmin)
 router.use(userData)
+router.use('/blogs', blogRouter)
 
 
-router.get('/', (req, res )=>{
-    res.render('USER/index')
+
+router.get('/', (req, res) => {
+    res.render('userdashboard')
 })
 
 
 function checkAdmin(req, res, next) {
     let sess = req.session
-    if(sess.user){
+    if (sess.user) {
 
         if (sess.user.role === 'superadmin') {
             res.redirect('/superadmin')
@@ -30,7 +34,7 @@ function checkAdmin(req, res, next) {
             req.session.destroy()
             res.redirect('/login')
         }
-    }else{
+    } else {
         sess.destroy()
         res.redirect('/login')
     }
@@ -52,6 +56,7 @@ function checkSession(req, res, next) {
 
 function userData(req, res, next) {
     res.locals.userData = req.session.user
+    res.locals.nav = req.session.user.role
     next()
 }
 

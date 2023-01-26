@@ -1,0 +1,321 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Create New Post | BloggyStories </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta content="BloggyStories" name="author">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg">
+    <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+        rel="stylesheet" />
+
+    <!-- twitter-bootstrap-wizard css -->
+    <link rel="stylesheet" href="/assets/libs/twitter-bootstrap-wizard/prettify.css">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css">
+
+    <!-- Bootstrap Css -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+</head>
+
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable">
+
+    <!-- <body data-layout="horizontal"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <%- include('includes/header.ejs') %> 
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <%- include('includes/'+ nav +'.ejs') %>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Blogs</a></li>
+                                            <li class="breadcrumb-item active">New Posts</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Main -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="/<%- nav  %>/blogs/create" method="post" id="post-form" enctype="multipart/form-data">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title mb-0">New Post</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="progrss-wizard" class="twitter-bs-wizard">
+                                                <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                                                    <li class="nav-item">
+                                                        <a href="#progress-seller-details" class="nav-link"
+                                                            data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Basic Details">
+                                                                <i class="bx bx-list-ul"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#progress-company-document" class="nav-link"
+                                                            data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Write Post">
+                                                                <i class="bx bx-book-bookmark"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="nav-item">
+                                                        <a href="#progress-bank-detail" class="nav-link"
+                                                            data-toggle="tab">
+                                                            <div class="step-icon" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Final">
+                                                                <i class="bx bxs-bank"></i>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- wizard-nav -->
+
+                                                <div id="bar" class="progress mt-4">
+                                                    <div
+                                                        class="progress-bar bg-primary progress-bar-striped progress-bar-animated">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-content twitter-bs-wizard-tab-content">
+
+                                                    <div class="tab-pane" id="progress-seller-details">
+                                                        <div class="text-center mb-4">
+                                                            <h5>Basic Details</h5>
+                                                            <p class="card-title-desc">Write a title and good
+                                                                description
+                                                            </p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-3">
+                                                                    <label for="progresspill-firstname-input">Post
+                                                                        Title</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="post-title" name="postTitle">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-3">
+                                                                    <label for="progresspill-lastname-input">Post
+                                                                        Category</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="post-category" name="postCategory">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="mb-3">
+                                                                    <label for="post-description">Description</label>
+                                                                    <textarea id="post-description" class="form-control"
+                                                                        rows="2" name="postDescription"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                            <li class="next"><a href="javascript: void(0);"
+                                                                    class="btn btn-primary" onclick="nextTab()">Next <i
+                                                                        class="bx bx-chevron-right ms-1"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="tab-pane" id="progress-company-document">
+                                                        <div>
+                                                            <div class="text-center mb-4">
+                                                                <h5>Write Post</h5>
+                                                                <p class="card-title-desc">Your Article</p>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-pancard-input"
+                                                                            class="form-label">Post</label>
+                                                                        <textarea type="text" class="form-control"
+                                                                            style="min-height: 400px;"
+                                                                            id="post" name="post"></textarea>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+
+
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="previous"><a href="javascript: void(0);"
+                                                                        class="btn btn-primary" onclick="nextTab()"><i
+                                                                            class="bx bx-chevron-left me-1"></i>
+                                                                        Previous</a></li>
+                                                                <li class="next"><a href="javascript: void(0);"
+                                                                        class="btn btn-primary" onclick="nextTab()">Next
+                                                                        <i class="bx bx-chevron-right ms-1"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="progress-bank-detail">
+                                                        <div>
+                                                            <div class="text-center mb-4">
+                                                                <h5>Featured Image</h5>
+                                                                <p class="card-title-desc">Select a featured image for
+                                                                    your post</p>
+                                                            </div>
+
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="progresspill-expiration-input"
+                                                                            class="form-label">Featured Image</label>
+                                                                        <input type="file" class="form-control"
+                                                                            id="featuredImg" name="featuredImage">
+
+                                                                        <!-- DROP ZONE -->
+                                                                        <div class="col-md-4 p-3 mt-5 d-flex justify-content-center"
+                                                                            id="dropImageZone">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="previous"><a href="javascript: void(0);"
+                                                                        class="btn btn-primary" onclick="nextTab()"><i
+                                                                            class="bx bx-chevron-left me-1"></i>
+                                                                        Previous</a></li>
+                                                                <li class="float-end"><a href="javascript: void(0);"
+                                                                        class="btn btn-primary" data-bs-toggle="modal"
+                                                                        data-bs-target=".confirmModal">Publish</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+            <!-- Modal -->
+            <div class="modal fade confirmModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    <i class="bx bx-check-circle display-4 text-success"></i>
+                                </div>
+                                <h5>Publish Post</h5>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-light w-md" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary w-md" data-bs-dismiss="modal"
+                                onclick="sendBlogPost()">Publish Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © BloggyStories.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+    </div>
+    <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
+
+
+    <!-- twitter-bootstrap-wizard js -->
+    <script src="/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="/assets/libs/twitter-bootstrap-wizard/prettify.js"></script>
+
+    <!-- form wizard init -->
+    <script src="/assets/js/pages/form-wizard.init.js"></script>
+
+    <script src="/assets/js/app.js"></script>
+    <script src="/JS/functions.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+
+</html>

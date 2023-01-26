@@ -105,12 +105,130 @@ $("#confirmCode").click(function (e) {
                 runResponse(response)
             }
         });
-    }else{
-        runResponse({type:'alert', text:'Please enter a valid code', css: 'bad'});
+    } else {
+        runResponse({ type: 'alert', text: 'Please enter a valid code', css: 'bad' });
     }
 
 });
 
+$("#featuredImg").change(function (e) {
+    let imageInput = document.querySelector('#featuredImg')
+    let url = URL.createObjectURL(imageInput.files[0])
+
+    let image = `<img src="${url}" width="300px" alt="">`
+
+    $("#dropImageZone").html(image);
+});
+
+
+// audit function 
+
+function thisUser(user, action) {
+    let confirm = window.confirm('Do you want to ' + action + ' ' + user)
+    if (confirm === true) {
+        if (action === 'delete') {
+            $.ajax({
+                type: "DELETE",
+                url: "/superadmin/users/delete",
+                data: {
+                    user
+                },
+                success: function (response) {
+                    runResponse(response)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 2000);
+                }
+            });
+        } else if (action === 'disable') {
+            $.ajax({
+                type: "PUT",
+                url: "/superadmin/users/update",
+                data: {
+                    user,
+                    action
+                },
+                success: function (response) {
+                    runResponse(response)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 2000);
+                }
+            });
+        } else if (action === 'enable') {
+            $.ajax({
+                type: "PUT",
+                url: "/superadmin/users/update",
+                data: {
+                    user,
+                    action
+                },
+                success: function (response) {
+                    runResponse(response)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 2000);
+                }
+            });
+        }
+    }
+}
+
+// BlogPost Function
+function sendBlogPost() {
+    let posttitle = $('#post-title').val();
+    let postcategory = $('#post-category').val();
+    let postdescription = $('#post-description').val();
+    let post = $('#post').val();
+    let featuredImg = $('#featuredImg');
+
+
+    if (posttitle.length < 10) {
+        return runResponse(
+            {
+                type: 'alert',
+                text: 'Sorry You Need to Add a Valid Post Title',
+                css: 'bad'
+            }
+        )
+    }
+    if (postcategory.length < 3) {
+        return runResponse(
+            {
+                type: 'alert',
+                text: 'Sorry You Need to Add a Valid Post Category',
+                css: 'bad'
+            }
+        )
+    }
+    if (postdescription.length <= 20) {
+        return runResponse(
+            {
+                type: 'alert',
+                text: 'Post Description Min Characters 20',
+                css: 'bad'
+            }
+        )
+    }
+    if (post.length <= 600) {
+        return runResponse(
+            {
+                type: 'alert',
+                text: 'Sorry, your post need to be longer than 600 Characters',
+                css: 'bad'
+            }
+        )
+    } if (featuredImg[0].files.length <= 0) {
+        return runResponse(
+            {
+                type: 'alert',
+                text: 'Please Select a Featured Image',
+                css: 'bad'
+            }
+        )
+    }
+    document.querySelector('#post-form').submit()
+}
 // Responce Function
 function getCookie(cname) {
     let name = cname + "=";

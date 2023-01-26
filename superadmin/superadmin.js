@@ -4,41 +4,24 @@ const { User, Blog } = require('../db/db');
 const getRandomInt = require('../function/randomNum');
 const convertSlug = require('../function/slug');
 var router = express.Router();
+let blogRouter = require('./blog')
+let userRouter =  require('./usersRoute')
 
-
-
-
-
-router.use(checkAdmin)
 router.use(checkSession)
+router.use(checkAdmin)
 router.use(userData)
+router.use('/blogs',blogRouter)
+router.use('/users',userRouter)
 
 router.get('/', (req, res) => {
-
-    let loginConfirm = req.protocol+"://"+req.get('host')+'/login/confirm'
-    let loginPage = req.protocol+"://"+req.get('host')+'/login'
-
-    if(req.get('referrer') == loginConfirm || req.get('referrer') == loginPage) {
-        let script = `<script>runResponse({
-            type:'alert',
-            text:'Welcome Admin 😏',
-            css: 'good'
-        })</script>`;
-    
-        req.session.code = ''
-        res.render('SUPERADMIN/index', { script: script })
-    }else{
-        let script = ``;
-        req.session.code = ''
-        res.render('SUPERADMIN/index', { script: script })
-    }
+    res.render('userdashboard')
 })
 
 
 // Functions
 function checkAdmin(req, res, next) {
     let sess = req.session
-    if (sess.user) {
+    if(sess){
 
         if (sess.user.role === 'superadmin') {
             next()
@@ -49,9 +32,6 @@ function checkAdmin(req, res, next) {
             req.session.destroy()
             res.redirect('/login')
         }
-    } else {
-        sess.destroy()
-        res.redirect('/login')
     }
 }
 
@@ -71,6 +51,7 @@ function checkSession(req, res, next) {
 
 function userData(req, res, next) {
     res.locals.userData = req.session.user
+    res.locals.nav = req.session.user.role
     next()
 }
 module.exports = router

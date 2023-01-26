@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8">
-        <title>Starter Page | BloggyStories </title>
+        <title>User Grid | BloggyStories </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta content="BloggyStories" name="author">
@@ -24,7 +24,7 @@
 
     </head>
 
-    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark">
+    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index-1.html" class="logo logo-dark">
+                            <a href="/<%- nav %>" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -46,7 +46,7 @@
                                 </span>
                             </a>
 
-                            <a href="index-1.html" class="logo logo-light">
+                            <a href="/<%- nav %>" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/IMAGES/logo.svg" alt="" height="24">
                                 </span>
@@ -231,6 +231,8 @@
                             </div>
                         </div>
 
+                        
+
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src="/assets/images/users/avatar-1.jpg" alt="Header Avatar">
@@ -268,12 +270,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Starter Page</h4>
+                                    <h4 class="mb-sm-0 font-size-18">User Grid</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
-                                            <li class="breadcrumb-item active">Starter Page</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+                                            <li class="breadcrumb-item active">Authors</li>
                                         </ol>
                                     </div>
 
@@ -281,6 +283,70 @@
                             </div>
                         </div>
                         <!-- end page title -->
+
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <h5 class="card-title">User List <span class="text-muted fw-normal ms-2">(834)</span></h5>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                                    <div>
+                                        <a href="#" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        
+                                        <div class="mx-auto mb-4">
+                                            <img src="/assets/images/users/avatar-2.jpg" alt="" class="avatar-xl rounded-circle img-thumbnail">
+                                        </div>
+                                        <h5 class="font-size-16 mb-1 d-flex align-items-center justify-content-center"><a href="#" class="text-dark">Phyllis Gatlin</a><span class="dot ms-2 d-inline-block bg-danger rounded-circle" style="height: 5px;width: 5px;"></span></h5>
+                                        <p class="text-muted mb-2">Full Stack Developer</p>
+                                        
+                                    </div>
+
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-user me-1"></i> Enable</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-envelope-alt me-1"></i>Disable</button>
+                                        <button type="button" class="btn btn-outline-light bg-danger text-white text-truncate"><i class="uil uil-envelope-alt me-1"></i>Delete</button>
+
+                                    </div>
+                                </div>
+                                <!-- end card -->
+                            </div>
+                            <!-- end col -->
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        
+                                        <div class="mx-auto mb-4">
+                                            <img src="/assets/images/users/avatar-1.jpg" alt="" class="avatar-xl rounded-circle img-thumbnail">
+                                        </div>
+                                        <h5 class="font-size-16 mb-1 d-flex align-items-center justify-content-center"><a href="#" class="text-dark">James Nix</a><span class="dot ms-2 d-inline-block bg-success rounded-circle" style="height: 5px;width: 5px;"></span></h5>
+                                        <p class="text-muted mb-2">Full Stack Developer</p>
+                                        
+                                    </div>
+
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-user me-1"></i> Enable</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate"><i class="uil uil-envelope-alt me-1"></i>Disable</button>
+                                        <button type="button" class="btn btn-outline-light bg-danger text-white text-truncate"><i class="uil uil-envelope-alt me-1"></i>Delete</button>
+
+                                    </div>
+                                </div>
+                                <!-- end card -->
+                            </div>
+                        </div>
                         
                     </div> <!-- container-fluid -->
                 </div>
@@ -308,7 +374,6 @@
         <!-- END layout-wrapper -->
 
         
-       
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b255dd1a-04f2-4dbe-a03c-32ca2e2b4a9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-calendar.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-calendar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-contacts-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-contacts-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-invoices-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-invoices-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-invoices-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/apps-invoices-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/auth-logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/auth-logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-apex.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-apex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-chartjs.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-chartjs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-echart.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-echart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-knob.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-knob.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-sparkline.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/charts-sparkline.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-lightbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-lightbox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-notifications.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-notifications.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-rangeslider.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-rangeslider.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-rating.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-rating.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-session-timeout.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-session-timeout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-sweet-alert.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/extended-sweet-alert.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-advanced.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-advanced.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-editors.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-editors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-elements.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-elements.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-mask.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-mask.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-uploads.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-uploads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-validation.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-validation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/form-wizard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-boxicons.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-boxicons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-dripicons.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-dripicons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-fontawesome.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-fontawesome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-materialdesign.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/icons-materialdesign.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/layouts-horizontal.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/layouts-horizontal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-google.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-google.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-leaflet.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-leaflet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-vector.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/maps-vector.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-404.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-500.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-500.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-comingsoon.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-comingsoon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-faqs.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-faqs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-maintenance.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-maintenance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-timeline.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/pages-timeline.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-datatable.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-datatable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-editable.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-editable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-responsive.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/tables-responsive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-alerts.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-alerts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-cards.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-cards.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-carousel.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-carousel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-colors.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-colors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-dropdowns.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-dropdowns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-general.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-general.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-grid.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-grid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-images.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-images.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-modals.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-modals.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-offcanvas.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-offcanvas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-progressbars.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-progressbars.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-tabs-accordions.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-tabs-accordions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-typography.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-typography.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-video.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/NOT NEEDED/ui-video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/superadmin/superadmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/superadmin/superadmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/users/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/SUPERADMIN/apps-contacts-grid.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/SUPERADMIN/apps-contacts-profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/SUPERADMIN/apps-email-inbox.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/SUPERADMIN/apps-email-read.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/SUPERADMIN/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/SUPERADMIN/index.ejs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2KjJawKOZp2QNBpF88nJzIyLdRT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b255dd1a-04f2-4dbe-a03c-32ca2e2b4a9c" name="Changes" comment="" />
+      <created>1674482159769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674482159769</updated>
+      <workItem from="1674482174406" duration="363000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

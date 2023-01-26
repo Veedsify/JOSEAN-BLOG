@@ -8,7 +8,7 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-    if(typeof req.session.user === undefined || req.session.user !== ''){
+    if(req.session.user == null){
         req.session.destroy()
         res.render('auth-login')
     }else{
@@ -81,10 +81,10 @@ router.post('/new', checkStatus, async (req, res) => {
 
     User.findOne(parameters, function (err, user) {
         if (user) {
+            res.cookie('auth', user.reset_id)
             if (user.tfa !== 'on') {
                 req.session.user = user
-                req.cookies.auth = user.reset_id
-                res.session.tfa = 'skipped'
+                req.session.tfa = 'skipped'
                 if (user.role === 'superadmin') {
                     res.json({
                         type: 'link',
@@ -96,7 +96,6 @@ router.post('/new', checkStatus, async (req, res) => {
             } else {
                 let code = getRandomInt(1111, 9999)
                 req.session.code = code
-                req.cookies.auth = user.reset_id
                 req.session.user = user
                 sendVcodeEmail(user.name, user.email, code)
                 res.json({
