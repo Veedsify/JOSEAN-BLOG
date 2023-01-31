@@ -513,16 +513,14 @@ header {
 
     .post-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(19rem, auto));
         grid-auto-rows: minmax(150px, auto);
         grid-auto-flow: dense;
         gap: var(--blog-post-gap);
-        padding-bottom: 2rem;
-        position: relative;
         align-items: center;
         justify-content: center;
-        place-content: center;
         min-height: 60vh;
+        position: relative;
         transition: height 1s ease;
 
         .blog-container {
@@ -1097,10 +1095,6 @@ footer {
     }
 
     .post-section {
-        .post-grid {
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-        }
-
         .post-filter {
             grid-template-columns: 1fr;
 

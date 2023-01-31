@@ -6,10 +6,11 @@ const userRouter = require('../users/users')
 const loginRouter = require('./login')
 const registerRouter = require('./register')
 const membershipRouter = require('./membership')
-
+const apiRouter = require('./api')
 
 
 // Super Admin Route
+router.use('/api',apiRouter)
 router.use('/login', loginRouter)
 router.use('/register', registerRouter)
 router.use('/membership', membershipRouter)

@@ -3,18 +3,23 @@ const multer = require('multer');
 const { User, Blog } = require('../db/db');
 const getRandomInt = require('../function/randomNum');
 const convertSlug = require('../function/slug');
+
 var router = express.Router();
 let blogRouter = require('./blog')
 let userRouter =  require('./usersRoute')
+let manageRouter = require('./manageRouter')
+let settingsRouter = require('./settingsRouter')
 
 router.use(checkSession)
 router.use(checkAdmin)
 router.use(userData)
 router.use('/blogs',blogRouter)
 router.use('/users',userRouter)
+router.use('/manage',manageRouter)
+router.use('/settings',settingsRouter)
 
 router.get('/', (req, res) => {
-    res.render('userdashboard')
+    res.render('admin/dashboard')
 })
 
 

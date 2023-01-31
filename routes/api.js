@@ -1,14 +1,31 @@
 const express = require('express');
+const { marked } = require('marked');
 const router = express.Router();
+const {Blog} = require('../db/db');
 
 
 router.use(checkSessions)
 
-router.get('/',(req,res) => {
-    res.redirect('/');
-})
-
 router.post('/getBlogImpressions',(req,res) => {
+    // let user = req.session.user.user_name
+     let user = 'admin'
+
+    Blog.aggregate([
+        {   
+            $match: {
+                'author_username': user
+            }
+        },{
+            $group: {
+                _id: null,
+                total: { $sum: "$amount" }
+            }
+        }
+    ], (err, blog) => {
+        if(!err){
+            res.send(blog)
+        }
+    })
     
 });
 
@@ -22,4 +39,4 @@ function checkSessions(req,res,next) {
 }
 
 
-module.exports = router``;
+module.exports = router;

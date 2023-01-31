@@ -53,8 +53,9 @@
                     <div class="all-aticles">
                         <article class="post-grid">
                             <!--  Start OF Post One  -->
+                            <% if(posts.length > 0){ %> 
                             <% posts.forEach(post=>{ %>
-                                <div class="blog-container" data-link="/posts/${ post.slug_id  %> ">
+                                <div class="blog-container" data-link="/posts/<% post.slug_id  %> ">
                                     <a class="post-link" href="/posts/<%- post.slug_id  %>">
 
                                         <img loading="lazy" src="<%- post.image %>" alt="<%- post.title  %> "
@@ -76,6 +77,9 @@
                                     </div>
                                 </div>
                                 <% }) %>
+                                <% }else{ %> 
+                                    <h2 style="color:#fff !important;"">No Post Found</h2>
+                                    <% } %> 
                         </article>
                         <div class="loadmore">
                             <button class="load-more-post" id="load-more-post">Load More..</button>
@@ -83,11 +87,11 @@
                     </div>
                     <div class="filter">
                         <h4>Categories</h4>
-                        <div class="filter-btns">
+                        <div class="filter-btns text-capitalize">
                             <button class="catBtn" data-filter="all">Recent</button>
                             <% categories.forEach( category=> { %>
-                                <button class="catBtn" data-filter="<%= category._id  %>">
-                                    <%= category._id %>
+                                <button class="catBtn text-capitalize" data-filter="<%- category._id  %>">
+                                    <%- category._id %>
                                 </button>
                                 <% }) %>
                         </div>

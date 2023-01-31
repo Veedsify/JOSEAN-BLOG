@@ -4,6 +4,7 @@ const { User, Blog } = require('../db/db');
 const getRandomInt = require('../function/randomNum');
 const convertSlug = require('../function/slug');
 var router = express.Router();
+let settingsRouter = require('./settingsRouter')
 let blogRouter = require('./blog')
 
 
@@ -12,12 +13,13 @@ let blogRouter = require('./blog')
 router.use(checkSession)
 router.use(checkAdmin)
 router.use(userData)
+router.use('/settings',settingsRouter)
 router.use('/blogs', blogRouter)
 
 
 
 router.get('/', (req, res) => {
-    res.render('userdashboard')
+    res.render('user/dashboard')
 })
 
 

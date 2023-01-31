@@ -10,7 +10,7 @@ mongoose.set('strictQuery', true)
 
 mongoose.connect(db, { useNewUrlParser: true });
 
-const User = mongoose.model('users', UserSchema );
+const User = mongoose.model('users', UserSchema);
 const Blog = mongoose.model('blogs', blogSchema);
 
 
@@ -19,3 +19,4 @@ module.exports = {
     User,
     Blog
 }
+

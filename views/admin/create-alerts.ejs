@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        <meta charset="utf-8">
+        <title>Email Inbox | BloggyStories </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta content="BloggyStories" name="author">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/IMAGES/logo.svg">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="/assets/css/preloader.min.css" type="text/css">
+
+        <!-- Bootstrap Css -->
+        <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+        <!-- App Css-->
+        <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" >
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <%- include('includes/header.ejs') %>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <%- include('includes/'+ nav +'.ejs') %>
+
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Alert</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item active">Alert</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- Left sidebar -->
+                                <div class="email-leftbar card">
+                                    <button type="button" class="btn btn-danger w-100 waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#composemodal">
+                                        New Alert
+                                    </button>
+
+                                </div>
+                                <!-- End Left sidebar -->
+        
+        
+                                <!-- Right Sidebar -->
+                                <div class="email-rightbar mb-3">
+                                    
+                                    <div class="card p-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4>All Alerts</h4>
+                                            <strong>View Count</strong>
+                                        </div>
+                                            
+                                        <ul class="row list-unstyled p-2">
+                                            <li class="col-xl-12 bg-page-bg p-3 rounded-1 mb-3 d-flex gap-3 text-dark">
+                                                <div class="col-mail col-mail-1">
+                                                    <a href="#" class="title text-dark">Peter, me (3)</a>
+                                                </div>
+                                                <div class="col-mail col-mail-2">
+                                                    <a href="#" class="subject text-dark text-truncate w-50 d-block">Hello – <span class="teaser ">Trip home from Colombo has been arranged, then Jenna will come get me from Stockholm. :)</span>
+                                                    </a>
+                                                </div>
+                                                <div class="date">Mar 6</div>
+                                            </li>
+                                            <li class="col-xl-12 bg-page-bg p-3 rounded-1 mb-3 d-flex gap-3 text-dark">
+                                                <div class="col-mail col-mail-1">
+                                                    <a href="#" class="title text-dark">Peter, me (3)</a>
+                                                </div>
+                                                <div class="col-mail col-mail-2">
+                                                    <a href="#" class="subject text-dark text-truncate w-50 d-block">Hello – <span class="teaser ">Trip home from Colombo has been arranged, then Jenna will come get me from Stockholm. :)</span>
+                                                    </a>
+                                                </div>
+                                                <div class="date">Mar 6</div>
+                                            </li>
+        
+                                        </ul>
+        
+                                    </div> <!-- card -->
+        
+                                </div> <!-- end Col-9 -->
+        
+                            </div>
+        
+                        </div><!-- End row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-size-16" id="composemodalTitle">New Alert Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    
+
+                                    <div class="mb-3">
+                                        <label for="">Alert Location:</label>
+                                        <select id="location" class="form-control form-select" placeholder="Location">
+                                            <option value="" selected></option>
+                                            <option value="homepage">Home Page</option>
+                                            <option value="postpage">Post Page</option>
+                                            <option value="userdashboard">User Dashboard</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 email-editor">
+                                        <div id="email-editor"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Create <i class="fab fa-telegram-plane ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © BloggyStories.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="/assets/libs/jquery/jquery.min.js"></script>
+        <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/assets/libs/node-waves/waves.min.js"></script>
+        <script src="/assets/libs/feather-icons/feather.min.js"></script>
+        
+
+        <!--ckeditor js-->
+        <script src="/assets/libs/%40ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+
+        <!-- email editor init -->
+        <script src="/assets/js/pages/email-editor.init.js"></script>
+
+        <script src="/assets/js/app.js"></script>
+<script>
+        feather.replace()
+      </script>
+
+    </body>
+</html>

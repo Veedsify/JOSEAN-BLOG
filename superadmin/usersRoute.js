@@ -7,7 +7,7 @@ router.get('/audit', (req, res, next) => {
 
     User.find({ user_name: { $ne: 'admin' } }, (err, user) => {
         let userLength = user.length
-        res.render('audit-users', { users: user, userLength: userLength })
+        res.render('admin/audit-users', { users: user, userLength: userLength })
     })
 })
 
@@ -40,7 +40,7 @@ router.put('/update', (req, res, next) => {
     let action = req.body.action
     if (req.session.user.role === 'superadmin') {
         if(action === 'disable'){
-            User.updateOne({ user_name: user },{status: 'hidden' }, (err) => {
+            User.updateOne({ user_name: user },{statusAdmin: 'hidden' }, (err) => {
                 if (!err) {
                     res.json({
                         type: 'alert',
@@ -50,7 +50,7 @@ router.put('/update', (req, res, next) => {
                 }
             })
         }else{
-            User.updateOne({ user_name: user },{status: 'public' }, (err) => {
+            User.updateOne({ user_name: user },{statusAdmin: 'public' }, (err) => {
                 if (!err) {
                     res.json({
                         type: 'alert',
@@ -67,6 +67,10 @@ router.put('/update', (req, res, next) => {
             css: 'bad'
         })
     }
+})
+
+router.get('/details', (req, res, next)=>{
+    res.render('admin/details',)
 })
 
 module.exports = router;

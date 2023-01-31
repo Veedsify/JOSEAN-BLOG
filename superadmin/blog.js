@@ -6,7 +6,7 @@ const router = express.Router();
 const getDate = require('../function/date');
 
 router.get('/new', (req, res) => {
-    res.render('newblog')
+    res.render('admin/newblog',{auth: {}})
 })
 
 var fileName;
@@ -40,7 +40,7 @@ const upload = multer({ storage: storage });
 router.post('/create',upload.single('featuredImage'),(req,res)=>{
     let postTitle = req.body.postTitle
     let postCategory = req.body.postCategory
-    // let postDescription = req.body.postDescription
+    let postDescription = req.body.postDescription
     let post = req.body.post
     let slugTitle = slugify(postTitle)
 
@@ -48,6 +48,7 @@ router.post('/create',upload.single('featuredImage'),(req,res)=>{
             title: postTitle,
             post: post,
             category: postCategory,
+            desc: postDescription,
             image: fileName,
             slug_id: slugTitle,
             date: getDate(),
@@ -62,12 +63,25 @@ router.post('/create',upload.single('featuredImage'),(req,res)=>{
 
         newBlog.save((err)=>{
             if(!err){
-                res.redirect(`/posts/${slugify(postTitle)}`)
+                res.redirect('/superadmin/blogs/update')
             }
         })
     
 })
 
 
+router.get('/posts', (req, res, next)=>{
+    Blog.find({author_username: req.session.user.user_name},(err, blog)=>{
+        res.render('admin/posts', {blog: blog})
+    })
+})
+
+router.get('/analytics', (req, res, next)=>{
+    res.render('admin/analytics')
+})
+
+router.get('/visibility', (req, res, next)=>{
+    res.render('admin/visibility')
+})
 
 module.exports = router;

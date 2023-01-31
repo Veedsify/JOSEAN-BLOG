@@ -268,3 +268,99 @@ function runResponse(res) {
     }
 
 }
+
+$(".togglebtn").click(function () {
+    let ballChild = document.querySelector('.toggleBall');
+
+    if (document.querySelector('.togglebtn').getAttribute('data-mode') !== 'on') {
+        $(ballChild).css({
+            transform: 'translateX(80%)'
+        });
+        runResponse({
+            type: 'alert',
+            text: 'Two factor authentication is now on',
+            css: 'good'
+        })
+        document.querySelector('.togglebtn').setAttribute('data-mode', 'on')
+    } else {
+        $(ballChild).css({
+            transform: 'translateX(0)'
+        });
+        runResponse({
+            type: 'alert',
+            text: 'Two factor authentication is now off',
+            css: 'good'
+        })
+        document.querySelector('.togglebtn').setAttribute('data-mode', 'off')
+    }
+})
+
+function apprPost(slug){
+    if(slug.length <= 10){
+        $.post("/superadmin/manage/response", {
+            user: '',
+            action:'APPROVE',
+            slug
+        },
+            function (data) {
+                runResponse(data)
+            },
+        );
+    }
+}
+
+
+function approvePost(user, action, slug) {
+
+
+    $.post("/superadmin/manage/response", {
+        user,
+        action,
+        slug,
+        stmt: document.querySelector('.text-box').value || ''
+
+
+    },
+        function (data) {
+            runResponse(data)
+        },
+    );
+
+}
+
+function runResponseWithText(res) {
+    let alertBox = document.createElement('div');
+    alertBox.className = 'alertbox '
+    alertBox.className += res.css
+    alertBox.innerHTML += `<p>` + res.text + `</p>`
+    alertBox.innerHTML += `<textarea class="text-box"></textarea>`
+    alertBox.innerHTML += `<div>
+        <button class="btn btn-danger btn-sm" onclick="closeAlert()">Cancel</button>
+            <button class="btn btn-success btn-sm" onclick="${res.func}(${res.funcParams})">Proceed</button>
+        </div>`
+
+    document.body.appendChild(alertBox);
+    document.body.style.pointerEvents = 'none'
+    document.body.style.userSelect = 'none'
+    alertBox.style.pointerEvents = 'all'
+}
+function closeAlert() {
+    let alertbox = document.querySelectorAll('.alertbox')
+    alertbox.forEach(alert => {
+        document.body.removeChild(alert)
+        document.body.style.pointerEvents = 'all'
+        document.body.style.userSelect = 'auto'
+
+    })
+}
+
+function denyPost(slug) {
+    let alertmode = {
+        text: 'Why do you want to disapprove this post',
+        css: 'info',
+        func: 'approvePost',
+        funcParams: `'user','DISAPPROVE','${slug}'`
+    }
+    runResponseWithText(alertmode);
+};
+

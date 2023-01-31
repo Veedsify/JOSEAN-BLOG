@@ -1,6 +1,6 @@
 
 // Insert snippet code
-const jodit = Jodit.make('#post', {
+const jodit = Jodit.make('.post', {
     "minHeight": 700,
     "useSearch": true,
     "spellcheck": false,
@@ -18,7 +18,7 @@ const jodit = Jodit.make('#post', {
 // Set code.
 function setCode(){
     let textBox = document.querySelector('#paste-code')
-    let modalBox = document.querySelector('.modal')
+    let modalBox = document.querySelector('.modal-code')
 
 
     // main box for copy.
@@ -43,8 +43,7 @@ function setCode(){
 
 // Create modal box.
 function modal(res){
-    let modalBox = document.querySelector('.modal')
-
+    let modalBox = document.querySelector('.modal-code')
     if(res === 'open'){
         modalBox.classList.add('active') 
         return   

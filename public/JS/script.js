@@ -75,7 +75,6 @@ categorybuttons.forEach(categoryBtn => {
             data: {
                 category: postFilter
             },
-            dataType: "",
             success: function (response) {
                 if (response.length < 1) {
                     postGrid.innerHTML = '<h3 class="no-post-found">No Post Found.</h3>'
