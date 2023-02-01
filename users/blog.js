@@ -112,6 +112,7 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
         newblog = new Blog({
             title: postTitle,
             post: post,
+            postMarkdown: post,
             category: postCategory,
             desc: postDescription,
             image: fileName,
@@ -144,6 +145,7 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
         newblog = new Blog({
             title: postTitle,
             post: html,
+            postMarkdown: post,
             category: postCategory,
             desc: postDescription,
             image: fileName,

@@ -69,8 +69,15 @@ router.put('/update', (req, res, next) => {
     }
 })
 
-router.get('/details', (req, res, next)=>{
-    res.render('admin/details',)
+router.get('/details', async (req, res, next)=>{
+
+    let findUsers = await new Promise (resolve =>{
+        User.find({role: {$ne: 'superadmin'}},(err, user)=>{
+            resolve(user)
+        })
+    })
+
+    res.render('admin/details',{users: findUsers})
 })
 
 module.exports = router;

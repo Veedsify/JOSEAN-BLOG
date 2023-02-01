@@ -89,19 +89,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+
+                                                <% users.forEach( user =>{ %> 
                                                 <tr>
-                                                    <td>Dike Wisdom</td>
-                                                    <td>deekay</td>
-                                                    <td>dike@gmail.com</td>
-                                                    <td>PAID</td>
+                                                    <td><%- user.name  %> </td>
+                                                    <td><%- user.user_name  %> </td>
+                                                    <td><%- user.email  %> </td>
+                                                    <td class="text-capitalize"><%- user.membership  %> </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Harry Mack</td>
-                                                    <td>Marky11</td>
-                                                    <td>macktyson@gmail.com</td>
-                                                    <td>PAID</td>
-                                                </tr>
-                                                
+                                                <% }) %> 
                                             </tbody>
                                         </table>
                                     </div>

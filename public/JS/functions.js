@@ -296,14 +296,17 @@ $(".togglebtn").click(function () {
 })
 
 function apprPost(slug){
-    if(slug.length <= 10){
+    if(!slug.length <= 10){
         $.post("/superadmin/manage/response", {
-            user: '',
+            user: 'user',
             action:'APPROVE',
             slug
         },
             function (data) {
                 runResponse(data)
+                setTimeout(() => {
+                    location.href = '/superadmin/manage/posts'
+                }, 2000);
             },
         );
     }
@@ -317,11 +320,12 @@ function approvePost(user, action, slug) {
         user,
         action,
         slug,
-        stmt: document.querySelector('.text-box').value || ''
+        stmt: document.querySelector('.text-box').value
 
 
     },
         function (data) {
+            closeAlert()
             runResponse(data)
         },
     );

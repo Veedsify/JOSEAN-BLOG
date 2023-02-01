@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const blogSchema = new mongoose.Schema({
     title: String,
     post: String,
+    postMarkdown: String,
     category: String,
     image: String,
     desc: String,

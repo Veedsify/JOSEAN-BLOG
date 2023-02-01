@@ -20,12 +20,12 @@ function sendVcodeEmail(name, email, code) {
     return ;
 }
 
-function sendPostStatus(name, email,message) {
+function sendPostStatus(name, email,message,subject) {
 
     mail.sendMail({
         from: `Bloggy Stories <${process.env.MAILUSER}>`, // sender address
         to: email, // list of receivers
-        subject: "Your Post was not accepted", // Subject line
+        subject: subject, // Subject line
         html: postStatus(`Hi ${name}`, message), // html body
     }, (err) => {
         if (!err) {

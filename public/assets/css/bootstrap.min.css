@@ -270,6 +270,10 @@ p {
   background: transparent !important;
 }
 
+.copybtn img{
+    max-height: 30px;
+}
+
 .modal-code {
   position: fixed;
   transition: 0.3s;
@@ -331,6 +335,14 @@ p {
     -o-border-radius: 50%;
 }
 
+
+#dropImageZone img{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit:cover;
+    display:block;
+    margin:auto;
+}
 abbr[data-bs-original-title],
 abbr[title] {
     -webkit-text-decoration: underline dotted;

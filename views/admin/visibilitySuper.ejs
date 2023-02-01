@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>All Post Visiblity | BloggyStories </title>
+    <title>Post Visiblity | BloggyStories </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta content="BloggyStories" name="author">
@@ -35,7 +35,7 @@
 
 </head>
 
-<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" >
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" class="sidebar-enable">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -67,7 +67,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Manage Posts</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Blogs</a></li>
                                             <li class="breadcrumb-item active">Visiblity</li>
                                         </ol>
                                     </div>
@@ -91,33 +91,44 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <% blogs.forEach( blog =>{ %> 
                                                 <tr>
-                                                    <td><%- blog.title %></td>
-                                                    <td><span class="dot ms-2 d-inline-block 
-                                                        <% if (blog.statusAdmin === 'public') { %>
-                                                            <%- 'bg-success' %> 
-                                                        <% } else {%>
-                                                            <%- 'bg-warning' %> 
-                                                            <% } %> "></span></td>
+                                                    <td>How to run an NPM terminal commend</td>
+                                                    <td><span class="dot ms-2 d-inline-block bg-warning"></span></td>
+                                                    <td>
+                                                        <form class="d-inline-block"
+                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                            <input type="submit" class="bg-success border-0 rounded-1 text-white" value="Enable">
+                                                        </form>
+                                                        <form class="d-inline-block"
+                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                            <input type="submit" class="bg-warning border-0 rounded-1 text-white" value="Disable">
+                                                        </form>
+                                                        <form class="d-inline-block"
+                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                            <input type="submit" class="bg-danger border-0 rounded-1 text-white" value="Delete">
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>How to use A Mac computer</td>
+                                                    <td><span class="dot ms-2 d-inline-block bg-success"></span></td>
                                                     <td>
 
                                                         <form class="d-inline-block"
-                                                        action="/<%- nav  %>/manage/visibility/<%- blog.slug_id%>/enable" method="post">
+                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
                                                         <input type="submit" class="bg-success border-0 rounded-1 text-white" value="Enable">
                                                     </form>
                                                     <form class="d-inline-block"
-                                                        action="/<%- nav  %>/manage/visibility/<%- blog.slug_id%>/disable" method="post">
+                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
                                                         <input type="submit" class="bg-warning border-0 rounded-1 text-white" value="Disable">
                                                     </form>
                                                     <form class="d-inline-block"
-                                                        action="/<%- nav  %>/manage/visibility/<%- blog.slug_id%>/delete" method="post">
+                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
                                                         <input type="submit" class="bg-danger border-0 rounded-1 text-white" value="Delete">
                                                     </form>
 
                                                     </td>
                                                 </tr>
-                                                <% }) %> 
                                             </tbody>
                                         </table>
                                     </div>

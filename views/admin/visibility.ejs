@@ -91,44 +91,33 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>How to run an NPM terminal commend</td>
-                                                    <td><span class="dot ms-2 d-inline-block bg-warning"></span></td>
-                                                    <td>
-                                                        <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                <% blogs.forEach( blog =>{ %> 
+                                                    <tr>
+                                                        <td><%- blog.title %></td>
+                                                        <td><span class="dot ms-2 d-inline-block 
+                                                            <% if (blog.statusAdmin === 'public') { %>
+                                                                <%- 'bg-success' %> 
+                                                            <% } else {%>
+                                                                <%- 'bg-warning' %> 
+                                                                <% } %> "></span></td>
+                                                        <td>
+    
+                                                            <form class="d-inline-block"
+                                                            action="/<%- nav  %>/blogs/visibility/<%- blog.slug_id%>/enable" method="post">
                                                             <input type="submit" class="bg-success border-0 rounded-1 text-white" value="Enable">
                                                         </form>
                                                         <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                            action="/<%- nav  %>/blogs/visibility/<%- blog.slug_id%>/disable" method="post">
                                                             <input type="submit" class="bg-warning border-0 rounded-1 text-white" value="Disable">
                                                         </form>
                                                         <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/" method="post">
+                                                            action="/<%- nav  %>/blogs/visibility/<%- blog.slug_id%>/delete" method="post">
                                                             <input type="submit" class="bg-danger border-0 rounded-1 text-white" value="Delete">
                                                         </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>How to use A Mac computer</td>
-                                                    <td><span class="dot ms-2 d-inline-block bg-success"></span></td>
-                                                    <td>
-
-                                                        <form class="d-inline-block"
-                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
-                                                        <input type="submit" class="bg-success border-0 rounded-1 text-white" value="Enable">
-                                                    </form>
-                                                    <form class="d-inline-block"
-                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
-                                                        <input type="submit" class="bg-warning border-0 rounded-1 text-white" value="Disable">
-                                                    </form>
-                                                    <form class="d-inline-block"
-                                                        action="/<%- nav  %>/blogs/visibility/" method="post">
-                                                        <input type="submit" class="bg-danger border-0 rounded-1 text-white" value="Delete">
-                                                    </form>
-
-                                                    </td>
-                                                </tr>
+    
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %> 
                                             </tbody>
                                         </table>
                                     </div>

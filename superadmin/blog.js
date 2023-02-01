@@ -47,6 +47,7 @@ router.post('/create',upload.single('featuredImage'),(req,res)=>{
         let newBlog = new Blog({
             title: postTitle,
             post: post,
+            postMarkdown: post,
             category: postCategory,
             desc: postDescription,
             image: fileName,
@@ -80,8 +81,42 @@ router.get('/analytics', (req, res, next)=>{
     res.render('admin/analytics')
 })
 
-router.get('/visibility', (req, res, next)=>{
-    res.render('admin/visibility')
+router.get('/visibility', async(req, res, next)=>{
+    let getMyBLogs = await new Promise(resolve => {
+        Blog.find({author_username: req.session.user.user_name   },(err, blog)=>{
+            resolve(blog)
+        })
+    })
+
+    res.render('admin/visibility',{blogs: getMyBLogs})
 })
+router.post('/visibility/:slug/:action',async (req,res)=>{
+
+    if(req.params.slug.length > 10){
+        if(req.params.action === 'enable'){
+            Blog.updateOne({slug_id: req.params.slug},{status:'enabled',statusAdmin:'public'},(err,blog)=>{
+                if(err){
+                    console.log(err)
+                }
+            })
+        }else if(req.params.action === 'disable'){
+            Blog.updateOne({slug_id: req.params.slug},{status:'disabled',statusAdmin:'hidden'},(err,blog)=>{
+                if(err){
+                    console.log(err)
+                }
+            })
+        }else if(req.params.action === 'delete'){
+            Blog.deleteOne({slug_id: req.params.slug});
+        }
+        res.redirect('/superadmin/blogs/visibility')
+    }
+})
+
+router.get('/blogs/edit/:slug',(req,res)=>{
+    Blog.findOne({slug_id: req.params.slug},(err,blog)=>{
+        res.render('admin/editblog',{blog:blog})
+    })
+})
+
 
 module.exports = router;
