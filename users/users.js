@@ -1,6 +1,7 @@
 var express = require('express');
 const multer = require('multer');
-const { User, Blog } = require('../db/db');
+const {sendPostStatus} = require('../mailer/tfa')
+const { User, Blog, Notify } = require('../db/db');
 const getRandomInt = require('../function/randomNum');
 const convertSlug = require('../function/slug');
 var router = express.Router();
@@ -22,6 +23,40 @@ router.get('/', (req, res) => {
     res.render('user/dashboard')
 })
 
+router.post('/sendAdminMessage', (req, res, next)=>{
+    let info = req.body
+
+    let me = req.session.user.user_name
+
+    User.findOne({role: 'superadmin'},(err, user)=>{
+        
+        try{
+
+            let notification = new Notify({
+                sender: req.session.user.user_name,
+                sender_image: req.session.user.profile_image,
+                reciever: user.user_name,
+                reciever_image: user.profile_image,
+                message: info.message,
+                seen: 'no'
+            })
+            
+            notification.save((err, notify) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
+
+            sendPostStatus('Admin',user.email,info.message,'Message From User:'+me+' '+info.subject)
+        
+        }catch(err){
+            console.log(err)
+        }
+
+        
+        res.redirect('/user?message=success')
+    })
+})
 
 function checkAdmin(req, res, next) {
     let sess = req.session

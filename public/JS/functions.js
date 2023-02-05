@@ -5,12 +5,15 @@ $("#auth-login-btn").click(function (e) {
 
     let password = $("#password").val();
 
+    let user = username.replace(/^\s+|\s+$/gm, '')
+    let pass = password.replace(/^\s+|\s+$/gm, '')
+
     $.ajax({
         type: "post",
         url: "/login/new",
         data: {
-            username,
-            password
+            username: user,
+            password: pass
         },
         success: function (response) {
             runResponse(response)
@@ -35,19 +38,27 @@ $("#free-plan").click(function (e) {
 
 $("#paid-plan").click(function (e) {
     e.preventDefault();
-
-
-
-    $.ajax({
-        type: "POST",
-        url: "/membership/user",
-        data: {
-            plan: 'paid',
+    document.body.style.filter = 'brightness(.7)'
+    fetch('/membership/user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
         },
-        success: function (response) {
-            runResponse(response)
+        body: JSON.stringify({
+            items: [{ id: 1, quantity: 1 }],
+            plan: 'paid',
+        })
+    }).then(response => {
+        if (response.ok) {
+            return response.json()
+        } else {
+            return response.json().then(json => Promise.reject(json))
         }
-    });
+    }).then(res => {
+        runResponse(res);
+    }).catch(e => {
+        console.error(e.error)
+    })
 });
 
 
@@ -248,7 +259,7 @@ function getCookie(cname) {
 
 function runResponse(res) {
     if (res.type == 'link') {
-        location.href = res.link
+        window.location.href = res.link
 
     } else if (res.type == 'alert') {
         let alertBox = document.createElement('div');
@@ -295,11 +306,11 @@ $(".togglebtn").click(function () {
     }
 })
 
-function apprPost(slug){
-    if(!slug.length <= 10){
+function apprPost(slug) {
+    if (!slug.length <= 10) {
         $.post("/superadmin/manage/response", {
             user: 'user',
-            action:'APPROVE',
+            action: 'APPROVE',
             slug
         },
             function (data) {
@@ -327,6 +338,9 @@ function approvePost(user, action, slug) {
         function (data) {
             closeAlert()
             runResponse(data)
+            setTimeout(() => {
+                location.href = '/superadmin/manage/posts'
+            }, 2000);
         },
     );
 
@@ -348,6 +362,7 @@ function runResponseWithText(res) {
     document.body.style.userSelect = 'none'
     alertBox.style.pointerEvents = 'all'
 }
+
 function closeAlert() {
     let alertbox = document.querySelectorAll('.alertbox')
     alertbox.forEach(alert => {
@@ -368,3 +383,81 @@ function denyPost(slug) {
     runResponseWithText(alertmode);
 };
 
+// SWEET ALERTS
+
+function runALert(alert) {
+    let localAlert = localStorage.getItem('alt_ngi-ngix-id')
+
+    if (!localAlert) {
+        return
+    } else {
+        if (localAlert != alert._id) {
+            swal({
+                title: 'New Alert',
+                text: alert.message,
+                className: 'bg-page-bg',
+                button: {
+                    confirm: "Ok",
+                    className: 'btn-primary'
+                },
+            }).then((result) => {
+                if (result == true) {
+                    localStorage.setItem('alt_ngi-ngix-id', alert._id)
+                }
+            })
+        }
+    }
+}
+
+$.post("/api/getAlerts",
+    function (data) {
+        if(data){
+            runALert(data)
+        }
+    },
+);
+
+let deleteBtns = document.querySelectorAll('.deleteAlert')
+
+deleteBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let id = btn.getAttribute('data-alert')
+        $.post("/superadmin/alerts/delete-alert", { id },
+            function (data) {
+                runResponse(data)
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
+            },
+        );
+    });
+})
+
+
+$("#dma").click(function (e) {
+    e.preventDefault();
+    swal({
+        title: 'Delete My Account',
+        text: 'This would delete all your post,messages and account, do you wish to proceed?',
+        className: 'bg-page-bg',
+        buttons: {
+            cancel: true,
+            confirm: {
+                text: 'Delete',
+                className: 'btn-danger'
+            },
+        }
+    }).then(result => {
+        if (result == true) {
+            $.ajax({
+                type: "DELETE",
+                url: "/user/settings/delete-account",
+                data: {},
+                success: function (response) {
+                    runResponse(response)
+                }
+            });
+        }
+    })
+
+});

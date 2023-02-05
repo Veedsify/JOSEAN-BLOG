@@ -59,16 +59,8 @@
                             <!-- start page title -->
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Blogs</a>
-                                                </li>
-                                                <li class="breadcrumb-item active">New Posts</li>
-                                            </ol>
-                                        </div>
-
+                                    <div class="page-title-right">
+                                        <p class="breadcrumb-item active">New Posts</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,198 +70,94 @@
                                 <div class="col-lg-12">
                                     <form action="/<%- nav  %>/blogs/create" method="post" id="post-form"
                                         enctype="multipart/form-data">
-                                        <div class="card">
-                                            <div class="card-header">
+                                        <div class="card p-3">
+                                            <div class="card-header px-0">
                                                 <h4 class="card-title mb-0">New Post</h4>
                                             </div>
-                                            <div class="card-body">
-                                                <div id="progrss-wizard" class="twitter-bs-wizard">
-                                                    <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
-                                                        <li class="nav-item">
-                                                            <a href="#progress-seller-details" class="nav-link"
-                                                                data-toggle="tab">
-                                                                <div class="step-icon" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="Basic Details">
-                                                                    <i class="bx bx-list-ul"></i>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="#progress-company-document" class="nav-link"
-                                                                data-toggle="tab">
-                                                                <div class="step-icon" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="Write Post">
-                                                                    <i class="bx bx-book-bookmark"></i>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-
-                                                        <li class="nav-item">
-                                                            <a href="#progress-bank-detail" class="nav-link"
-                                                                data-toggle="tab">
-                                                                <div class="step-icon" data-bs-toggle="tooltip"
-                                                                    data-bs-placement="top" title="Final">
-                                                                    <i class="bx bxs-bank"></i>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <!-- wizard-nav -->
-
-                                                    <div id="bar" class="progress mt-4">
-                                                        <div
-                                                            class="progress-bar bg-primary progress-bar-striped progress-bar-animated">
+                                            <div class="tab-content twitter-bs-wizard-tab-content">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="progresspill-firstname-input">Post
+                                                                Title</label>
+                                                            <input type="text" class="form-control" id="post-title"
+                                                                name="postTitle">
                                                         </div>
                                                     </div>
-                                                    <div class="tab-content twitter-bs-wizard-tab-content">
-
-                                                        <div class="tab-pane" id="progress-seller-details">
-                                                            <div class="text-center mb-4">
-                                                                <h5>Basic Details</h5>
-                                                                <p class="card-title-desc">Write a title and good
-                                                                    description
-                                                                </p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="progresspill-firstname-input">Post
-                                                                            Title</label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="post-title" name="postTitle">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="progresspill-lastname-input">Post
-                                                                            Category</label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="post-category" name="postCategory">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-lg-12">
-                                                                    <div class="mb-3">
-                                                                        <label
-                                                                            for="post-description">Description</label>
-                                                                        <textarea id="post-description"
-                                                                            class="form-control" rows="2"
-                                                                            name="postDescription"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                                                <li class="next"><a href="javascript: void(0);"
-                                                                        class="btn btn-primary" onclick="nextTab()">Next
-                                                                        <i class="bx bx-chevron-right ms-1"></i></a>
-                                                                </li>
-                                                            </ul>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="progresspill-lastname-input">Post
+                                                                Category</label>
+                                                            <input type="text" class="form-control" id="post-category"
+                                                                name="postCategory">
                                                         </div>
-                                                        <div class="tab-pane" id="progress-company-document">
-                                                            <div>
-                                                                <div class="text-center mb-4">
-                                                                    <h5>Write Post</h5>
-                                                                    <p class="card-title-desc">Your Article</p>
-                                                                </div>
+                                                    </div>
+                                                </div>
 
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="mb-3">
-                                                                            <label for="progresspill-pancard-input"
-                                                                                class="form-label">Post</label>
-
-                                                                            <% if(userData.membership==='free' ) {%>
-
-                                                                                <pre>
-                                                                                    <textarea type="text" class="form-control"
-                                                                                        style="min-height: 400px;"
-                                                                                        id="post" name="post" placeholder="Markdown Format"></textarea>
-                                                                                </pre>
-
-                                                                                <% } else {%>
-                                                                                    <textarea type="text" class="form-control post"
-                                                                                        style="min-height: 400px;" 
-                                                                                        id="post" name="post" placeholder="Start Here"></textarea>
-                                                                                    <% } %>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-
-
-                                                                <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                                                    <li class="previous"><a href="javascript: void(0);"
-                                                                            class="btn btn-primary"
-                                                                            onclick="nextTab()"><i
-                                                                                class="bx bx-chevron-left me-1"></i>
-                                                                            Previous</a></li>
-                                                                    <li class="next"><a href="javascript: void(0);"
-                                                                            class="btn btn-primary"
-                                                                            onclick="nextTab()">Next
-                                                                            <i class="bx bx-chevron-right ms-1"></i></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="mb-3">
+                                                            <label for="post-description">Description</label>
+                                                            <textarea id="post-description" class="form-control"
+                                                                rows="2" name="postDescription"></textarea>
                                                         </div>
-                                                        <div class="tab-pane" id="progress-bank-detail">
-                                                            <div>
-                                                                <div class="text-center mb-4">
-                                                                    <h5>Featured Image</h5>
-                                                                    <p class="card-title-desc">Select a featured image
-                                                                        for
-                                                                        your post</p>
-                                                                </div>
-
-                                                                <div class="row justify-content-center">
-                                                                    <div class="col-lg-6">
-                                                                        <div class="mb-3">
-                                                                            <label for="progresspill-expiration-input"
-                                                                                class="form-label">Featured
-                                                                                Image</label>
-                                                                            <input type="file" class="form-control"
-                                                                                id="featuredImg" name="featuredImage">
-
-                                                                            <!-- DROP ZONE -->
-                                                                            <div class="mt-5"
-                                                                                id="dropImageZone">
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                                                    <li class="previous"><a href="javascript: void(0);"
-                                                                            class="btn btn-primary"
-                                                                            onclick="nextTab()"><i
-                                                                                class="bx bx-chevron-left me-1"></i>
-                                                                            Previous</a></li>
-                                                                    <li class="float-end"><a href="javascript: void(0);"
-                                                                            class="btn btn-primary"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target=".confirmModal">Publish</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="progresspill-pancard-input"
+                                                                class="form-label">Post</label>
+                                                                <% if(userData.membership === 'paid'){ %> 
+                                                                    <textarea type="text" class="form-control post"
+                                                                        style="min-height: 400px;" id="post" name="post"
+                                                                        placeholder="Start Here"></textarea>
+                                                                        <% }else{ %> 
+                                                                            <textarea type="text" class="form-control"
+                                                                        style="min-height: 400px;" id="post" name="post"
+                                                                        placeholder="Markdown Format"></textarea>
+                                                                            <% } %> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-5">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="progresspill-expiration-input"
+                                                                class="form-label">Featured Image</label>
+                                                            <input type="file" class="form-control" id="featuredImg"
+                                                                name="featuredImage">
+
+                                                            <!-- DROP ZONE -->
+                                                            <div class=" p-3 mt-5 d-flex justify-content-center"
+                                                                id="dropImageZone">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <ul class="list-unstyled">
+
+                                                    <li class="float-end"><a href="javascript: void(0);"
+                                                            class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target=".confirmModal">Publish</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </form>
-                                    <!-- end card body -->
                                 </div>
-                                <!-- end card -->
                             </div>
-                            <!-- end col -->
+                            <!-- end card body -->
                         </div>
-                        <!-- end row -->
-                    </div> <!-- container-fluid -->
+                        <!-- end card -->
+                    </div>
                     <div class="modal-code">
                         <div class="modal-content">
                             <code contenteditable="true" id="paste-code" placeholder="Your Code Here" rows="10"></code>
@@ -307,20 +195,7 @@
                 </div>
                 
                 <!-- end modal -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © BloggyStories.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                
     </div>
     <!-- end main content-->
 
@@ -351,7 +226,7 @@
 
     <script src="/assets/js/app.js"></script>
     <script src="/JS/functions.js"></script>
-    <script src="/JS/main.js"></script>
+<script src="/JS/api.js"></script>    <script src="/JS/main.js"></script>
     <script>
         feather.replace()
     </script>

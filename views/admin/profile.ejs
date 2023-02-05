@@ -59,8 +59,7 @@
 
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a>
-                                                </li>
+                                               
                                                 <li class="breadcrumb-item active">Profile</li>
                                             </ol>
                                         </div>
@@ -79,23 +78,22 @@
                                                     <div class="d-flex align-items-start mt-3 mt-sm-0">
                                                         <div class="flex-shrink-0">
                                                             <div class="avatar-xl me-3">
-                                                                <img src="<%- userData.profile_image %>" alt=""
+                                                                <img src="<%- users.profile_image %>" alt=""
                                                                     class="img-fluid rounded-circle d-block">
                                                             </div>
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <div>
-                                                                <h5 class="font-size-16 mb-1"><%- userData.name %></h5>
-                                                                <p class="text-muted font-size-13"><%- userData.user_name %>
+                                                                <h5 class="font-size-16 mb-1"><%- users.name %></h5>
+                                                                <p class="text-muted font-size-13"><%- users.user_name
+                                                                        %>
                                                                 </p>
 
                                                                 <div
                                                                     class="d-flex flex-wrap align-items-start gap-2 gap-lg-3 text-muted font-size-13 ">
                                                                     <div class="text-capitalize"><i
-                                                                            class="mdi mdi-circle-medium me-1 text-success align-middle "></i><%- userData.membership %>
-                                                                    </div>
-                                                                    <div><i
-                                                                            class="mdi mdi-circle-medium me-1 text-success align-middle"></i><%- userData.email %>
+                                                                            class="mdi mdi-circle-medium me-1 text-success align-middle "></i><%-
+                                                                            users.membership %>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -113,11 +111,9 @@
                                                                     <i class="bx bx-dots-horizontal-rounded"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                                    <li><a class="dropdown-item" href="#">Edit
+                                                                    <li><a class="dropdown-item" href="#" id="edp">Edit
                                                                             Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Something else
-                                                                            here</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Delete My
+                                                                    <li><a class="dropdown-item" href="#" id="dma">Delete My
                                                                             Account</a></li>
                                                                 </ul>
                                                             </div>
@@ -132,7 +128,7 @@
                                                     <a class="nav-link px-3 active" data-bs-toggle="tab"
                                                         href="#overview" role="tab">Overview</a>
                                                 </li>
-                                                
+
 
                                             </ul>
                                         </div>
@@ -178,45 +174,18 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="py-3">
+                                                        <div class="pb-3">
                                                             <div class="row">
                                                                 <div class="col-xl-2">
                                                                     <div>
-                                                                        <h5 class="font-size-15">Experience :</h5>
+                                                                        <h5 class="font-size-15">Contact :</h5>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-xl">
                                                                     <div class="text-muted">
-                                                                        <p>If several languages coalesce, the grammar of
-                                                                            the resulting language is more simple and
-                                                                            regular than that of the individual
-                                                                            languages. The new common language will be
-                                                                            more simple and regular than the existing
-                                                                            European languages. It will be as simple as
-                                                                            Occidental; in fact, it will be Occidental.
-                                                                            To an English person, it will seem like
-                                                                            simplified English, as a skeptical Cambridge
-                                                                            friend of mine told me what Occidental is.
-                                                                            The European languages are members of the
-                                                                            same family. Their separate existence is a
-                                                                            myth. For science, music, sport, etc</p>
-
-                                                                        <ul class="list-unstyled mb-0">
-                                                                            <li class="py-1"><i
-                                                                                    class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Donec
-                                                                                vitae sapien ut libero venenatis
-                                                                                faucibus</li>
-                                                                            <li class="py-1"><i
-                                                                                    class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Quisque
-                                                                                rutrum aenean imperdiet</li>
-                                                                            <li class="py-1"><i
-                                                                                    class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Integer
-                                                                                ante a consectetuer eget</li>
-                                                                            <li class="py-1"><i
-                                                                                    class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phasellus
-                                                                                nec sem in justo pellentesque</li>
-                                                                        </ul>
+                                                                        <div>
+                                                                            <%- users.email %>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -234,53 +203,31 @@
                                                             <h5 class="card-title mb-0">Post</h5>
                                                         </div>
                                                         <div class="flex-shrink-0">
-                                                            <a href="#post">View All</a>
+                                                            <a href="/">View All</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
                                                     <div>
                                                         <div class="row">
-                                                            <div class="col-xl-4">
+                                                            <% blogs.forEach( blog =>{ %> 
+                                                            <div class="col-xl-4 align-self-md-start mb-2">
                                                                 <div class="card p-1 mb-xl-0">
                                                                     <div class="p-3">
                                                                         <div class="d-flex align-items-start">
                                                                             <div class="flex-grow-1 overflow-hidden">
                                                                                 <h5 class="font-size-15 text-truncate">
-                                                                                    <a href="#"
-                                                                                        class="text-dark">Beautiful Day
-                                                                                        with Friends</a>
+                                                                                    <a href="/posts/<%- blog.slug_id  %>"
+                                                                                        class="text-dark"><%- blog.title  %></a>
                                                                                 </h5>
                                                                                 <p class="font-size-13 text-muted mb-0">
-                                                                                    10 Apr, 2020</p>
-                                                                            </div>
-                                                                            <div class="flex-shrink-0 ms-2">
-                                                                                <div class="dropdown">
-                                                                                    <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                        href="#" role="button"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        <i
-                                                                                            class="bx bx-dots-horizontal-rounded"></i>
-                                                                                    </a>
-                                                                                    <ul
-                                                                                        class="dropdown-menu dropdown-menu-end">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Another
-                                                                                                action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Something else
-                                                                                                here</a></li>
-                                                                                    </ul>
-                                                                                </div>
+                                                                                    <%- blog.date  %></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="position-relative">
-                                                                        <img src="/assets/images/small/img-3.jpg" alt=""
+                                                                        <img src="<%- blog.image  %>" style="aspect-ratio:16/10; object-fit:cover;" alt="<%- blog.title  %>"
                                                                             class="img-thumbnail">
                                                                     </div>
 
@@ -290,183 +237,22 @@
                                                                                 <a href="javascript: void(0);"
                                                                                     class="text-muted">
                                                                                     <i
-                                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                    Project
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                    12 Comments
+                                                                                        class="bx bx-bullseye align-middle text-muted me-1"></i>
+                                                                                        <%- blog.count  %> Views
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
-                                                                        <p class="text-muted">Neque porro quisquam est,
-                                                                            qui dolorem ipsum quia dolor sit amet</p>
+                                                                        <p class="text-muted text-truncate"><%- blog.desc %></p>
 
                                                                         <div>
-                                                                            <a href="javascript: void(0);"
+                                                                            <a href="/posts/<%- blog.slug_id  %>"
                                                                                 class="text-primary">Read more <i
                                                                                     class="mdi mdi-arrow-right"></i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- end col -->
-
-                                                            <div class="col-xl-4">
-                                                                <div class="card p-1 mb-xl-0">
-                                                                    <div class="p-3">
-                                                                        <div class="d-flex align-items-start">
-                                                                            <div class="flex-grow-1 overflow-hidden">
-                                                                                <h5 class="font-size-15 text-truncate">
-                                                                                    <a href="#"
-                                                                                        class="text-dark">Drawing a
-                                                                                        sketch</a>
-                                                                                </h5>
-                                                                                <p class="font-size-13 text-muted mb-0">
-                                                                                    24 Mar, 2020</p>
-                                                                            </div>
-                                                                            <div class="flex-shrink-0 ms-2">
-                                                                                <div class="dropdown">
-                                                                                    <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                        href="#" role="button"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        <i
-                                                                                            class="bx bx-dots-horizontal-rounded"></i>
-                                                                                    </a>
-                                                                                    <ul
-                                                                                        class="dropdown-menu dropdown-menu-end">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Another
-                                                                                                action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Something else
-                                                                                                here</a></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="position-relative">
-                                                                        <img src="/assets/images/small/img-1.jpg" alt=""
-                                                                            class="img-thumbnail">
-                                                                    </div>
-
-                                                                    <div class="p-3">
-                                                                        <ul class="list-inline">
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                    Development
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                    08 Comments
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <p class="text-muted">At vero eos et accusamus
-                                                                            et iusto odio dignissimos ducimus quos</p>
-
-                                                                        <div>
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-primary">Read more <i
-                                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- end card -->
-                                                            </div>
-                                                            <!-- end col -->
-
-                                                            <div class="col-xl-4">
-                                                                <div class="card p-1 mb-sm-0">
-                                                                    <div class="p-3">
-                                                                        <div class="d-flex align-items-start">
-                                                                            <div class="flex-grow-1 overflow-hidden">
-                                                                                <h5 class="font-size-15 text-truncate">
-                                                                                    <a href="#"
-                                                                                        class="text-dark">Project
-                                                                                        discussion with team</a>
-                                                                                </h5>
-                                                                                <p class="font-size-13 text-muted mb-0">
-                                                                                    20 Mar, 2020</p>
-                                                                            </div>
-                                                                            <div class="flex-shrink-0 ms-2">
-                                                                                <div class="dropdown">
-                                                                                    <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                        href="#" role="button"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        <i
-                                                                                            class="bx bx-dots-horizontal-rounded"></i>
-                                                                                    </a>
-                                                                                    <ul
-                                                                                        class="dropdown-menu dropdown-menu-end">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Another
-                                                                                                action</a></li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#">Something else
-                                                                                                here</a></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="position-relative">
-                                                                        <img src="/assets/images/small/img-5.jpg" alt=""
-                                                                            class="img-thumbnail">
-                                                                    </div>
-
-                                                                    <div class="p-3">
-                                                                        <ul class="list-inline">
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                    Project
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                    08 Comments
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <p class="text-muted">Itaque earum rerum hic
-                                                                            tenetur a sapiente delectus ut aut</p>
-
-                                                                        <div>
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-primary">Read more <i
-                                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- end card -->
-                                                            </div>
-                                                            <!-- end col -->
+                                                            <% }) %> 
                                                         </div>
                                                         <!-- end row -->
                                                     </div>
@@ -483,97 +269,13 @@
 
                                 <div class="col-xl-3 col-lg-4">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">Two Factor Authentication</h5>
-                                            <div class="d-flex gap-2 align-items-center">
-
-                                                <p class="m-0">Off:</p>
-                                                <div class="togglebtn " data-mode="off">
-                                                    <div class="toggleBall">
-                                                        
-                                                    </div>
-                                                </div>
-                                                <p class="m-0">On:</p>
+                                        <div
+                                            class="rounded-1 card-group d-flex flex-column justify-content-center p-3 align-items-center">
+                                            <div class="mb-3">
+                                                <i data-feather="user"></i>
                                             </div>
-
+                                            <p class="fs-5">Premium User</h3>
                                         </div>
-                                        <!-- end card body -->
-                                    </div>
-                                    <!-- end card -->
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">My Categories</h5>
-
-                                            <div>
-                                                <ul class="list-unstyled mb-0">
-
-                                                    <a href="#" class="badge badge-soft-success">Website</a>
-
-                                                    <a href="#" class="badge badge-soft-success">Blog</a>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end card body -->
-                                    </div>
-                                    <!-- end card -->
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">Similar Profiles</h5>
-
-                                            <div class="list-group list-group-flush">
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm flex-shrink-0 me-3">
-                                                            <img src="/assets/images/users/avatar-1.jpg" alt=""
-                                                                class="img-thumbnail rounded-circle">
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <div>
-                                                                <h5 class="font-size-14 mb-1">James Nix</h5>
-                                                                <p class="font-size-13 text-muted mb-0">Full Stack
-                                                                    Developer</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm flex-shrink-0 me-3">
-                                                            <img src="/assets/images/users/avatar-3.jpg" alt=""
-                                                                class="img-thumbnail rounded-circle">
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <div>
-                                                                <h5 class="font-size-14 mb-1">Darlene Smith</h5>
-                                                                <p class="font-size-13 text-muted mb-0">UI/UX Designer
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#" class="list-group-item list-group-item-action">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm flex-shrink-0 me-3">
-                                                            <div
-                                                                class="avatar-title bg-soft-light text-light rounded-circle font-size-22">
-                                                                <i class="bx bxs-user-circle"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <div>
-                                                                <h5 class="font-size-14 mb-1">William Swift</h5>
-                                                                <p class="font-size-13 text-muted mb-0">Backend
-                                                                    Developer</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- end card body -->
                                     </div>
                                     <!-- end card -->
                                 </div>
@@ -585,22 +287,6 @@
                     </div>
                     <!-- End Page-content -->
 
-
-                    <footer class="footer">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <script>document.write(new Date().getFullYear())</script> © BloggyStories.
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="text-sm-end d-none d-sm-block">
-                                        Design & Develop by <a href="/"
-                                            class="text-decoration-underline">BloggyStories</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
                 <!-- end main content-->
 
@@ -621,7 +307,7 @@
 
     <script src="/assets/js/app.js"></script>
     <script src="/JS/functions.js"></script>
-    <script>
+<script src="/JS/api.js"></script>    <script>
         feather.replace()
     </script>
 

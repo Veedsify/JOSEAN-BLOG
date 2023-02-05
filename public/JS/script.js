@@ -1,14 +1,5 @@
 let blogPost = document.querySelectorAll('[data-link]')
 
-// Click on a blog.
-// blogPost?.forEach(blog => {
-//     blog.addEventListener('click', () => {
-//         let newUrl = blog.getAttribute('data-link')
-//         location.href = newUrl
-//     })
-// })
-
-
 let copyBtn = document.querySelectorAll('.copybtn')
 
 
@@ -98,7 +89,7 @@ categorybuttons.forEach(categoryBtn => {
 
 function createPost(post) {
     let newPost = `
-    <div class="blog-container" data-link="/posts/${post.slug_id} ">
+    <div class="blog-container" data-link="${post.slug_id} ">
             <a class="post-link" href="/posts/${post.slug_id}">
     
                 <img src="${post.image}" alt="${post.title} " class="blog-image">
@@ -169,17 +160,48 @@ $(".burger").click(function (e) {
 });
 
 // IMPRESSION COUNT
-let blogContainers = document.querySelectorAll('.blog-container')
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            observer.unobserve(entry.target)
+// Impressions COunt
+const targetNode = document.querySelector('body');
+const observerOptions = {
+    childList: true,
+    subtree: true
+};
+const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            checkDivVisibility();
         }
-    })
-}, { threshold: 1 })
+    }
+});
+observer.observe(targetNode, observerOptions);
+let checkedElements = [];
+checkDivVisibility();
+function isVisible(el) {
+    return !!(el.offsetParent || el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+}
 
+function checkDivVisibility() {
+    let blogContainers = document.querySelectorAll('.blog-container')
+    const newDivs = Array.from(blogContainers).filter(x => !checkedElements.includes(x));
+    for (const post of newDivs) {
+        if (isVisible(post) === true) {
+            updateImpressions(post.getAttribute('data-link'))
+            checkedElements.push(post);
+        }
+    }
+}
 
-    blogContainers.forEach(post => {
-        observer.observe(post)
-    })
+function updateImpressions(slug){
+    $.ajax({
+        type: "POST",
+        url: `/updateImpressions/${slug}`,
+        data: {
+            postId: slug
+        },
+        success: function (response) {
+            return
+        }
+    });
+}
+

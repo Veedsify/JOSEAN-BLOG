@@ -78,14 +78,14 @@
                                             <img src="<%- blog.image  %>" style="aspect-ratio:16/10; object-fit: cover;"
                                                 class="w-100" alt=""> </a>
                                             <div class="p-3">
-                                                <h3 class="mt-2"><a href="/" class="text-decoration-none text-white"><%- blog.title  %></a></h3>
+                                                <h3 class="mt-2"><a href="/<%- nav %>/manage/view/<%- blog.slug_id  %>/" class="text-decoration-none text-white"><%- blog.title  %></a></h3>
                                                 <p class="text-truncate"><a href="/"
                                                         class="text-decoration-none text-white"><%- blog.desc  %></a></p>
                                                 <hr>
                                                 <div class="d-flex align-items-center gap-3">
                                                     <img src="<%- blog.author_image  %>" class="img-fluid rounded-circle"
                                                         width="35" alt="">
-                                                        <strong class="col-8"><a href="<%- blog.author_username  %>" class="text-white"><%- blog.author_name  %></a></strong>
+                                                        <strong class="col-8"><a href="/<%- blog.author_username  %>" class="text-white"><%- blog.author_name  %></a></strong>
                                                 </div>
                                             </div>
                                     </div>
@@ -96,20 +96,7 @@
                     </div>
 
                 </div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © BloggyStories.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                
     </div>
     <!-- end main content-->
 

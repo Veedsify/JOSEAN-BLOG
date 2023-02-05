@@ -27,6 +27,8 @@
 </head>
 
 <body>
+    
+      
     <%- include('includes/preloader.ejs') %>
         <header>
             <%- include('includes/navbar.ejs') %>
@@ -55,7 +57,7 @@
                             <!--  Start OF Post One  -->
                             <% if(posts.length > 0){ %> 
                             <% posts.forEach(post=>{ %>
-                                <div class="blog-container" data-link="/posts/<% post.slug_id  %> ">
+                                <div class="blog-container" data-link="<%- post.slug_id  %> ">
                                     <a class="post-link" href="/posts/<%- post.slug_id  %>">
 
                                         <img loading="lazy" src="<%- post.image %>" alt="<%- post.title  %> "

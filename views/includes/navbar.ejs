@@ -6,8 +6,8 @@
     <ul class="menu-links">
         <li><a href="/about">About</a></li>
 
-        <li><a href="/login" >Signin</a></li>
-        <li><a href="/membership" >Signup</a></li>
-        
+        <% navMode.forEach( link =>{%> 
+        <li><a href="<%- link.link %>" ><%- link.name %> </a></li>
+        <% }) %> 
     </ul>
 </nav>

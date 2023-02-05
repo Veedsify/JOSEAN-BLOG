@@ -7,7 +7,6 @@ const sendRegisterEmail = require('../mailer/confirmRegisteration');
 
 router.get('/', (req, res) => {
     if (req.session.plan) {
-
         if (req.session.plan.length > 0) {
             res.render('auth-register')
         } else {
@@ -45,7 +44,10 @@ function checkUserName(req, res, next) {
         }
     })
 }
-
+router.get('/pay/canceled', (req, res, next)=>{
+    req.session.destroy()
+    res.redirect('/register')
+})
 router.post('/new', checkEmail, checkUserName, (req, res, next) => {
 
     let fullname = req.body.fullname
@@ -66,6 +68,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 email: email,
                 password: hashedPassword,
                 role: 'user',
+                bio:'',
                 membership: 'free',
                 verification: vcodeId,
                 verified: 'false',
@@ -95,6 +98,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 email: email,
                 password: hashedPassword,
                 role: 'user',
+                bio:'',
                 membership: 'paid',
                 verification: vcodeId,
                 verified: 'false',

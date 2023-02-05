@@ -89,7 +89,8 @@
             var t;
             0 < a("#sidebar-menu").length &&
                 0 < a("#sidebar-menu .mm-active .active").length &&
-                ((t = a("#sidebar-menu .mm-active .active").offset().top), console.log("activeMenu", t), 300 < t && ((t -= 300), a(".vertical-menu .simplebar-content-wrapper").animate({ scrollTop: t }, "slow")));
+                // console.log("activeMenu", t)
+                ((t = a("#sidebar-menu .mm-active .active").offset().top),  300 < t && ((t -= 300), a(".vertical-menu .simplebar-content-wrapper").animate({ scrollTop: t }, "slow")));
         }),
         a(".navbar-nav a").each(function () {
             var t = window.location.href.split(/[?#]/)[0];

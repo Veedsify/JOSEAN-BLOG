@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { Blog } = require('../db/db');
+const { Blog, Alert } = require('../db/db');
 const superAdminRouter = require('../superadmin/superadmin')
 const userRouter = require('../users/users')
 const loginRouter = require('./login')
@@ -10,12 +10,39 @@ const apiRouter = require('./api')
 
 
 // Super Admin Route
-router.use('/api',apiRouter)
+router.use(getNavMode)
+router.use('/api', apiRouter)
 router.use('/login', loginRouter)
 router.use('/register', registerRouter)
 router.use('/membership', membershipRouter)
 router.use('/user', userRouter)
 router.use('/superadmin', superAdminRouter)
+
+function getNavMode(req, res, next) {
+  if (req.session.user === undefined) {
+    res.locals.navMode = [
+      {
+        link: '/login',
+        name: 'Login',
+      },
+      {
+        link: '/membership',
+        name: 'Signup'
+      }
+    ]
+    next()
+    return
+  } else {
+    res.locals.navMode = [
+      {
+        link: '/user',
+        name: 'Account',
+      }
+    ]
+    next()
+    return
+  }
+}
 
 
 router.get('/logout', (req, res) => {
@@ -25,20 +52,33 @@ router.get('/logout', (req, res) => {
   res.render('auth-logout');
 })
 
-let limitSize = 3
+let limitSize = process.env.NUM_OF_POST_PER_PAGE
 
 // Returns a list of all enabled blogs.
-router.get('/', function (req, res) {
-  Blog.find({ status: 'enabled', statusAdmin: 'public' }, function (err, blog) {
-    if (!err) {
-      Blog.aggregate([
-        { $match: { status: "enabled", statusAdmin: "public" } },
-        { $group: { _id: "$category" } }
-      ], (err, rows) => {
-        res.render('index', { posts: blog, categories: rows });
-      });
-    }
-  }).sort({ _id: -1 }).limit(limitSize)
+router.get('/', async (req, res) => {
+
+  let getblogs = await new Promise(resolve => {
+
+    Blog.find({ status: 'enabled', statusAdmin: 'public' }, function (err, blog) {
+      if (!err) {
+        resolve(blog)
+      }
+    }).sort({ _id: -1 }).limit(limitSize)
+
+  })
+
+  let getCategories = await new Promise(resolve => {
+
+    Blog.aggregate([
+      { $match: { status: "enabled", statusAdmin: "public" } },
+      { $group: { _id: "$category" } }
+    ], (err, rows) => {
+      resolve(rows)
+    })
+
+  });
+  
+  res.render('index', { posts: getblogs, categories: getCategories});
 });
 
 router.post('/loadnewpost', (req, res) => {
@@ -89,8 +129,21 @@ router.post('/getblogs', function (req, res) {
 
   }
 });
-router.get('/account', (req, res) => {
-  res.render('account')
+
+router.post('/updateImpressions/:slug', (req, res) => {
+  Blog.findOne({ slug_id: req.params.slug }, (err, blog) => {
+
+    let impressions = parseInt(blog.impressions) + 1
+
+    Blog.updateOne({ slug_id: req.params.slug }, { impressions: impressions }, err => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.json({ status: 'success' });
+      }
+    })
+
+  })
 })
 
 module.exports = router;

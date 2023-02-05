@@ -43,105 +43,101 @@
     <div id="layout-wrapper">
 
 
-        <%- include('includes/header.ejs') %> 
+        <%- include('includes/header.ejs') %>
 
-        <!-- ========== Left Sidebar Start ========== -->
-        <%- include('includes/'+nav+'.ejs') %>
-            <!-- Left Sidebar End -->
+            <!-- ========== Left Sidebar Start ========== -->
+            <%- include('includes/'+nav+'.ejs') %>
+                <!-- Left Sidebar End -->
 
 
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
+                <!-- ============================================================== -->
+                <!-- Start right Content here -->
+                <!-- ============================================================== -->
+                <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
+                    <div class="page-content">
+                        <div class="container-fluid">
 
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Post Visibility</h4>
+                            <!-- start page title -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0 font-size-18">Post Visibility</h4>
 
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Blogs</a></li>
-                                            <li class="breadcrumb-item active">Visiblity</li>
-                                        </ol>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Blogs</a>
+                                                </li>
+                                                <li class="breadcrumb-item active">Visiblity</li>
+                                            </ol>
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-                        <!-- end page title -->
+                            <!-- end page title -->
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
 
-                                        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <% blog.forEach( post =>{ %> 
-                                                <tr>
-                                                    <td><%- post.title %></td>
-                                                    <td><span class="dot ms-2 d-inline-block 
+                                            <table id="datatable"
+                                                class="table table-bordered dt-responsive  nowrap w-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% blog.forEach( post=>{ %>
+                                                        <tr>
+                                                            <td><%- post.title %></td>
+                                                            <td><span class="dot ms-2 d-inline-block 
                                                         <% if(post.status === 'enabled') {%> 
                                                         <%- 'bg-success'  %>
                                                          <% }else{ %> 
                                                             <%- 'bg-danger'  %>  <% } %>   "></span></td>
-                                                    <td>
-                                                        <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/E/<%- post.slug_id %>" method="post">
-                                                            <input type="submit" class="bg-success border-0 rounded-1 text-white" value="Enable">
-                                                        </form>
-                                                        <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/D/<%- post.slug_id %>" method="post">
-                                                            <input type="submit" class="bg-warning border-0 rounded-1 text-white" value="Disable">
-                                                        </form>
-                                                        <form class="d-inline-block"
-                                                            action="/<%- nav  %>/blogs/visibility/R/<%- post.slug_id %>" method="post">
-                                                            <input type="submit" class="bg-danger border-0 rounded-1 text-white" value="Delete">
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <% }) %> 
-                                            </tbody>
-                                        </table>
+                                                            <td>
+                                                                <form class="d-inline-block"
+                                                                    action="/<%- nav  %>/blogs/visibility/E/<%- post.slug_id %>"
+                                                                    method="post">
+                                                                    <input type="submit"
+                                                                        class="bg-success border-0 rounded-1 text-white"
+                                                                        value="Enable">
+                                                                </form>
+                                                                <form class="d-inline-block"
+                                                                    action="/<%- nav  %>/blogs/visibility/D/<%- post.slug_id %>"
+                                                                    method="post">
+                                                                    <input type="submit"
+                                                                        class="bg-warning border-0 rounded-1 text-white"
+                                                                        value="Disable">
+                                                                </form>
+                                                                <form class="d-inline-block"
+                                                                    action="/<%- nav  %>/blogs/visibility/R/<%- post.slug_id %>"
+                                                                    method="post">
+                                                                    <input type="submit"
+                                                                        class="bg-danger border-0 rounded-1 text-white"
+                                                                        value="Delete">
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <% }) %>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-                    </div> <!-- container-fluid -->
-                </div>
-                <!-- End Page-content -->
-
-
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © BloggyStories.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by <a href="/" class="text-decoration-underline">BloggyStories</a>
-                                </div>
-                            </div>
-                        </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+                        </div> <!-- container-fluid -->
                     </div>
-                </footer>
-            </div>
-            <!-- end main content-->
+                    <!-- End Page-content -->
+
+                </div>
+                <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
@@ -183,18 +179,19 @@
 
     <script src="/assets/js/app.js"></script>
     <script src="/JS/functions.js"></script>
-    <% if(post === 'success') {%> 
-    <script>
-        runResponse({
-            type: 'alert',
-            text: 'Your Post has been submitted for approval',
-            css: 'good'
-        });
-    </script>
-    <% } %> 
-    <script>
-        feather.replace()
-    </script>
+    <script src="/JS/api.js"></script>
+    <% if(post==='success' ) {%>
+        <script>
+            runResponse({
+                type: 'alert',
+                text: 'Your Post has been submitted for approval',
+                css: 'good'
+            });
+        </script>
+        <% } %>
+            <script>
+                feather.replace()
+            </script>
 </body>
 
 </html>

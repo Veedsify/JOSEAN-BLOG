@@ -1,7 +1,7 @@
 const mail = require("./config");
 const htmlMailTemplate = require("./templateRegisteration");
 
-let infoText = 'a new post needs your approval, please login to approve email';
+let infoText = 'a new post needs your approval, please login to approve the post';
 
 
 function newpostmail(name, email, link) {

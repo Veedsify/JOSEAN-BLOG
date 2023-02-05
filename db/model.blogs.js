@@ -13,6 +13,7 @@ const blogSchema = new mongoose.Schema({
     count: String,
     status:String,
     statusAdmin: String,
+    review: String,
     impressions: String,
     author_name: String,
     author_image: String,

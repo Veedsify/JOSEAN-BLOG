@@ -1,11 +1,11 @@
 const express = require('express');
-const { Blog, User } = require('../db/db');
+const { Blog, User, Notify } = require('../db/db');
 const { sendPostStatus } = require('../mailer/tfa');
 const router = express.Router();
 
 
 router.get('/posts', (req, res) => {
-    Blog.find({ statusAdmin: 'hidden' }, (err, blog) => {
+    Blog.find({ statusAdmin: 'hidden', review: 'no' }, (err, blog) => {
         res.render('admin/pending-post', { blogs: blog })
     })
 })
@@ -15,7 +15,7 @@ router.get('/view/:id', async (req, res, next) => {
     if (req.params.id.length > 0) {
 
         let getPedingPost = await new Promise((resolve, reject) => {
-            Blog.findOne({ slug_id: req.params.id, statusAdmin: 'hidden' }, (err, blog) => {
+            Blog.findOne({ slug_id: req.params.id, statusAdmin: 'hidden', review: 'no' }, (err, blog) => {
                 if (!err) {
                     resolve(blog)
                 }
@@ -51,8 +51,23 @@ router.post('/response', async (req, res, next) => {
 
         sendPostStatus(getUser.name, getUser.email, text, 'Your post has been accepted');
 
-        Blog.updateOne({ slug_id: infos.slug }, { statusAdmin: 'public' }, (err) => {
-            if (err) {
+        Blog.updateOne({ slug_id: infos.slug }, { statusAdmin: 'public', review: 'yes' }, (err, blog) => {
+            if (!err) {
+                let notification = new Notify({
+                    sender: req.session.user.user_name,
+                    sender_image: req.session.user.profile_image,
+                    reciever: getUser.user_name,
+                    reciever_image: getUser.profile_image,
+                    message: 'Your post has been accepted.',
+                    seen: 'no'
+                })
+
+                notification.save((err, notify) => {
+                    if (!err) {
+                        return notify;
+                    }
+                })
+
                 return
             }
         })
@@ -62,13 +77,29 @@ router.post('/response', async (req, res, next) => {
             css: 'good'
         })
 
+
     } else if (infos.action === 'DISAPPROVE') {
 
         sendPostStatus(getUser.name, getUser.email, infos.stmt, 'Your post was not accepted');
 
-        Blog.updateOne({ slug_id: infos.slug }, { statusAdmin: 'hidden' }, (err) => {
+        Blog.updateOne({ slug_id: infos.slug }, { statusAdmin: 'hidden', review: 'yes' }, (err) => {
             if (err) {
                 return
+            }
+        })
+
+        let notification = new Notify({
+            sender: req.session.user.user_name,
+            sender_image: req.session.user.profile_image,
+            reciever: getUser.user_name,
+            reciever_image: getUser.profile_image,
+            message: infos.stmt,
+            seen: 'no'
+        })
+
+        notification.save((err, notify) => {
+            if (!err) {
+                return notify;
             }
         })
 
@@ -93,29 +124,33 @@ router.get('/approve', async (req, res, next) => {
             if (!err) {
                 resolve(blog)
             }
-        }).sort({_id: -1})
+        }).sort({ _id: -1 })
     })
-    res.render('admin/audit-posts',{blogs: getAllBlogs})
+    res.render('admin/audit-posts', { blogs: getAllBlogs })
 })
 
 
-router.post('/visibility/:slug/:action',async (req,res)=>{
+router.post('/visibility/:slug/:action', async (req, res) => {
 
-    if(req.params.slug.length > 10){
-        if(req.params.action === 'enable'){
-            Blog.updateOne({slug_id: req.params.slug},{status:'enabled',statusAdmin:'public'},(err,blog)=>{
-                if(err){
+    if (req.params.slug.length > 10) {
+        if (req.params.action === 'enable') {
+            Blog.updateOne({ slug_id: req.params.slug }, { status: 'enabled', statusAdmin: 'public' }, (err, blog) => {
+                if (err) {
                     console.log(err)
                 }
             })
-        }else if(req.params.action === 'disable'){
-            Blog.updateOne({slug_id: req.params.slug},{status:'disabled',statusAdmin:'hidden'},(err,blog)=>{
-                if(err){
+        } else if (req.params.action === 'disable') {
+            Blog.updateOne({ slug_id: req.params.slug }, { status: 'disabled', statusAdmin: 'hidden' }, (err, blog) => {
+                if (err) {
                     console.log(err)
                 }
             })
-        }else if(req.params.action === 'delete'){
-            Blog.deleteOne({slug_id: req.params.slug});
+        } else if (req.params.action === 'delete') {
+            Blog.deleteOne({ slug_id: req.params.slug }, (err, blog) => {
+                if (!err) {
+                    return
+                }
+            });
         }
         res.redirect('/superadmin/manage/approve')
     }

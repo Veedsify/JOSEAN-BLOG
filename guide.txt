@@ -1,2 +1,9 @@
-Work on post view count in the posts route;
-add neccessary comments
+make notification showup in dashboard.
+
+forgotten password options
+
+make alerts work across all pages
+
+run the automatic delete and notify user when trial period is ending
+
+configure stripe

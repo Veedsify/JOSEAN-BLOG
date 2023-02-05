@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*!
+/*
  * Bootstrap v5.0.2 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
@@ -46,22 +46,59 @@
     background: #28363f;
 }
 
+.swal-text {
+    color: #fff;
+    padding: 1rem;
+    background: #0000002e;
+    margin: .5rem !important;
+    width: 100%;
+    border-radius: 4px;
+    font-size: .95rem;
+    line-height: 2;
+}
+
+.swal-title {
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: .1rem solid #ccc;
+    margin: 1rem 0 !important;
+    font-size: 26px;
+}
+
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    font-size: 12px;
+    transition: .3s ease !important;
+    box-shadow: none !important;
+}
+
+.swal-button:hover {
+    background: grey !important;
+}
+
+.swal-modal {
+    padding: 0;
+}
+
 .alertbox.good {
     background: rgb(2, 175, 2);
 }
-.text-box{
-    display:block;
-    height:30vh;
+
+.text-box {
+    display: block;
+    height: 30vh;
     width: 100%;
-    border:none;
-    padding:.5rem;
+    border: none;
+    padding: .5rem;
     margin-bottom: 1rem;
-    outline:none;
+    outline: none;
 }
 
 .alertbox.bad {
     background: red;
 }
+
 .alertbox.info {
     background: #15232c;
     box-shadow: 0 0 2px 100vmax rgba(0, 0, 0, 0.699);
@@ -217,107 +254,118 @@ p {
     margin-top: 0;
     margin-bottom: 1rem
 }
-.togglebtn{
+
+.togglebtn {
     outline: 1px solid #5156be;
     padding: 2px;
     width: 40px;
     height: 24px;
     border-radius: 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
-.toggleBall{
+
+.toggleBall {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background: #5156be;
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
     transition: .4s ease;
 }
+
 .code-block {
-  background: rgb(55, 65, 81) !important;
-  color: #fff !important;
-  border-radius: 5px;
-  position: relative;
-  padding: 1rem;
-  display: block;
-}
-.code-block .copybtn {
-  padding: 3px;
-  display: grid;
-  place-items: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border-radius: 5px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  background-color: #000;
-  cursor: pointer;
-  border: 1px solid rgb(184, 184, 184);
-}
-.code-block code {
-  background-color: transparent !important;
-  overflow-x: auto;
-  display: block;
-  padding: 1rem 0;
-}
-.code-block code div {
-  background-color: transparent !important;
-  background: transparent !important;
+    background: rgb(55, 65, 81) !important;
+    color: #fff !important;
+    border-radius: 5px;
+    position: relative;
+    padding: 1rem;
+    display: block;
 }
 
-.copybtn img{
+.code-block .copybtn {
+    padding: 3px;
+    display: grid;
+    place-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    background-color: #000;
+    cursor: pointer;
+    border: 1px solid rgb(184, 184, 184);
+}
+
+.code-block code {
+    background-color: transparent !important;
+    overflow-x: auto;
+    display: block;
+    padding: 1rem 0;
+}
+
+.code-block code div {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+.copybtn img {
     max-height: 30px;
 }
 
 .modal-code {
-  position: fixed;
-  transition: 0.3s;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(8, 8, 63, 0.2666666667);
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  isolation: isolate;
-  z-index: 300;
-  visibility: hidden;
+    position: fixed;
+    transition: 0.3s;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(8, 8, 63, 0.2666666667);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    z-index: 300;
+    visibility: hidden;
 }
+
 .modal-code .modal-content {
-  background: #fff;
-  padding: 1rem;
+    background: #fff;
+    padding: 1rem;
 }
+
 .modal-code .modal-content #paste-code {
-  display: block;
-  border: 1px solid var(--nav-bg);
-  height: 40vh;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  line-height: 1rem;
-  width: 250px;
-  overflow-x: scroll;
+    display: block;
+    border: 1px solid var(--nav-bg);
+    height: 40vh;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    line-height: 1rem;
+    width: 250px;
+    overflow-x: scroll;
 }
+
 .modal-code .modal-content .controls {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
 }
+
 .modal-code .modal-content .controls button {
-  padding: 13px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+    padding: 13px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
+
 .modal-code .modal-content .controls button.ok {
-  background: var(--nav-bg);
-  color: #fff;
+    background: var(--nav-bg);
+    color: #fff;
 }
 
 .modal-code.active {
@@ -336,13 +384,14 @@ p {
 }
 
 
-#dropImageZone img{
+#dropImageZone img {
     width: 100%;
     aspect-ratio: 16/9;
-    object-fit:cover;
-    display:block;
-    margin:auto;
+    object-fit: cover;
+    display: block;
+    margin: auto;
 }
+
 abbr[data-bs-original-title],
 abbr[title] {
     -webkit-text-decoration: underline dotted;
@@ -571,7 +620,7 @@ select:disabled {
 [type=reset],
 [type=submit],
 button {
-    appearance:button;
+    appearance: button;
     -webkit-appearance: button
 }
 
@@ -633,7 +682,7 @@ legend+* {
 
 [type=search] {
     outline-offset: -2px;
-    appearance:textfield;
+    appearance: textfield;
     -webkit-appearance: textfield
 }
 
@@ -15648,5 +15697,3 @@ body[data-layout-mode=dark] .progress {
     -webkit-box-shadow: 0 2px 8px 0 rgba(52, 58, 64, .3);
     box-shadow: 0 2px 8px 0 rgba(52, 58, 64, .3)
 }
-
-/*# sourceMappingURL=bootstrap.min.css.map */
