@@ -35,7 +35,7 @@ router.post('/sendUserMessage', (req, res, next) => {
         })
 
         createAlert.save((err, alert) => {
-            if(err) return err
+            if (err) return err
         })
 
     } catch (err) {
@@ -56,7 +56,7 @@ router.post('/sendUserAlert', (req, res, next) => {
         })
 
         createAlert.save((err, alert) => {
-            if(err) return err
+            if (err) return err
         })
 
     } catch (err) {
@@ -88,7 +88,9 @@ function checkAdmin(req, res, next) {
 function checkSession(req, res, next) {
     if (typeof req.session.user !== undefined || req.session.user !== '') {
         if (req.session.tfa === 'skipped' || req.session.tfa === 'verified') {
-            next()
+            if (req.session.trial != 'ended') {
+                next()
+            }
         } else {
             req.session.destroy()
             res.redirect('/login')

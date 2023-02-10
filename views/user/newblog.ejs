@@ -111,15 +111,15 @@
                                                         <div class="mb-3">
                                                             <label for="progresspill-pancard-input"
                                                                 class="form-label">Post</label>
-                                                                <% if(userData.membership === 'paid'){ %> 
-                                                                    <textarea type="text" class="form-control post"
-                                                                        style="min-height: 400px;" id="post" name="post"
-                                                                        placeholder="Start Here"></textarea>
-                                                                        <% }else{ %> 
-                                                                            <textarea type="text" class="form-control"
+                                                            <% if(userData.membership==='paid' ){ %>
+                                                                <textarea type="text" class="form-control post"
+                                                                    style="min-height: 400px;" id="post" name="post"
+                                                                    placeholder="Start Here"></textarea>
+                                                                <% }else{ %>
+                                                                    <textarea type="text" class="form-control"
                                                                         style="min-height: 400px;" id="post" name="post"
                                                                         placeholder="Markdown Format"></textarea>
-                                                                            <% } %> 
+                                                                    <% } %>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,16 +193,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- end modal -->
-                
+
     </div>
     <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
 
-   
+
 
 
     <!-- Right bar overlay-->
@@ -225,21 +225,22 @@
     <script src="/assets/js/pages/form-wizard.init.js"></script>
 
     <script src="/assets/js/app.js"></script>
+    <script src="/JS/sweetalert.min.js"></script>
     <script src="/JS/functions.js"></script>
-<script src="/JS/api.js"></script>    <script src="/JS/main.js"></script>
+    <script src="/JS/api.js"></script>
+    <script src="/JS/main.js"></script>
     <script>
         feather.replace()
     </script>
-    <% if(auth == 'banned') {%> 
-    <script>
-        runResponse({
-            type:'alert',
-            text:'Sorry, you cant add post at this time',
-            css: 'bad',
-        })
-    </script>
-    <% } %> 
+    <% if(auth=='banned' ) {%>
+        <script>
+            runResponse({
+                type: 'alert',
+                text: 'Sorry, you cant add post at this time',
+                css: 'bad',
+            })
+        </script>
+        <% } %>
 </body>
 
 </html>
-

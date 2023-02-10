@@ -8,7 +8,7 @@ router.get('/audit', (req, res, next) => {
     User.find({ user_name: { $ne: 'admin' } }, (err, user) => {
         let userLength = user.length
         res.render('admin/audit-users', { users: user, userLength: userLength })
-    })
+    }).sort({_id: -1})
 })
 
 

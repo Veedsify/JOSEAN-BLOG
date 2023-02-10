@@ -178,15 +178,18 @@
     <script src="/assets/js/pages/datatables.init.js"></script>
 
     <script src="/assets/js/app.js"></script>
+    <script src="/JS/sweetalert.min.js"></script>
     <script src="/JS/functions.js"></script>
     <script src="/JS/api.js"></script>
     <% if(post==='success' ) {%>
         <script>
-            runResponse({
-                type: 'alert',
-                text: 'Your Post has been submitted for approval',
-                css: 'good'
-            });
+            swal({
+                className: 'bg-page-bg',
+                text: 'Your Post Has Been Submitted To The Admin For Approval, You\'ll Get A Notification On Your Dashboard & Email Inbox',
+                button: {
+                    className: 'btn-primary'
+                }
+            })
         </script>
         <% } %>
             <script>

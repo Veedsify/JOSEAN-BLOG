@@ -1,17 +1,19 @@
 var express = require('express');
 var router = express.Router();
-const { Blog, Alert } = require('../db/db');
+const { Blog, Alert, User } = require('../db/db');
 const superAdminRouter = require('../superadmin/superadmin')
 const userRouter = require('../users/users')
 const loginRouter = require('./login')
 const registerRouter = require('./register')
 const membershipRouter = require('./membership')
 const apiRouter = require('./api')
+const aboutRouter = require('./about')
 
 
 // Super Admin Route
 router.use(getNavMode)
 router.use('/api', apiRouter)
+router.use('/about', aboutRouter)
 router.use('/login', loginRouter)
 router.use('/register', registerRouter)
 router.use('/membership', membershipRouter)
@@ -77,8 +79,8 @@ router.get('/', async (req, res) => {
     })
 
   });
-  
-  res.render('index', { posts: getblogs, categories: getCategories});
+
+  res.render('index', { posts: getblogs, categories: getCategories });
 });
 
 router.post('/loadnewpost', (req, res) => {
@@ -146,4 +148,13 @@ router.post('/updateImpressions/:slug', (req, res) => {
   })
 })
 
+// AFTER PAYMENT
+router.get('/update/payed', (req, res, next) => {
+  let sess = req.session.user
+  User.updateOne({ user_name: sess.user_name, trial: 'ended' }, { trial: false, membership: 'paid' }, (err, user) => {
+    if (!err) {
+      res.redirect('/login')
+    }
+  })
+})
 module.exports = router;

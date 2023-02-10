@@ -1,24 +1,31 @@
 const express = require('express');
 const { marked } = require('marked');
+const schedule = require('node-schedule');
 const router = express.Router();
-const { Blog, Notify, Alert } = require('../db/db');
-
+const { Blog, Notify, Alert, User } = require('../db/db');
+const { sendPostStatus } = require('../mailer/tfa');
 router.use(checkSessions)
 
 router.post('/getBlogImpressions', async (req, res) => {
     let user = req.session.user.user_name
     // let user = 'admin'
-    let arr = []
-    let imp = await new Promise(resolve => {
-        Blog.find({ author_username: user }, (err, blog) => {
-            resolve(blog)
+
+    if (user) {
+
+        let arr = [];
+        let imp = await new Promise(resolve => {
+            Blog.find({ author_username: user }, (err, blog) => {
+                resolve(blog);
+            })
         })
-    })
-    await imp.forEach(article => {
-        arr.push(parseInt(article.impressions))
-    })
-    const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    res.json(sum)
+        await imp.forEach(article => {
+            arr.push(parseInt(article.impressions))
+        })
+        const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        res.json(sum)
+    }else{
+        res.json(0)
+    }
 });
 
 router.post('/getBlogviews', async (req, res) => {
@@ -52,7 +59,7 @@ router.post('/mostPost', async (req, res) => {
     let imp = await new Promise(resolve => {
         Blog.findOne({ author_username: user }, (err, blog) => {
             resolve(blog)
-        }).limit(1).sort({ count: -1 })
+        }).sort({ count: -1 }).limit(1)
     })
     try {
         res.json(imp.count)
@@ -110,22 +117,56 @@ router.post('/getAlerts', async (req, res, next) => {
             }
         }
     })
-
     res.json(getAlerts)
 })
 
-router.delete('/alerts/delete', (req, res, next)=>{
+router.delete('/alerts/delete', (req, res, next) => {
     let id = req.body.id
-
-    Notify.deleteOne({_id: id},(err, alert)=>{
-        if(err){
+    Notify.deleteOne({ _id: id }, (err, alert) => {
+        if (err) {
             return false;
         }
         res.json({
-            type:'alert',
-            css:'good',
+            type: 'alert',
+            css: 'good',
             text: 'Alert Has Been Deleted'
         })
+    })
+})
+
+// CHECK WHEN USER REACHES 60 DAYS
+// let job = schedule.scheduleJob('*/5 * * * * *', ()=>{
+let job = schedule.scheduleJob('0 12 * * *', () => {
+
+    let today = Date.now()
+
+    let date = new Date(today)
+
+    User.find({ role: 'user' }, (err, users) => {
+        if (!err) {
+            users.forEach(user => {
+                let myDate = user.createdAt
+                let final = date - myDate
+                let dateINDays = Math.round(final / 1000 / 60 / 60 / 24);
+                if (user.membership === 'free') {
+                    // console.log(new Date(myDate) + ' ' + dateINDays)
+                    if (dateINDays == process.env.TRIAL_DAYS) {
+                        User.updateOne({ user_name: user.user_name, trial: 'true' }, { trial: 'ended' }, (err, row) => {
+                            if (!err) return 'ok'
+                        })
+                    } else if (dateINDays == (process.env.TRIAL_DAYS - 7)) {
+                        let note = new Notify({
+                            sender: 'admin',
+                            reciever: user.user_name,
+                            message: `Hi ${user.name}, do note that your trial period ends in 7 days`,
+                            sender_image: '/IMAGES/user.png',
+                        })
+                        note.save()
+                        sendPostStatus(user.name, user.email, `Hi ${user.name}, do note that your trial period ends in 7 days`, 'Trail Period Is About To End')
+                    }
+                }
+            })
+        }
     })
 })
 

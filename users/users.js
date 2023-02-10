@@ -47,7 +47,7 @@ router.post('/sendAdminMessage', (req, res, next)=>{
                 }
             })
 
-            sendPostStatus('Admin',user.email,info.message,'Message From User:'+me+' '+info.subject)
+            sendPostStatus('Admin',user.email,info.message,'Message From User:'+me)
         
         }catch(err){
             console.log(err)
@@ -80,7 +80,9 @@ function checkAdmin(req, res, next) {
 function checkSession(req, res, next) {
     if (typeof req.session.user !== undefined || req.session.user !== '') {
         if (req.session.tfa === 'skipped' || req.session.tfa === 'verified') {
-            next()
+            if (req.session.trial != 'ended') {
+                next()
+            }
         } else {
             req.session.destroy()
             res.redirect('/login')

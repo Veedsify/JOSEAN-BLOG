@@ -15,7 +15,11 @@ const UserSchema = new mongoose.Schema({
     statusAdmin: String,
     profile_image:String,
     reset_id:String,
-    duration:String,
+    trial: String,
+    createdAt:{
+        type: Date,
+        default: Date.now
+    },
     tfa: String,
 });
 

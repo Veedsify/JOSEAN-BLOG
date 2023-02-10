@@ -11,8 +11,45 @@ let userFee = new Map([
 ])
 
 
+router.get('/user-upgrade', async(req, res)=>{
+    let user = req.session.user.user_name
+
+    let SERVER_URL  = req.protocol+'://'+req.get('host')
+
+    let items = [{ id: 1, quantity: 1 }]
+
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: items.map(item => {
+                const userFeeData = userFee.get(item.id)
+                return {
+                    price_data: {
+                        currency: 'inr',
+                        product_data: {
+                            name: userFeeData.name
+                        },
+                        unit_amount: userFeeData.priceInCents
+                    },
+                    quantity: item.quantity
+                }
+            }),
+            success_url: `${SERVER_URL}/update/payed`,
+            cancel_url: `${SERVER_URL}/login/ended`
+        })          
+        
+        res.redirect(session.url)
+    } catch (e) {
+        console.log(e)
+        req.session.destroy()
+        res.redirect('/')
+    }
+})
 
 router.post('/user', async (req, res) => {
+
+    let SERVER_URL  = req.protocol+'://'+req.get('host')
 
     let plan = req.body.plan
 
@@ -39,8 +76,8 @@ router.post('/user', async (req, res) => {
                             quantity: item.quantity
                         }
                     }),
-                    success_url: `${process.env.SERVER_URL}/register`,
-                    cancel_url: `${process.env.SERVER_URL}/register/pay/canceled`
+                    success_url: `${SERVER_URL}/register`,
+                    cancel_url: `${SERVER_URL}/register/pay/canceled`
                 })          
                 res.json({
                     type: 'link',

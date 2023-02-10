@@ -79,7 +79,7 @@
                                                         <div class="flex-shrink-0">
                                                             <div class="avatar-xl me-3">
                                                                 <img src="<%- users.profile_image %>" alt=""
-                                                                    class="img-fluid rounded-circle d-block">
+                                                                    class="img-fluid rounded-circle d-block" style="aspect-ratio: 1/1; object-fit: cover;">
                                                             </div>
                                                         </div>
                                                         <div class="flex-grow-1">
@@ -154,23 +154,7 @@
                                                                 </div>
                                                                 <div class="col-xl">
                                                                     <div class="text-muted">
-                                                                        <p class="mb-2">Hi I'm Phyllis Gatlin, Lorem
-                                                                            Ipsum is simply dummy text of the printing
-                                                                            and typesetting industry. Lorem Ipsum has
-                                                                            been the industry's standard dummy text ever
-                                                                            since the 1500s, when an unknown printer
-                                                                            took a galley of type and scrambled it to
-                                                                            make a type specimen book. It has survived
-                                                                            not only five centuries, but also the leap
-                                                                            into electronic typesetting, remaining
-                                                                            essentially unchanged. It was popularised in
-                                                                            the 1960s with the release of Letraset
-                                                                            sheets containing Lorem Ipsum passages</p>
-                                                                        <p class="mb-0">It is a long established fact
-                                                                            that a reader will be distracted by the
-                                                                            readable content of a page when looking at
-                                                                            it has a more-or-less normal distribution of
-                                                                            letters</p>
+                                                                        <p class="mb-2"><%- users.bio %></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -283,9 +267,10 @@
                                             <div class="mb-3">
                                                 <i data-feather="user"></i>
                                             </div>
-                                            <p class="fs-5">
+                                            <p class="fs-5 text-center">
                                                 <% if (users.membership !='paid' ) { %>
                                                     Free User
+                                                    <small class="d-block mt-2">Trial Period: <%- dayRm %> Days</small>
                                                     <% } else {%>
                                                         Premium User
                                                         <% } %>
@@ -323,6 +308,7 @@
 
     <script src="/assets/js/app.js"></script>
     <script src="/JS/sweetalert.min.js"></script>
+    <script src="/JS/form.js"></script>
     <script src="/JS/functions.js"></script>
     <script src="/JS/api.js"></script>
     <script>
@@ -332,3 +318,4 @@
 </body>
 
 </html>
+

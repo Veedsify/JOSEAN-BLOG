@@ -75,7 +75,7 @@ function apiRefresh() {
     setTimeout(function () {
         $.post("/api/myartcles", {},
             function (response) {
-                if(response && response.length > 0){
+                if (response && response.length > 0) {
                     let articleContainer = document.getElementById('article');
                     if (articleContainer) {
                         articleContainer.innerHTML = '';
@@ -92,7 +92,7 @@ function apiRefresh() {
             }
         );
     }, 2600);
-    
+
 
     setTimeout(function () {
         $.post("/api/getNotifications", {},
@@ -147,7 +147,7 @@ function dAlert(id) {
         data: { id },
         success: function (response) {
             runResponse(response)
-            
+
         }
     });
 }

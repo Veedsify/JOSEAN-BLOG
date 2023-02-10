@@ -38,7 +38,7 @@ $("#free-plan").click(function (e) {
 
 $("#paid-plan").click(function (e) {
     e.preventDefault();
-    document.body.style.filter = 'brightness(.7)'
+    document.body.classList.add('seamless')
     fetch('/membership/user', {
         method: 'POST',
         headers: {
@@ -71,7 +71,6 @@ $("#resendMail").click(function (e) {
         data: {
             email: getCookie('email')
         },
-        dataType: "",
         success: function (response) {
             runResponse(response)
         }
@@ -87,7 +86,6 @@ $("#resendBtn").click(function (e) {
         data: {
             email: getCookie('email')
         },
-        dataType: "",
         success: function (response) {
             runResponse(response)
         }
@@ -195,48 +193,48 @@ function sendBlogPost() {
 
 
     if (posttitle.length < 10) {
-        return runResponse(
-            {
-                type: 'alert',
-                text: 'Sorry You Need to Add a Valid Post Title',
-                css: 'bad'
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Sorry Title Length Has To Be More Than 10',
+            button: {
+                className: 'btn-danger'
             }
-        )
+        })
     }
     if (postcategory.length < 3) {
-        return runResponse(
-            {
-                type: 'alert',
-                text: 'Sorry You Need to Add a Valid Post Category',
-                css: 'bad'
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Sorry, Post Category Is Too Short',
+            button: {
+                className: 'btn-danger'
             }
-        )
+        })
     }
     if (postdescription.length <= 20) {
-        return runResponse(
-            {
-                type: 'alert',
-                text: 'Post Description Min Characters 20',
-                css: 'bad'
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Post Description Min Characters 20',
+            button: {
+                className: 'btn-danger'
             }
-        )
+        })
     }
     if (post.length <= 600) {
-        return runResponse(
-            {
-                type: 'alert',
-                text: 'Sorry, your post need to be longer than 600 Characters',
-                css: 'bad'
+        return swal({
+            className:'bg-page-bg',
+            text: 'Sorry, your post need to be longer than 600 Characters',
+            button: {
+                className:'btn-danger'
             }
-        )
+        })
     } if (featuredImg[0].files.length <= 0) {
-        return runResponse(
-            {
-                type: 'alert',
-                text: 'Please Select a Featured Image',
-                css: 'bad'
+        return swal({
+            className:'bg-page-bg',
+            text: 'Sorry, your post needs a featured image',
+            button: {
+                className:'btn-danger'
             }
-        )
+        })
     }
     document.querySelector('#post-form').submit()
 }
@@ -409,9 +407,9 @@ function runALert(alert) {
     }
 }
 
-$.post("/api/getAlerts",
+$.post("/api/getAlerts", {},
     function (data) {
-        if(data){
+        if (data) {
             runALert(data)
         }
     },
@@ -461,3 +459,180 @@ $("#dma").click(function (e) {
     })
 
 });
+
+
+$('#edp').click(function (e) {
+    e.preventDefault();
+    let normalHtml = document.createElement('div')
+
+
+    $.post("/user/settings/getUser", {},
+        function (data) {
+
+            normalHtml.innerHTML = inside(data)
+
+            swal({
+                title: "Update Your Details",
+                className: 'bg-page-bg',
+                content: normalHtml,
+                buttons: {
+                    cancel: true,
+                    confirm: {
+                        text: 'Update',
+                        className: 'btn-primary',
+                    }
+                }
+
+            }).then(result => {
+                if (result !== null) {
+                    let fullname = document.querySelector('#fullname')
+                    let email = document.querySelector('#email')
+                    let bio = document.querySelector('#bio')
+                    let user_name = document.querySelector('#user_name')
+
+                    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
+                    if (fullname.value.length > 1 && email.value.length > 1 && bio.value.length > 1 && user_name.value.length > 1) {
+                        if (!emailRegex.test(email.value)) {
+                            swal({
+                                className: 'bg-page-bg',
+                                icon: "error",
+                                text: 'Email is not a valid email address',
+                                button: {
+                                    className: 'btn-primary'
+                                }
+                            });
+                        } else {
+                            let updateForm = document.querySelector('#updateForm')
+                            updateForm.submit()
+                            swal({
+                                className: 'bg-page-bg',
+                                icon: "success",
+                                button: {
+                                    className: 'btn-primary'
+                                }
+                            });
+                            setTimeout(() => {
+                                window.location.href = '/logout'
+                            }, 2000);
+
+                        }
+                    } else {
+                        swal({
+                            className: 'bg-page-bg',
+                            icon: "error",
+                            text: 'Please Fill In Some Details',
+                            button: {
+                                className: 'btn-primary'
+                            }
+                        });
+                    }
+
+
+                }
+            })
+        },
+    );
+});
+
+$('#edpAdmin').click(function (e) {
+    e.preventDefault();
+    let normalHtml = document.createElement('div')
+
+
+    $.post("/superadmin/settings/getUser", {},
+        function (data) {
+
+            normalHtml.innerHTML = insideAdmin(data)
+
+            swal({
+                title: "Update Your Details",
+                className: 'bg-page-bg',
+                content: normalHtml,
+                buttons: {
+                    cancel: true,
+                    confirm: {
+                        text: 'Update',
+                        className: 'btn-primary',
+                    }
+                }
+
+            }).then(result => {
+                if (result !== null) {
+                    let fullname = document.querySelector('#fullname')
+                    let email = document.querySelector('#email')
+                    let bio = document.querySelector('#bio')
+                    let user_name = document.querySelector('#user_name')
+
+                    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                    if (fullname.value.length > 1 && email.value.length > 1 && bio.value.length > 1 && user_name.value.length > 1) {
+                        if (!emailRegex.test(email.value)) {
+                            swal({
+                                className: 'bg-page-bg',
+                                icon: "error",
+                                text: 'Email is not a valid email address',
+                                button: {
+                                    className: 'btn-primary'
+                                }
+                            });
+                        } else {
+                            let updateForm = document.querySelector('#updateFormAd')
+                            updateForm.submit()
+                            swal({
+                                className: 'bg-page-bg',
+                                icon: "success",
+                                button: {
+                                    className: 'btn-primary'
+                                }
+                            });
+                            setTimeout(() => {
+                                window.location.href = '/logout'
+                            }, 2000);
+                        }
+                    } else {
+                        swal({
+                            className: 'bg-page-bg',
+                            icon: "error",
+                            text: 'Please Fill In Some Details',
+                            button: {
+                                className: 'btn-primary'
+                            }
+                        });
+                    }
+
+
+                }
+            })
+        },
+    );
+});
+
+
+let imageInput = '#pro_img'
+
+$(document).on("change", imageInput, function (event) {
+
+    if (event.target.files[0].size >= 2 * 1024 * 1024) {
+        swal({
+            text: 'Sorry Images Cannot Exceed 2 Mb in Size',
+            className: 'bg-page-bg',
+            button: {
+                text: 'ok',
+                className: 'btn-primary'
+            }
+        })
+        return
+    } else {
+
+        let url = URL.createObjectURL(event.target.files[0])
+
+        let iconPrev = document.querySelector('#icon-prev')
+
+        iconPrev.src = url
+    }
+
+});
+
+

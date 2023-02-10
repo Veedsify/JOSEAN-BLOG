@@ -30,6 +30,7 @@
     --bs-pink: #e83e8c;
     --bs-light: #e9e9ef;
     --bs-dark: #343a40;
+    --bg-page-bg: #28363f;
     --bs-font-sans-serif: "Work Sans", sans-serif;
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))
@@ -46,6 +47,14 @@
     background: #28363f;
 }
 
+.obfc{
+    object-fit: cover;
+    outline: 5px solid rgb(201, 0, 0);
+}
+.seamless{
+    transition: .4s ease;
+    filter: brightness(.6) blur(5px);
+}
 .swal-text {
     color: #fff;
     padding: 1rem;
@@ -64,6 +73,22 @@
     margin: 1rem 0 !important;
     font-size: 26px;
 }
+.swal-icon--success__hide-corners{
+    all: unset;
+    background: var(--bg-page-bg);
+    transform: rotate(-45deg);
+}
+.swal-icon--success{
+    border-color: green;
+}
+.swal-icon--success__line {
+    border-color: green !important;
+}
+.swal-icon--success:after, .swal-icon--success:before{
+    all: unset;
+    background: var(--bg-page-bg);
+    transform: rotate(-45deg);
+}
 
 .swal-button {
     padding: 7px 19px;
@@ -79,6 +104,7 @@
 
 .swal-modal {
     padding: 0;
+    text-align: left !important;
 }
 
 .alertbox.good {
@@ -320,7 +346,7 @@ p {
 .modal-code {
     position: fixed;
     transition: 0.3s;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
@@ -340,13 +366,20 @@ p {
 
 .modal-code .modal-content #paste-code {
     display: block;
-    border: 1px solid var(--nav-bg);
+    border: 1px solid #ccc;
     height: 40vh;
     margin-bottom: 1rem;
     padding: 0.5rem;
     line-height: 1rem;
-    width: 250px;
-    overflow-x: scroll;
+    width: 280px;
+    overflow-x: auto;
+}
+
+
+@media only screen and (min-width:768px){
+    .modal-code .modal-content #paste-code {
+        width: 700px;
+    }
 }
 
 .modal-code .modal-content .controls {
@@ -6872,7 +6905,10 @@ fieldset:disabled .btn {
 .toast:not(.showing):not(.show) {
     opacity: 0
 }
-
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
 .toast.hide {
     display: none
 }
@@ -9666,7 +9702,9 @@ fieldset:disabled .btn {
 }
 
 .rounded-circle {
-    border-radius: 50% !important
+    border-radius: 50% !important;
+    object-fit:cover;
+    aspect-ratio: 1/1;
 }
 
 .rounded-pill {

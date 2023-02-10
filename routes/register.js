@@ -44,7 +44,7 @@ function checkUserName(req, res, next) {
         }
     })
 }
-router.get('/pay/canceled', (req, res, next)=>{
+router.get('/pay/canceled', (req, res, next) => {
     req.session.destroy()
     res.redirect('/register')
 })
@@ -68,7 +68,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 email: email,
                 password: hashedPassword,
                 role: 'user',
-                bio:'',
+                bio: '',
                 membership: 'free',
                 verification: vcodeId,
                 verified: 'false',
@@ -76,7 +76,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 statusAdmin: 'public',
                 profile_image: '/IMAGES/user.png',
                 reset_id: resetId,
-                duration: 5000000,
+                trial: true,
                 tfa: 'off'
             })
 
@@ -98,7 +98,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 email: email,
                 password: hashedPassword,
                 role: 'user',
-                bio:'',
+                bio: '',
                 membership: 'paid',
                 verification: vcodeId,
                 verified: 'false',
@@ -106,7 +106,7 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
                 statusAdmin: 'public',
                 profile_image: '/IMAGES/user.png',
                 reset_id: resetId,
-                duration: '',
+                trial: false,
                 tfa: 'off'
             })
             newUser.save((err) => {
@@ -124,9 +124,6 @@ router.post('/new', checkEmail, checkUserName, (req, res, next) => {
     } else {
         return res.json(valid)
     }
-
-
-
 })
 
 
@@ -167,8 +164,8 @@ router.get('/validate/:id', (req, res) => {
 
     let aouth = req.query.aouth
 
-    User.updateOne({ vcodeId: req.params.id,reset_id: aouth },{verified:'true',status:'public'}, (err, user) => {
-        if(!err){
+    User.updateOne({ vcodeId: req.params.id, reset_id: aouth }, { verified: 'true', status: 'public' }, (err, user) => {
+        if (!err) {
             res.render('auth-confirm-mail');
         }
     });

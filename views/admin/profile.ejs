@@ -59,7 +59,7 @@
 
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
-                                               
+
                                                 <li class="breadcrumb-item active">Profile</li>
                                             </ol>
                                         </div>
@@ -111,10 +111,9 @@
                                                                     <i class="bx bx-dots-horizontal-rounded"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                                    <li><a class="dropdown-item" href="#" id="edp">Edit
+                                                                    <li><a class="dropdown-item" href="#"
+                                                                            id="edpAdmin">Edit
                                                                             Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#" id="dma">Delete My
-                                                                            Account</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -153,23 +152,7 @@
                                                                 </div>
                                                                 <div class="col-xl">
                                                                     <div class="text-muted">
-                                                                        <p class="mb-2">Hi I'm Phyllis Gatlin, Lorem
-                                                                            Ipsum is simply dummy text of the printing
-                                                                            and typesetting industry. Lorem Ipsum has
-                                                                            been the industry's standard dummy text ever
-                                                                            since the 1500s, when an unknown printer
-                                                                            took a galley of type and scrambled it to
-                                                                            make a type specimen book. It has survived
-                                                                            not only five centuries, but also the leap
-                                                                            into electronic typesetting, remaining
-                                                                            essentially unchanged. It was popularised in
-                                                                            the 1960s with the release of Letraset
-                                                                            sheets containing Lorem Ipsum passages</p>
-                                                                        <p class="mb-0">It is a long established fact
-                                                                            that a reader will be distracted by the
-                                                                            readable content of a page when looking at
-                                                                            it has a more-or-less normal distribution of
-                                                                            letters</p>
+                                                                        <p class="mb-2"><%- users.bio %></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -210,49 +193,57 @@
                                                 <div class="card-body">
                                                     <div>
                                                         <div class="row">
-                                                            <% blogs.forEach( blog =>{ %> 
-                                                            <div class="col-xl-4 align-self-md-start mb-2">
-                                                                <div class="card p-1 mb-xl-0">
-                                                                    <div class="p-3">
-                                                                        <div class="d-flex align-items-start">
-                                                                            <div class="flex-grow-1 overflow-hidden">
-                                                                                <h5 class="font-size-15 text-truncate">
-                                                                                    <a href="/posts/<%- blog.slug_id  %>"
-                                                                                        class="text-dark"><%- blog.title  %></a>
-                                                                                </h5>
-                                                                                <p class="font-size-13 text-muted mb-0">
-                                                                                    <%- blog.date  %></p>
+                                                            <% blogs.forEach( blog=>{ %>
+                                                                <div class="col-xl-4 align-self-md-start mb-2">
+                                                                    <div class="card p-1 mb-xl-0">
+                                                                        <div class="p-3">
+                                                                            <div class="d-flex align-items-start">
+                                                                                <div
+                                                                                    class="flex-grow-1 overflow-hidden">
+                                                                                    <h5
+                                                                                        class="font-size-15 text-truncate">
+                                                                                        <a href="/posts/<%- blog.slug_id  %>"
+                                                                                            class="text-dark"><%-
+                                                                                                blog.title %></a>
+                                                                                    </h5>
+                                                                                    <p
+                                                                                        class="font-size-13 text-muted mb-0">
+                                                                                        <%- blog.date %>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="position-relative">
+                                                                            <img src="<%- blog.image  %>"
+                                                                                style="aspect-ratio:16/10; object-fit:cover;"
+                                                                                alt="<%- blog.title  %>"
+                                                                                class="img-thumbnail">
+                                                                        </div>
+
+                                                                        <div class="p-3">
+                                                                            <ul class="list-inline">
+                                                                                <li class="list-inline-item me-3">
+                                                                                    <a href="javascript: void(0);"
+                                                                                        class="text-muted">
+                                                                                        <i
+                                                                                            class="bx bx-bullseye align-middle text-muted me-1"></i>
+                                                                                        <%- blog.count %> Views
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p class="text-muted text-truncate"><%-
+                                                                                    blog.desc %></p>
+
+                                                                            <div>
+                                                                                <a href="/posts/<%- blog.slug_id  %>"
+                                                                                    class="text-primary">Read more <i
+                                                                                        class="mdi mdi-arrow-right"></i></a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-                                                                    <div class="position-relative">
-                                                                        <img src="<%- blog.image  %>" style="aspect-ratio:16/10; object-fit:cover;" alt="<%- blog.title  %>"
-                                                                            class="img-thumbnail">
-                                                                    </div>
-
-                                                                    <div class="p-3">
-                                                                        <ul class="list-inline">
-                                                                            <li class="list-inline-item me-3">
-                                                                                <a href="javascript: void(0);"
-                                                                                    class="text-muted">
-                                                                                    <i
-                                                                                        class="bx bx-bullseye align-middle text-muted me-1"></i>
-                                                                                        <%- blog.count  %> Views
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <p class="text-muted text-truncate"><%- blog.desc %></p>
-
-                                                                        <div>
-                                                                            <a href="/posts/<%- blog.slug_id  %>"
-                                                                                class="text-primary">Read more <i
-                                                                                    class="mdi mdi-arrow-right"></i></a>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <% }) %> 
+                                                                <% }) %>
                                                         </div>
                                                         <!-- end row -->
                                                     </div>
@@ -306,8 +297,11 @@
 
 
     <script src="/assets/js/app.js"></script>
+    <script src="/JS/sweetalert.min.js"></script>
+    <script src="/JS/form.js"></script>
     <script src="/JS/functions.js"></script>
-<script src="/JS/api.js"></script>    <script>
+    <script src="/JS/api.js"></script>
+    <script>
         feather.replace()
     </script>
 

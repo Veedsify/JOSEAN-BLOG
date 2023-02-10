@@ -8,10 +8,10 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-    if(req.session.user == null){
+    if (req.session.user == null) {
         req.session.destroy()
         res.render('auth-login')
-    }else{
+    } else {
         res.redirect('/user')
     }
 })
@@ -55,17 +55,35 @@ router.post('/code', (req, res) => {
 
     let vcode = req.body.vcode
 
-    if(typeof vcode !== undefined || vcode !== ''){
-        if(req.session.code != vcode){
-            res.json({ type: 'alert', text: 'Code is not valid', css: 'bad'})
-        }else{
+    if (typeof vcode !== undefined || vcode !== '') {
+        if (req.session.code != vcode) {
+            res.json({ type: 'alert', text: 'Code is not valid', css: 'bad' })
+        } else {
             req.session.tfa = 'verified'
             req.session.code = null
-            let adminLink = '/'+req.session.user.role
-            res.json({ type: 'link', link: adminLink})
+            let adminLink = '/' + req.session.user.role
+            res.json({ type: 'link', link: adminLink })
         }
-    }else{
-        res.json({ type: 'alert', text: 'Please enter your verification code', css: 'bad'})
+    } else {
+        res.json({ type: 'alert', text: 'Please enter your verification code', css: 'bad' })
+    }
+})
+
+router.get('/banned', (req, res, next) => {
+    let user = req.session.tinyInfo
+    if (user && user.statusAdmin !== 'public') {
+        res.render('banned', { user })
+        req.session.destroy()
+    } else {
+        res.redirect('/login')
+    }
+})
+router.get('/ended', (req, res, next) => {
+    let user = req.session.tinyInfo
+    if (user) {
+        res.render('trialended', { user })
+    } else {
+        res.redirect('/login')
     }
 })
 
@@ -82,6 +100,30 @@ router.post('/new', checkStatus, async (req, res) => {
     User.findOne(parameters, function (err, user) {
         if (user) {
             res.cookie('auth', user.reset_id)
+            if (user.statusAdmin !== 'public') {
+                req.session.tinyInfo = {
+                    name: user.name,
+                    profile_image: user.profile_image
+                }
+                res.json({
+                    type: 'link',
+                    link: '/login/banned'
+                })
+                return;
+            }else if (user.trial === 'ended') {
+                req.session.tinyInfo = {
+                    name: user.name,
+                    profile_image: user.profile_image
+                }
+                req.session.user = user
+                req.session.tfa = 'skipped'
+                res.json({
+                    type: 'link',
+                    link: '/login/ended'
+                })
+                return;
+            }
+            
             if (user.tfa !== 'on') {
                 req.session.user = user
                 req.session.tfa = 'skipped'
