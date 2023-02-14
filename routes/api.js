@@ -7,80 +7,99 @@ const { sendPostStatus } = require('../mailer/tfa');
 router.use(checkSessions)
 
 router.post('/getBlogImpressions', async (req, res) => {
-    let user = req.session.user.user_name
-    // let user = 'admin'
+    if (!req.session.user) {
+        return res.status(401).redirect('/login')
+    }
 
+    let user = req.session.user.user_name;
     if (user) {
-
         let arr = [];
         let imp = await new Promise(resolve => {
             Blog.find({ author_username: user }, (err, blog) => {
                 resolve(blog);
-            })
-        })
+            });
+        });
         await imp.forEach(article => {
-            arr.push(parseInt(article.impressions))
-        })
+            arr.push(parseInt(article.impressions));
+        });
         const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        res.json(sum)
-    }else{
-        res.json(0)
+        res.json(sum);
+    } else {
+        res.json(0);
     }
 });
 
+
 router.post('/getBlogviews', async (req, res) => {
-    let user = req.session.user.user_name
-    // let user = 'admin'
-    let arr = []
+    if (!req.session.user) {
+        return res.status(401).redirect('/login')
+    }
+
+    let user = req.session.user.user_name;
+    let arr = [];
     let imp = await new Promise(resolve => {
         Blog.find({ author_username: user }, (err, blog) => {
-            resolve(blog)
-        })
-    })
+            resolve(blog);
+        });
+    });
     await imp.forEach(article => {
-        arr.push(parseInt(article.count))
-    })
+        arr.push(parseInt(article.count));
+    });
     const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    res.json(sum)
+    res.json(sum);
 });
 
+
 router.post('/postCount', async (req, res) => {
-    let user = req.session.user.user_name
+    if (!req.session.user) {
+        return res.status(401).redirect('/login')
+    }
+
+    let user = req.session.user.user_name;
     let imp = await new Promise(resolve => {
         Blog.find({ author_username: user }, (err, blog) => {
-            resolve(blog)
-        })
-    })
-    res.json(imp.length)
+            resolve(blog);
+        });
+    });
+    res.json(imp.length);
 });
 
 router.post('/mostPost', async (req, res) => {
-    let user = req.session.user.user_name
+    if (!req.session.user) {
+        return res.status(401).redirect('/login')
+    }
+
+    let user = req.session.user.user_name;
     let imp = await new Promise(resolve => {
         Blog.findOne({ author_username: user }, (err, blog) => {
-            resolve(blog)
-        }).sort({ count: -1 }).limit(1)
-    })
+            resolve(blog);
+        }).sort({ count: -1 }).limit(1);
+    });
     try {
-        res.json(imp.count)
+        res.json(imp.count);
     } catch (err) {
-        res.send('0')
+        res.send('0');
     }
 });
 
 router.post('/myartcles', async (req, res) => {
-    let user = req.session.user.user_name
+    if (!req.session.user) {
+        return res.status(401).redirect('/login')
+    }
+
+    let user = req.session.user.user_name;
     let imp = await new Promise(resolve => {
         Blog.find({ author_username: user }, (err, blog) => {
-            resolve(blog)
-        }).sort({ _id: -1 })
-    })
+            resolve(blog);
+        }).sort({ _id: -1 });
+    });
     try {
-        res.json(imp)
+        res.json(imp);
     } catch (err) {
-        res.json({})
+        res.json({});
     }
 });
+
 
 
 

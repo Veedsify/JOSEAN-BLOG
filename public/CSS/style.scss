@@ -106,7 +106,9 @@ section {
 body {
     line-height: 1;
 }
-
+ul,ol{
+    padding-left: 3rem;
+}
 button {
     outline: none;
 
@@ -118,11 +120,12 @@ button {
         outline: none;
     }
 }
-
-ol,
-ul {
-    list-style: none;
+.terms{
+    li{
+        margin-bottom: 2rem;
+    }
 }
+
 
 html {
     scroll-behavior: smooth;
@@ -390,8 +393,8 @@ header {
 .hero {
     min-height: 100vh;
     display: grid;
-    background: url(/IMAGES/hero.jpg);
-    background-position: center;
+    background: url(/IMAGES/hero.gif);
+    background-position: top;
     background-size: cover;
     background-attachment: fixed;
 
@@ -1014,23 +1017,19 @@ footer {
     ul {
         color: #fff;
         display: flex;
-        flex-direction: column;
-        align-items: end;
+        align-items: center;
+        justify-content: center;
         gap: 1rem;
+        list-style: none;
         min-height: 10vh;
     }
-    div{
-        text-decoration: none;
-        list-style: none;
-        line-height: 1;
-        color: #fff;
-        p{
-            text-align: right;
-            margin: 1rem 0;
-        }
-    }
+  
 }
-
+.link{
+    font-size: 1em;
+    text-decoration: underline;
+    color: rgb(108, 201, 255);
+}
 .scale-for-account {
     width: 30%;
     height: auto;
@@ -1145,3 +1144,34 @@ footer {
 .about-txt{
     line-height: 2;
 }
+
+.about-title{
+    margin-top: 2rem;
+}
+
+// .ityped-cursor {
+//     font-size: 2.2rem;
+//     opacity: 1;
+//     -webkit-animation: blink 0.3s infinite;
+//     -moz-animation: blink 0.3s infinite;
+//     animation: blink 0.3s infinite;
+//     animation-direction: alternate;
+// }
+
+// @keyframes blink {
+//     100% {
+//         opacity: 0;
+//     }
+// }
+
+// @-webkit-keyframes blink {
+//     100% {
+//         opacity: 0;
+//     }
+// }
+
+// @-moz-keyframes blink {
+//     100% {
+//         opacity: 0;
+//     }
+// }

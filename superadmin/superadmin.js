@@ -9,7 +9,9 @@ let blogRouter = require('./blog')
 let userRouter = require('./usersRoute')
 let manageRouter = require('./manageRouter')
 let settingsRouter = require('./settingsRouter')
-let alertRouter = require('./alertsRouter')
+let alertRouter = require('./alertsRouter');
+const { sendPostStatus } = require('../mailer/tfa');
+
 
 router.use(checkSession)
 router.use(checkAdmin)
@@ -24,18 +26,45 @@ router.get('/', (req, res) => {
     res.render('admin/dashboard')
 })
 
-router.post('/sendUserMessage', (req, res, next) => {
+router.post('/sendUserMessage', async (req, res, next) => {
     let info = req.body
     try {
         let today = new Date()
+
         let createAlert = new Alert({
             duration: new Date(today.getTime() + (60 * 60 * 24 * 30 * 1000)),
             message: info.message,
             page: info.location,
         })
 
+        let allUsers = await new Promise((resolve, reject)=>{
+            User.find({role: 'user', membership: info.location},(err, users)=>{
+                if(!err){
+                    resolve(users)
+                }
+            })
+        })
+
         createAlert.save((err, alert) => {
-            if (err) return err
+            if (!err){
+                allUsers.forEach(user =>{
+                    sendPostStatus(user.name,user.email,info.message,'Message From Admin')
+                    let notification = new Notify({
+                        sender: req.session.user.user_name,
+                        sender_image: req.session.user.profile_image,
+                        reciever: user.user_name,
+                        reciever_image: user.profile_image,
+                        message: info.message,
+                        seen: 'no'
+                    })
+                    
+                    notification.save((err, notify) => {
+                        if (err) {
+                            console.log(err)
+                        }
+                    })
+                })
+            }
         })
 
     } catch (err) {

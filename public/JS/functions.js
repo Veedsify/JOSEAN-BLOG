@@ -1,3 +1,5 @@
+
+
 $("#auth-login-btn").click(function (e) {
     e.preventDefault()
 
@@ -36,30 +38,51 @@ $("#free-plan").click(function (e) {
     });
 });
 
-$("#paid-plan").click(function (e) {
+function checkout(e, plan, success, cancel) {
     e.preventDefault();
-    document.body.classList.add('seamless')
-    fetch('/membership/user', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            items: [{ id: 1, quantity: 1 }],
-            plan: 'paid',
+    // Open Checkout with further options:
+    stripe
+        .redirectToCheckout({
+            // mode: 'subscription',
+            items: [{ plan: plan, quantity: 1 }],
+            successUrl: success+'{{}}',
+            cancelUrl: cancel,
+            // customerEmail: document.getElementById('email').value,
+            // billingAddressCollection: "required",
         })
-    }).then(response => {
-        if (response.ok) {
-            return response.json()
-        } else {
-            return response.json().then(json => Promise.reject(json))
-        }
-    }).then(res => {
-        runResponse(res);
-    }).catch(e => {
-        console.error(e.error)
-    })
-});
+        .then(function (result) {
+            if (result.error) {
+                console.log(result);
+            }
+        });
+}
+
+// $("#paid-plan").click(function (e) {
+//     e.preventDefault();
+//     document.body.classList.add('seamless')
+
+
+// fetch('/membership/user', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         items: [{ id: 1, quantity: 1 }],
+//         plan: 'paid',
+//     })
+// }).then(response => {
+//     if (response.ok) {
+//         return response.json()
+//     } else {
+//         return response.json().then(json => Promise.reject(json))
+//     }
+// }).then(res => {
+//     runResponse(res);
+// }).catch(e => {
+//     console.error(e.error)
+// })
+// });
 
 
 $("#resendMail").click(function (e) {
@@ -221,18 +244,18 @@ function sendBlogPost() {
     }
     if (post.length <= 600) {
         return swal({
-            className:'bg-page-bg',
+            className: 'bg-page-bg',
             text: 'Sorry, your post need to be longer than 600 Characters',
             button: {
-                className:'btn-danger'
+                className: 'btn-danger'
             }
         })
     } if (featuredImg[0].files.length <= 0) {
         return swal({
-            className:'bg-page-bg',
+            className: 'bg-page-bg',
             text: 'Sorry, your post needs a featured image',
             button: {
-                className:'btn-danger'
+                className: 'btn-danger'
             }
         })
     }
@@ -636,3 +659,23 @@ $(document).on("change", imageInput, function (event) {
 });
 
 
+$('#resetEmail').click(function (e) {
+    e.preventDefault();
+    $.post("/login/reset", {
+        email: $('#email').val()
+    },
+        function (data) {
+            if (data.type === 'alert') {
+                swal({
+                    text: data.text,
+                    className: 'bg-page-bg',
+                    button: {
+                        className: 'btn-primary'
+                    }
+                })
+            } else {
+                window.location.href = data.link
+            }
+        }
+    );
+});

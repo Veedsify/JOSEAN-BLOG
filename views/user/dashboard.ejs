@@ -29,7 +29,7 @@
 
 </head>
 
-<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg">
+<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg">
 
 
     <!-- Begin page -->
@@ -163,7 +163,7 @@
                                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">Most Single
                                                         Views</span>
                                                     <h4 class="mb-3">
-                                                        <span id="single">
+                                                        <span id="single" class="single-post">
                                                             <img src="/IMAGES/loader.gif" width="40px">
                                                         </span>
                                                     </h4>
@@ -185,7 +185,7 @@
                                             </div>
 
                                             <div class="row align-items-center">
-                                                <div class="col-sm" id="single">
+                                                <div class="col-sm" id="single" class="single-post">
                                                     <span id="article">
                                                         <img src="/IMAGES/loader.gif" width="40px">
                                                     </span>

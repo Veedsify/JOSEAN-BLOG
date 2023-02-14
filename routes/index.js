@@ -8,17 +8,25 @@ const registerRouter = require('./register')
 const membershipRouter = require('./membership')
 const apiRouter = require('./api')
 const aboutRouter = require('./about')
+const privacyRouter = require('./privacy')
 
 
 // Super Admin Route
 router.use(getNavMode)
+router.use(modes)
 router.use('/api', apiRouter)
 router.use('/about', aboutRouter)
+router.use('/privacy', privacyRouter)
 router.use('/login', loginRouter)
 router.use('/register', registerRouter)
 router.use('/membership', membershipRouter)
 router.use('/user', userRouter)
 router.use('/superadmin', superAdminRouter)
+
+
+router.get('/terms-of-use', (req, res, next)=>{
+  res.render('terms')
+})
 
 function getNavMode(req, res, next) {
   if (req.session.user === undefined) {
@@ -157,4 +165,21 @@ router.get('/update/payed', (req, res, next) => {
     }
   })
 })
+
+
+function modes(req,res,next){
+  let mode = process.env.COLOR_MODE
+
+  if(!mode){
+    res.locals.clMode = 'dark'
+    next()
+  }
+  if(mode === 'dark'){
+    res.locals.clMode = 'dark'
+    next()
+  }else if(mode === 'light'){
+    res.locals.clMode = 'light'
+    next()
+  }
+}
 module.exports = router;

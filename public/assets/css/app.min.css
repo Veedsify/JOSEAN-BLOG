@@ -1,7 +1,11 @@
 
 body[data-layout-mode=dark] {
     background-color: #15232c;
-    color: #ced4da
+    color: #ffffff
+}
+body[data-layout-mode=light] {
+    color: #15232c;
+    background-color: #ffffff
 }
 
 body[data-layout-mode=dark] .h1,
@@ -59,7 +63,6 @@ body[data-layout-mode=dark] h6 {
 
 .logo {
     line-height: 69px;
-    color: inherit !important
 }
 
 .logo .logo-sm {

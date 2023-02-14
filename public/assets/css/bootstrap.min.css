@@ -43,8 +43,23 @@
     box-sizing: border-box
 }
 
-.bg-page-bg {
+body[data-layout-mode=dark] .bg-page-bg {
     background: #28363f;
+}
+body[data-layout-mode=light] .text-white:not(input,button) {
+    color: #28363f !important;
+}
+
+body[data-layout-mode=light] li.bg-page-bg{
+    outline: 1px solid #ccc;
+}
+
+body[data-layout-mode=light] .bg-page-bg {
+    background: #ffffff;
+}
+
+#article p{
+    outline: 1px solid var(--bg-page-bg);
 }
 
 .obfc{
@@ -58,14 +73,46 @@
 .swal-text {
     color: #fff;
     padding: 1rem;
-    background: #0000002e;
+    background: #42424204;
     margin: .5rem !important;
     width: 100%;
     border-radius: 4px;
     font-size: .95rem;
     line-height: 2;
 }
+body[data-layout-mode=light] .swal-title{
+    color: var(--bg-page-bg);
 
+}
+body[data-layout-mode=light] .swal-text{
+    color: var(--bg-page-bg);
+}
+/* Set the width and height of the scrollbar track */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Style the scrollbar track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Style the scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Hover styles for the thumb */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  /* Active styles for the thumb */
+  ::-webkit-scrollbar-thumb:active {
+    background: #000;
+  }
+  
 .swal-title {
     color: #fff;
     padding: 1rem 0;
@@ -397,7 +444,7 @@ p {
 }
 
 .modal-code .modal-content .controls button.ok {
-    background: var(--nav-bg);
+    background: var(--bs-primary);
     color: #fff;
 }
 

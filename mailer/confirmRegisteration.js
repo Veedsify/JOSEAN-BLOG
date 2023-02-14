@@ -19,5 +19,23 @@ function sendRegisterEmail(name, email, link) {
     return info
 }
 
-module.exports = sendRegisterEmail
+let resetText = `To reset your password on bloggystories, do click the link below`
+
+function resetLink(name, email, link) {
+
+    let info = mail.sendMail({
+        from: `Bloggy Stories <${process.env.MAILUSER}>`, // sender address
+        to: email, // list of receivers
+        subject: `Password Reset - ${name}`, // Subject line
+        html: htmlMailTemplate(`Hi ${name}`, resetText, "Reset My Account", link), // html body
+    }, (err) => {
+        if (!err, info) {
+            console.log('Mail Sent' + info)
+        }
+    });
+
+    return info
+}
+
+module.exports = { sendRegisterEmail, resetLink }
 

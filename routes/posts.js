@@ -20,7 +20,7 @@ router.get('/:id', function (req, res, next) {
     })
   }, 2000);
 
-  Blog.findOne({ slug_id: getBlog, status: 'enabled' }, (err, blog) => {
+  Blog.findOne({ slug_id: getBlog, status: 'enabled',statusAdmin: 'public' }, (err, blog) => {
     if (err) {
       console.log(err)
     } else if (blog) {

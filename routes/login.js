@@ -2,7 +2,7 @@ const express = require('express');
 const { User } = require('../db/db');
 const { getHash } = require('../function/gethash');
 const getRandomInt = require('../function/randomNum');
-const sendRegisterEmail = require('../mailer/confirmRegisteration');
+const {sendRegisterEmail, resetLink} = require('../mailer/confirmRegisteration');
 const sendVcodeEmail = require('../mailer/tfa');
 const router = express.Router()
 
@@ -110,7 +110,7 @@ router.post('/new', checkStatus, async (req, res) => {
                     link: '/login/banned'
                 })
                 return;
-            }else if (user.trial === 'ended') {
+            } else if (user.trial === 'ended') {
                 req.session.tinyInfo = {
                     name: user.name,
                     profile_image: user.profile_image
@@ -123,7 +123,7 @@ router.post('/new', checkStatus, async (req, res) => {
                 })
                 return;
             }
-            
+
             if (user.tfa !== 'on') {
                 req.session.user = user
                 req.session.tfa = 'skipped'
@@ -149,6 +149,46 @@ router.post('/new', checkStatus, async (req, res) => {
     })
 })
 
+
+router.get('/forgot', (req, res, next) => {
+    res.render('recover-password');
+})
+
+
+router.post('/reset', async (req, res, next) => {
+    if (!req.body.email || req.body.email === '') {
+        return res.json({
+            type: 'link',
+            link: '/login'
+        })
+    }
+
+    let email = req.body.email
+
+    User.findOne({ email: email }, (err, user) => {
+        if (user) {
+            try{
+                let link = `${req.protocol}://${req.get('host')}/reset/reset_id/${user.reset_id}/${user.password}`
+                resetLink(user.name,user.email,link)
+                res.json({
+                    type: 'link',
+                    link: '/reset/password'
+                })
+            }catch(err){
+                console.error(err)
+                res.json({
+                    type: 'alert',
+                    text: 'Sorry, There is an error with the server right now'
+                })
+            }
+        } else {
+            res.json({
+                type: 'alert',
+                text: 'Sorry, This is not a valid user'
+            })
+        }
+    })
+})
 
 // FUNCTIONS
 function checkStatus(req, res, next) {

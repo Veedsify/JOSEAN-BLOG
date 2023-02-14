@@ -3,7 +3,7 @@ const { User } = require('../db/db');
 const { randomChars, getHash } = require('../function/gethash');
 const router = express.Router();
 const path = require('path');
-const sendRegisterEmail = require('../mailer/confirmRegisteration');
+const {sendRegisterEmail} = require('../mailer/confirmRegisteration');
 
 router.get('/', (req, res) => {
     if (req.session.plan) {
@@ -47,6 +47,17 @@ function checkUserName(req, res, next) {
 router.get('/pay/canceled', (req, res, next) => {
     req.session.destroy()
     res.redirect('/register')
+})
+
+router.get('/pay',(req,res)=>{
+    let status = req.query.paid
+    if(status || status == 'success'){
+        req.session.plan = 'paid'
+        res.redirect('/register')
+    }else{
+        req.session.destroy()
+        res.redirect('/membership')
+    }
 })
 router.post('/new', checkEmail, checkUserName, (req, res, next) => {
 

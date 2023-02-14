@@ -20,17 +20,26 @@
     <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
     <!-- Icons Css -->
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
     <!-- App Css-->
     <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
 
     <link rel="stylesheet" href="/CSS/style.css">
 
     <!-- SCRIPTS -->
     <script src="/JS/jquery.js" defer></script>
     <script src="/JS/script.js" defer></script>
+
+    <style>
+        .light,
+        .dark {
+            color: #ffffff !important;
+        }
+    </style>
 </head>
 
-<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" >
+<body data-layout-mode="dark" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg">
     <%- include('includes/preloader.ejs') %>
 
         <div class="main-content m-0">
@@ -38,14 +47,14 @@
                 <%- include('includes/navbar.ejs') %>
             </header>
 
-            <div class="page-content">
+            <div class="page-content pt-4">
                 <div class="container">
 
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h2 class="mb-sm-0">Pricing</h2>
+                                <h2 class="mb-sm-0 tetxt-center">Select a plan that fits your needs</h2>
 
                             </div>
                         </div>
@@ -71,31 +80,29 @@
                                                                 <p class="text-muted mt-3 font-size-15">Free for anyone
                                                                     trying out BloggyStories</p>
                                                                 <div class="mt-4 pt-2 text-muted">
-                                                                    <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Can't
-                                                                        Change Username</p>
+
                                                                     <p class="mb-3 font-size-15"><i
                                                                             class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Markdown
                                                                         Editor</p>
                                                                     <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Slow
-                                                                        Post Approvals</p>
+                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>24
+                                                                        Hours
+                                                                        Approval Time</p>
                                                                     <p class="mb-3 font-size-15"><i
                                                                             class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Temporary
                                                                         Account
                                                                     </p>
                                                                     <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Generic
-                                                                        Profile Picture</p>
+                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Basic
+                                                                        Profile</p>
                                                                     <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Can't
-                                                                        Edit Post</p>
+                                                                            class="mdi mdi-check-circle text-secondary font-size-18 me-2"></i>Less
+                                                                        Features</p>
                                                                 </div>
 
                                                                 <div class="mt-4 pt-2">
 
-                                                                    <button
-                                                                        class="btn btn-outline-primary w-100"
+                                                                    <button class="btn btn-outline-primary w-100"
                                                                         id="free-plan">Choose
                                                                         Plan</button>
                                                                 </div>
@@ -113,17 +120,16 @@
                                                                 <div class="pricing-badge">
                                                                     <span class="badge">Featured</span>
                                                                 </div>
-                                                                <h5 class="font-size-16 text-white">Premium</h5>
-                                                                <h1 class="mt-3 text-white">$10 <span
-                                                                        class="text-white font-size-16 fw-medium">/
-                                                                        Year</span></h1>
-                                                                <p class="text-white-50 mt-3 font-size-15">For anyone
+                                                                <h5 class="font-size-16">
+                                                                    Premium</h5>
+                                                                <h1 class="mt-3 text-white">₹500<span
+                                                                        class="text-white font-size-16 fw-medium ">/
+                                                                        Month</span></h1>
+                                                                <p class="text-white mt-3 font-size-15">
+                                                                    For anyone
                                                                     who
                                                                     want's to take thing up a notch</p>
                                                                 <div class="mt-4 pt-2 text-white">
-                                                                    <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-light font-size-18 me-2"></i>Change
-                                                                        Username</p>
                                                                     <p class="mb-3 font-size-15"><i
                                                                             class="mdi mdi-check-circle text-light font-size-18 me-2"></i>Fully
                                                                         Featured Editor</p>
@@ -135,11 +141,11 @@
                                                                         Account
                                                                     </p>
                                                                     <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-light font-size-18 me-2"></i>Dedicated
-                                                                        Profile Picture</p>
+                                                                            class="mdi mdi-check-circle text-light font-size-18 me-2"></i>Customizable
+                                                                        Profile</p>
                                                                     <p class="mb-3 font-size-15"><i
-                                                                            class="mdi mdi-check-circle text-light font-size-18 me-2"></i>Edit
-                                                                        Post Functionality</p>
+                                                                            class="mdi mdi-check-circle text-light font-size-18 me-2"></i>More
+                                                                        Features *</p>
                                                                 </div>
 
                                                                 <div class="mt-4 pt-2">
@@ -192,6 +198,9 @@
         <!-- end main content-->
 
         <!-- JAVASCRIPT -->
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+
         <script src="/assets/libs/jquery/jquery.min.js"></script>
         <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
@@ -202,8 +211,14 @@
 
         <script src="/assets/js/app.js"></script>
         <script src="/JS/functions.js"></script>
-<script>
+        <script>
             feather.replace()
+            const stripe = Stripe("pk_test_51M5XDcIdV652my8r5t9onWtKSLTKwWm1z7C5uAaWUetXMkx29RfMhritNtt6aLRjTwbW20XL4hBnCsxMqvjF26ql00HFJ6IukE");
+            document.getElementById("paid-plan")
+                .addEventListener("click", (e) => {
+                    document.body.classList.add('seamless')
+                    checkout(e, '<%- plan %>', '<%- success %>', '<%- cancel %>',);
+                });
         </script>
 
 </body>

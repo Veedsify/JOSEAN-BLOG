@@ -1,3 +1,5 @@
+
+
 let blogPost = document.querySelectorAll('[data-link]')
 
 let copyBtn = document.querySelectorAll('.copybtn')

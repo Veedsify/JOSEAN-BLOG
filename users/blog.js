@@ -1,5 +1,7 @@
 const express = require('express');
 const { marked } = require('marked');
+const showdown = require('showdown')
+const converter = new showdown.Converter()
 const router = express.Router();
 const multer = require('multer');
 const sanitize = require('sanitize-html');
@@ -19,22 +21,22 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
     if (req.query.post !== '') {
         Blog.find({ author_username: req.session.user.user_name }, (err, blog) => {
-            res.render('user/newblog', { auth: req.query.auth});
+            res.render('user/newblog', { auth: req.query.auth });
         })
     } else {
         Blog.find({ author_username: req.session.user.user_name }, (err, blog) => {
-            res.render('user/newblog', { auth: ''});
+            res.render('user/newblog', { auth: '' });
         })
     }
 })
 
-router.get('/edit/:slug', (req, res, next)=>{
+router.get('/edit/:slug', (req, res, next) => {
     let slugifyId = req.params.slug
     let userId = req.session.user.user_name
-    Blog.findOne({slug_id: slugifyId,author_username:userId}, (err, blog) => {
-        res.render('user/editblog', {blogs:blog, auth: req.query.auth})
+    Blog.findOne({ slug_id: slugifyId, author_username: userId }, (err, blog) => {
+        res.render('user/editblog', { blogs: blog, auth: req.query.auth })
     })
-    
+
 })
 
 router.get('/posts', (req, res) => {
@@ -111,8 +113,8 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
     let postDescription = req.body.postDescription
     let post = req.body.post
     let slugTitle = slugify(postTitle)
-    let html = sanitize(marked(post, options));
-    let category = postCategory.substr(0,1).toUpperCase() + postCategory.substr(1);
+    let html = converter.makeHtml(post);
+    let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
     var newblog;
 
     if (req.session.user.membership === 'paid') {
@@ -121,7 +123,7 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
             title: postTitle,
             post: post,
             postMarkdown: post,
-            category:category,
+            category: category,
             desc: postDescription,
             image: fileName,
             slug_id: slugTitle,
@@ -140,17 +142,17 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
         } else {
             newblog.save((err) => {
                 if (!err) {
-                    let link = req.protocol+'://'+req.get('host')
-                    User.findOne({role: 'superadmin'},(err, user)=>{
-                        newpostmail(user.name, user.email,link)
+                    let link = req.protocol + '://' + req.get('host')
+                    User.findOne({ role: 'superadmin' }, (err, user) => {
+                        newpostmail(user.name, user.email, link)
                     })
                     res.redirect('/user/blogs/visibility?post=success')
                 }
             })
         }
     } else {
-       
-        
+
+
         newblog = new Blog({
             title: postTitle,
             post: html,
@@ -174,9 +176,9 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
         } else {
             newblog.save((err) => {
                 if (!err) {
-                    let link = req.protocol+'://'+req.get('host')
-                    User.findOne({role: 'superadmin'},(err, user)=>{
-                        newpostmail(user.name, user.email,link)
+                    let link = req.protocol + '://' + req.get('host')
+                    User.findOne({ role: 'superadmin' }, (err, user) => {
+                        newpostmail(user.name, user.email, link)
                         let notification = new Notify({
                             sender: req.session.user.user_name,
                             sender_image: req.session.user.profile_image,
@@ -185,13 +187,13 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
                             message: `User ${req.session.user.user_name} just added a new post that needs your approval`,
                             seen: 'no'
                         })
-                
+
                         notification.save((err, notify) => {
                             if (!err) {
                                 return notify;
                             }
                         })
-                        
+
                     })
                     res.redirect('/user/blogs/visibility?post=success')
                 }
@@ -202,63 +204,67 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
 })
 
 // UPdate Router
-router.post('/updateBlog/:id',upload.single('featuredImage'),async (req,res)=>{
+router.post('/updateBlog/:id', upload.single('featuredImage'), async (req, res) => {
     let postTitle = req.body.postTitle
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
-    let post = req.body.post
     let slugTitle = slugify(postTitle)
-    let category = postCategory.substr(0,1).toUpperCase() + postCategory.substr(1);
-
-    let oldDetails = await new Promise(resolve=>{
-        Blog.findOne({slug_id:req.params.id},(er, blog)=>{
+    let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
+    let post = req.body.post
+    let oldDetails = await new Promise(resolve => {
+        Blog.findOne({ slug_id: req.params.id }, (er, blog) => {
             resolve(blog)
         })
     })
-
+    var html;
+    if (req.session.user.membership == 'paid') {
+        html = req.body.post
+    }else{
+        html = converter.makeHtml(req.body.post)
+    }
         let newBlog = {
-            title: postTitle,
-            post: post,
-            postMarkdown: post,
-            category:category,
-            desc: postDescription,
-            image: fileName,
-            slug_id: slugTitle,
-            date: oldDetails.date,
-            count: oldDetails.count,
-            status: 'enabled',
-            statusAdmin: 'hidden',
-            review: 'no',
-            impressions: oldDetails.impressions,
-            author_name: req.session.user.name,
-            author_image: req.session.user.profile_image,
-            author_username: req.session.user.user_name
-        }
+        title: postTitle,
+        post: html,
+        postMarkdown: post,
+        category: category,
+        desc: postDescription,
+        image: fileName,
+        slug_id: slugTitle,
+        date: oldDetails.date,
+        count: oldDetails.count,
+        status: 'enabled',
+        statusAdmin: 'hidden',
+        review: 'no',
+        impressions: oldDetails.impressions,
+        author_name: req.session.user.name,
+        author_image: req.session.user.profile_image,
+        author_username: req.session.user.user_name
+    }
 
-        Blog.updateOne({slug_id: req.params.id},{$set:newBlog},(err,result)=>{
-            if(!err){
-                User.findOne({role: 'superadmin'},(err, user)=>{
-                    let link = req.protocol+"://"+req.get('host')
-                    newpostmail(user.name,user.email,link)
-                    let notification = new Notify({
-                        sender: req.session.user.user_name,
-                        sender_image: req.session.user.profile_image,
-                        reciever: user.user_name,
-                        reciever_image: user.profile_image,
-                        message: `User ${req.session.user.user_name} just added a new post that needs your approval`,
-                        seen: 'no'
-                    })
-            
-                    notification.save((err, notify) => {
-                        if (!err) {
-                            return notify;
-                        }
-                    })
-                    res.redirect('/user/blogs/posts')
+    Blog.updateOne({ slug_id: req.params.id }, { $set: newBlog }, (err, result) => {
+        if (!err) {
+            User.findOne({ role: 'superadmin' }, (err, user) => {
+                let link = req.protocol + "://" + req.get('host')
+                newpostmail(user.name, user.email, link)
+                let notification = new Notify({
+                    sender: req.session.user.user_name,
+                    sender_image: req.session.user.profile_image,
+                    reciever: user.user_name,
+                    reciever_image: user.profile_image,
+                    message: `User ${req.session.user.user_name} just added a new post that needs your approval`,
+                    seen: 'no'
                 })
-            }
-        })
-    
+
+                notification.save((err, notify) => {
+                    if (!err) {
+                        return notify;
+                    }
+                })
+                res.redirect('/user/blogs/posts')
+            })
+        }
+    })
+
 })
 
 
