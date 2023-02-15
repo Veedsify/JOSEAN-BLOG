@@ -26,7 +26,7 @@
 
 </head>
 
-<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg" >
+<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg">
 
     <!-- <body data-layout="horizontal"> -->
     <div class="auth-page">
@@ -127,7 +127,16 @@
     <!-- validation init -->
     <script src="/assets/js/pages/validation.init.js"></script>
     <script src="/JS/functions.js"></script>
+    <script>
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+            var confirmationMessage = 'Are you sure you want to leave?';
+            e.returnValue = confirmationMessage;
+            return confirmationMessage;
+        });
 
+    </script>
     <% if(typeof script !=='undefined' ){ %>
         <%- script %>
             <% } %>

@@ -415,7 +415,7 @@ header {
 
             .hero-title {
                 font-size: 3.5rem;
-                font-size: clamp(2.1rem, 5vw, 4rem);
+                font-size: clamp(3.1rem, 5vw, 4rem);
                 line-height: auto;
             }
 
@@ -1017,6 +1017,7 @@ footer {
     ul {
         color: #fff;
         display: flex;
+        padding: 0;
         align-items: center;
         justify-content: center;
         gap: 1rem;

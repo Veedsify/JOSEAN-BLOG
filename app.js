@@ -27,7 +27,7 @@ store.on('error', function (error) {
 // Use the `express-session` middleware
 app.use(session({
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    maxAge: 1000 * 60 * 60 * 24 // 1 Day
   },
   store: store,
   secret: 'joseanblog09dsd90897sdsd97cvcv',  // a secret string used to sign the session ID cookie

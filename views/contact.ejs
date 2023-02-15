@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document Title -->
+    <title>Contact Us: Josean Martinez</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/IMAGES/logo.svg" type="image/x-icon">
+    <!-- GOOGLE FONTS API -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/CSS/style.css">
+
+
+    <!-- SCRIPTS -->
+    <script src="/JS/jquery.js" defer></script>
+    <script src="/JS/script.js" defer></script>
+
+</head>
+
+<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg" >
+    <%- include('includes/preloader.ejs') %>
+        <header>
+            <%- include('includes/navbar.ejs') %>
+        </header>
+        <main>
+            <section class="post-section">
+                <h2 class="post-title">Contact Us</h2>
+                <div class="p-1 mt-5">
+
+                    For any further enquiries or complaint do contact us via email: <span> <a class="text-info text-decoration-underline d-inline" href="mailto:bloggystories@gmail.com">bloggystories@gmail.com</a></span>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Account</a></li>
+            </ul>
+        </footer>
+
+        <!-- SCRIPTS -->
+        <script src="/assets/libs/feather-icons/feather.min.js"></script>
+
+        <script>
+            feather.replace()
+        </script>
+</body>
+
+</html>

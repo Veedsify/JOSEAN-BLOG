@@ -27,6 +27,9 @@ router.use('/superadmin', superAdminRouter)
 router.get('/terms-of-use', (req, res, next)=>{
   res.render('terms')
 })
+router.get('/contact', (req, res, next)=>{
+  res.render('contact')
+})
 
 function getNavMode(req, res, next) {
   if (req.session.user === undefined) {

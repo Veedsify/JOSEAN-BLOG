@@ -1,9 +1,6 @@
 var express = require('express');
-const multer = require('multer');
 const {sendPostStatus} = require('../mailer/tfa')
 const { User, Blog, Notify } = require('../db/db');
-const getRandomInt = require('../function/randomNum');
-const convertSlug = require('../function/slug');
 var router = express.Router();
 let settingsRouter = require('./settingsRouter')
 let blogRouter = require('./blog')

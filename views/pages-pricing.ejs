@@ -213,7 +213,7 @@
         <script src="/JS/functions.js"></script>
         <script>
             feather.replace()
-            const stripe = Stripe("pk_test_51M5XDcIdV652my8r5t9onWtKSLTKwWm1z7C5uAaWUetXMkx29RfMhritNtt6aLRjTwbW20XL4hBnCsxMqvjF26ql00HFJ6IukE");
+            const stripe = Stripe('<%- public_key %>');
             document.getElementById("paid-plan")
                 .addEventListener("click", (e) => {
                     document.body.classList.add('seamless')

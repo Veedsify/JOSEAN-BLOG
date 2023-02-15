@@ -4,8 +4,12 @@ const stripe = require('stripe')(process.env.STRIPE_PUBLIC_KEY)
 
 router.get('/', (req, res) => {
     let SERVER_URL = req.protocol + '://' + req.get('host')
+    if (req.session.plan === 'paid') {
+        return res.redirect('/register')
+    }
     const data = {
         plan: 'price_1MaoN4IdV652my8rdX5I2GC3',
+        public_key: process.env.STRIPE_PUBLIC_KEY,
         success: `${SERVER_URL}/register/pay?paid=success`,
         cancel: `${SERVER_URL}/register/pay/canceled`
     }
@@ -17,7 +21,7 @@ let userFee = new Map([
 ])
 
 
-router.get('/user-upgrade', async(req, res)=>{
+router.get('/user-upgrade', async (req, res) => {
     let user = req.session.user.user_name
 
 
@@ -42,7 +46,7 @@ router.get('/user-upgrade', async(req, res)=>{
             }),
             success_url: `${SERVER_URL}/update/payed`,
             cancel_url: `${SERVER_URL}/login/ended`
-        })          
+        })
 
         res.redirect(session.url)
     } catch (e) {
