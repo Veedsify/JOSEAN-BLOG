@@ -1,5 +1,5 @@
 
-setInterval(apiRefresh, 5000);
+setInterval(apiRefresh, 1000);
 
 function apiRefresh() {
     setTimeout(function () {
@@ -18,7 +18,8 @@ function apiRefresh() {
                 $("#impression").html(impressions);
             },
         );
-    }, 2200)
+    }, 100)
+
     setTimeout(function () {
         $.post("/api/getBlogviews", {},
             function (response) {
@@ -35,7 +36,8 @@ function apiRefresh() {
                 $("#views").html(views);
             },
         );
-    }, 2300)
+    }, 100)
+
     setTimeout(function () {
         $.post("/api/postCount", {},
             function (response) {
@@ -52,7 +54,7 @@ function apiRefresh() {
                 $("#posts").html(posts);
             },
         );
-    }, 2400)
+    }, 100)
 
     setTimeout(function () {
         $.post("/api/mostPost", {},
@@ -70,7 +72,7 @@ function apiRefresh() {
                 $("#single").html(single);
             },
         );
-    }, 2500)
+    }, 100)
 
     setTimeout(function () {
         $.post("/api/myartcles", {},
@@ -91,7 +93,7 @@ function apiRefresh() {
                 }
             }
         );
-    }, 2600);
+    }, 100);
 
 
     setTimeout(function () {
@@ -135,7 +137,7 @@ function apiRefresh() {
                 document.getElementById('unread').innerHTML = alertCount
             },
         );
-    }, 2600)
+    }, 100)
 
 }
 

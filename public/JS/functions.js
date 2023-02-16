@@ -45,7 +45,7 @@ function checkout(e, plan, success, cancel) {
         .redirectToCheckout({
             // mode: 'subscription',
             items: [{ plan: plan, quantity: 1 }],
-            successUrl: success+'{{}}',
+            successUrl: success + '{{}}',
             cancelUrl: cancel,
             // customerEmail: document.getElementById('email').value,
             // billingAddressCollection: "required",
@@ -84,6 +84,57 @@ function checkout(e, plan, success, cancel) {
 // })
 // });
 
+
+$("#resetPass").click(function (e) {
+    e.preventDefault();
+    let pass = $("#password").val();
+    let cpass = $("#cpassword").val();
+
+    if (pass.length >= 8) {
+        if (cpass === pass) {
+            $.post('/reset/update-passwords', {
+                pass: pass,
+                cpass: cpass
+            }, (data) => {
+                if (data && data.result == false) {
+                    swal({
+                        text: 'Sorry, but Passwords need to match',
+                        className: 'bg-page-bg',
+                        button: {
+                            className: 'bg-danger'
+                        }
+                    })
+                } else if (data && data.result == true) {
+                    $("#password").val('');
+                    $("#cpassword").val('');
+                    swal({
+                        text: 'Your Passwords have been updated you can now login',
+                        className: 'bg-page-bg',
+                        button: {
+                            className: 'bg-primary'
+                        }
+                    })
+                }
+            })
+        } else {
+            swal({
+                text: 'Sorry, but Passwords need to match',
+                className: 'bg-page-bg',
+                button: {
+                    className: 'bg-danger'
+                }
+            })
+        }
+    } else {
+        swal({
+            text: 'Sorry, but Password Is Too Short',
+            className: 'bg-page-bg',
+            button: {
+                className: 'bg-danger'
+            }
+        })
+    }
+});
 
 $("#resendMail").click(function (e) {
     e.preventDefault()

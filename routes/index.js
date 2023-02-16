@@ -9,6 +9,7 @@ const membershipRouter = require('./membership')
 const apiRouter = require('./api')
 const aboutRouter = require('./about')
 const privacyRouter = require('./privacy')
+const resetRouter = require('./reset')
 
 
 // Super Admin Route
@@ -19,6 +20,7 @@ router.use('/about', aboutRouter)
 router.use('/privacy', privacyRouter)
 router.use('/login', loginRouter)
 router.use('/register', registerRouter)
+router.use('/reset', resetRouter)
 router.use('/membership', membershipRouter)
 router.use('/user', userRouter)
 router.use('/superadmin', superAdminRouter)
