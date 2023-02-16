@@ -100,7 +100,6 @@ router.post('/updateDetails', upload.single('userImage'), (req, res) => {
             req.session.user.bio = info.bio
             req.session.user.user_name = info.user_name
             req.session.user.profile_image = fileName
-            res.locals.userData = req.session.user
             res.redirect('/superadmin/settings')
         }
     })
