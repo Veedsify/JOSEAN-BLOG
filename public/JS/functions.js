@@ -735,7 +735,7 @@ $('#resetEmail').click(function (e) {
 
 
 
-$("#disableVpost").click(function (e) { 
+$(".disableVpost").on('click',function (e) { 
     e.preventDefault();
     swal({
         text: 'Are you sure you want to disable this post?',
@@ -754,7 +754,7 @@ $("#disableVpost").click(function (e) {
         }
     })
 });
-$("#enableVpost").click(function (e) { 
+$(".enableVpost").on('click',function (e) { 
     e.preventDefault();
     swal({
         text: 'Are you sure you want to enable this post?',
@@ -773,7 +773,7 @@ $("#enableVpost").click(function (e) {
         }
     })
 });
-$("#deleteVpost").click(function (e) { 
+$(".deleteVpost").on('click',function (e) { 
     e.preventDefault();
     swal({
         text: 'Are you sure you want to delete this post?',

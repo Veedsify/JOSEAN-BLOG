@@ -89,6 +89,7 @@
                                                     <tr>
                                                         <th>Name</th>
                                                         <th>Status</th>
+                                                        <th>Approval Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -102,26 +103,34 @@
                                                          <% }else{ %> 
                                                             <%- 'bg-danger'  %>  <% } %>   "></span></td>
                                                             <td>
+                                                                <% if(post.statusAdmin === 'public') {%> 
+                                                                    <span class="ms-2 d-inline-block btn btn-outline-success  btn-sm "><%- 'Approved'  %></span>
+                                                                    <% }else{ %> 
+                                                                        <span class="ms-2 d-inline-block btn btn-outline-warning btn-sm  "><%- 'Pending..'  %></span>
+                                                                          <% } %>
+                                                            </td>
+                                                            </td>
+                                                            <td>
                                                                 <form class="d-inline-block"
                                                                     action="/<%- nav  %>/blogs/visibility/E/<%- post.slug_id %>"
                                                                     method="post">
                                                                     <input type="submit"
-                                                                        class="bg-success border-0 rounded-1 text-white"
-                                                                        value="Enable" id="enableVpost">
+                                                                        class="bg-success border-0 rounded-1 text-white enableVpost"
+                                                                        value="Enable" >
                                                                 </form>
                                                                 <form class="d-inline-block"
                                                                     action="/<%- nav  %>/blogs/visibility/D/<%- post.slug_id %>"
                                                                     method="post">
                                                                     <input type="submit"
-                                                                        class="bg-warning border-0 rounded-1 text-white"
-                                                                        value="Disable" id="disableVpost">
+                                                                        class="bg-warning border-0 rounded-1 text-white disableVpost"
+                                                                        value="Disable" >
                                                                 </form>
                                                                 <form class="d-inline-block"
                                                                     action="/<%- nav  %>/blogs/visibility/R/<%- post.slug_id %>"
                                                                     method="post">
                                                                     <input type="submit"
-                                                                        class="bg-danger border-0 rounded-1 text-white"
-                                                                        value="Delete" id="deleteVpost">
+                                                                        class="bg-danger border-0 rounded-1 text-white deleteVpost"
+                                                                        value="Delete" >
                                                                 </form>
                                                             </td>
                                                         </tr>
