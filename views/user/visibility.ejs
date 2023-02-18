@@ -107,21 +107,21 @@
                                                                     method="post">
                                                                     <input type="submit"
                                                                         class="bg-success border-0 rounded-1 text-white"
-                                                                        value="Enable">
+                                                                        value="Enable" id="enableVpost">
                                                                 </form>
                                                                 <form class="d-inline-block"
                                                                     action="/<%- nav  %>/blogs/visibility/D/<%- post.slug_id %>"
                                                                     method="post">
                                                                     <input type="submit"
                                                                         class="bg-warning border-0 rounded-1 text-white"
-                                                                        value="Disable">
+                                                                        value="Disable" id="disableVpost">
                                                                 </form>
                                                                 <form class="d-inline-block"
                                                                     action="/<%- nav  %>/blogs/visibility/R/<%- post.slug_id %>"
                                                                     method="post">
                                                                     <input type="submit"
                                                                         class="bg-danger border-0 rounded-1 text-white"
-                                                                        value="Delete">
+                                                                        value="Delete" id="deleteVpost">
                                                                 </form>
                                                             </td>
                                                         </tr>
@@ -180,21 +180,12 @@
     <script src="/assets/js/app.js"></script>
     <script src="/JS/sweetalert.min.js"></script>
     <script src="/JS/functions.js"></script>
+    <script src="/JS/user-note.js"></script>
     <script src="/JS/api.js"></script>
-    <% if(post==='success' ) {%>
-        <script>
-            swal({
-                className: 'bg-page-bg',
-                text: 'Your Post Has Been Submitted To The Admin For Approval, You\'ll Get A Notification On Your Dashboard & Email Inbox',
-                button: {
-                    className: 'btn-primary'
-                }
-            })
-        </script>
-        <% } %>
-            <script>
-                feather.replace()
-            </script>
+
+    <script>
+        feather.replace()
+    </script>
 </body>
 
 </html>

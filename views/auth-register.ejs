@@ -127,16 +127,8 @@
     <!-- validation init -->
     <script src="/assets/js/pages/validation.init.js"></script>
     <script src="/JS/functions.js"></script>
-    <script>
-        window.addEventListener('beforeunload', function (e) {
-            e.preventDefault();
-            e.returnValue = '';
-            var confirmationMessage = 'Are you sure you want to leave?';
-            e.returnValue = confirmationMessage;
-            return confirmationMessage;
-        });
+    <script src="/JS/user-note.js"></script>
 
-    </script>
     <% if(typeof script !=='undefined' ){ %>
         <%- script %>
             <% } %>

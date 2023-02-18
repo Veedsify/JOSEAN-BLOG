@@ -68,7 +68,7 @@ router.post('/create',upload.single('featuredImage'),(req,res)=>{
 
         newBlog.save((err)=>{
             if(!err){
-                res.redirect('/superadmin/blogs/update')
+                res.redirect('/superadmin/blogs/posts?post=success')
             }
         })
     
@@ -154,7 +154,7 @@ router.post('/visibility/:slug/:action',async (req,res)=>{
                 }
             });
         }
-        res.redirect('/superadmin/blogs/visibility')
+        res.redirect('/superadmin/blogs/visibility?action='+req.params.action)
     }
 })
 

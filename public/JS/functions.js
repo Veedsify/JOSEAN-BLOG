@@ -257,6 +257,8 @@ function thisUser(user, action) {
     }
 }
 
+
+
 // BlogPost Function
 function sendBlogPost() {
     let posttitle = $('#post-title').val();
@@ -729,4 +731,64 @@ $('#resetEmail').click(function (e) {
             }
         }
     );
+});
+
+
+
+$("#disableVpost").click(function (e) { 
+    e.preventDefault();
+    swal({
+        text: 'Are you sure you want to disable this post?',
+        className: 'bg-page-bg',
+        buttons: {
+            cancel: true,
+            confirm: {
+                text: 'Yes',
+                className: 'bg-primary',
+            }
+        }
+    }).then(result =>{
+        if(result == true){
+            let parent = e.target.closest('form')
+            parent.submit()
+        }
+    })
+});
+$("#enableVpost").click(function (e) { 
+    e.preventDefault();
+    swal({
+        text: 'Are you sure you want to enable this post?',
+        className: 'bg-page-bg',
+        buttons: {
+            cancel: true,
+            confirm: {
+                text: 'Yes',
+                className: 'bg-primary',
+            }
+        }
+    }).then(result =>{
+        if(result == true){
+            let parent = e.target.closest('form')
+            parent.submit()
+        }
+    })
+});
+$("#deleteVpost").click(function (e) { 
+    e.preventDefault();
+    swal({
+        text: 'Are you sure you want to delete this post?',
+        className: 'bg-page-bg',
+        buttons: {
+            cancel: true,
+            confirm: {
+                text: 'Yes',
+                className: 'bg-primary',
+            }
+        }
+    }).then(result =>{
+        if(result == true){
+            let parent = e.target.closest('form')
+            parent.submit()
+        }
+    })
 });

@@ -64,19 +64,17 @@ router.post('/visibility/:action/:post', (req, res, next) => {
     let post = req.params.post
     if (action === 'D') {
         Blog.updateOne({ slug_id: post }, { status: 'disabled' }, (err) => {
-            res.redirect('/user/blogs/visibility');
+            res.redirect('/user/blogs/visibility?action=disabled');
         })
     } else if (action === 'E') {
         Blog.updateOne({ slug_id: post }, { status: 'enabled' }, (err) => {
-            res.redirect('/user/blogs/visibility');
+            res.redirect('/user/blogs/visibility?action=enabled');
         })
     } else if (action === 'R') {
         Blog.deleteOne({ slug_id: post }, (err) => {
-            res.redirect('/user/blogs/visibility');
+            res.redirect('/user/blogs/visibility?action=delete');
         })
     }
-
-
 })
 
 var fileName;

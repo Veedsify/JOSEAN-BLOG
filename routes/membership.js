@@ -5,7 +5,7 @@ const stripe = require('stripe')(process.env.STRIPE_PUBLIC_KEY)
 router.get('/', (req, res) => {
     let SERVER_URL = req.protocol + '://' + req.get('host')
     if (req.session.plan === 'paid') {
-        return res.redirect('/register')
+        return res.redirect('/register?session=paid')
     }
     const data = {
         plan: 'price_1MaoN4IdV652my8rdX5I2GC3',

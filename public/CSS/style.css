@@ -1,85 +1,4 @@
-/* Reset */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+* {
   margin: 0;
   padding: 0;
   border: 0;
@@ -103,11 +22,8 @@ section {
   display: block;
 }
 
-body {
-  line-height: 1;
-}
-
-ul, ol {
+ul,
+ol {
   padding-left: 3rem;
 }
 
@@ -161,6 +77,9 @@ table {
   --blog-post-gap: 1.5rem;
   --blog-post-bg: #28363f;
   --page-padding: 7px 1.1rem;
+  --bg-read-post:#db1818;
+  --copy-btn:#000;
+  --code-block:rgb(55, 65, 81);
 }
 
 .btnAccount {
@@ -172,6 +91,7 @@ table {
 }
 
 body {
+  line-height: 1;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -363,18 +283,6 @@ header nav .menu-links li a .btn {
   color: #000;
   background: var(--blog-post-bg);
 }
-header nav .new-post {
-  display: block;
-  margin-left: auto;
-  padding: 7px 16px;
-  border-radius: 5px;
-  background: #fff;
-  color: #1c2a33;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none !important;
-  font-family: var(--font-family);
-}
 
 .hero {
   min-height: 100vh;
@@ -413,7 +321,7 @@ header nav .new-post {
   padding: 15px 44px;
   display: inline-block;
   border: none;
-  background-color: #db1818;
+  background-color: var(--bg-read-post);
   color: #fff;
   border-radius: 4px;
   font-size: 1em;
@@ -552,52 +460,6 @@ header nav .new-post {
   font-size: 0.9em;
   margin-bottom: 1rem;
 }
-.post-section .login-form {
-  display: flex;
-  gap: var(--blog-post-gap);
-  flex-direction: column;
-  margin-top: 2rem;
-  justify-content: center;
-  align-items: center;
-}
-.post-section .login-form .form-control > * {
-  display: block;
-}
-.post-section .login-form .form-control label {
-  font-size: 1.25rem;
-  color: var(--text-color);
-  margin-bottom: 0.5rem;
-}
-.post-section .login-form .form-control input[type=email],
-.post-section .login-form .form-control input[type=password] {
-  padding: 17px 22px;
-  border-radius: 5px;
-  border: none;
-  background: #fff;
-  font-weight: 400;
-  letter-spacing: 2px;
-  font-size: 1.125rem;
-  outline: none;
-  font-family: var(--font-family);
-}
-.post-section .login-form .form-control input[type=submit] {
-  margin-top: 1rem;
-  border-radius: 5px;
-  border: none;
-  font-weight: 400;
-  letter-spacing: 2px;
-  font-size: 1.125rem;
-  padding: 17px 22px;
-  font-family: var(--font-family);
-  cursor: pointer;
-  background: #c91616;
-  color: #fff;
-  transition: color, background 0.1s ease;
-}
-.post-section .login-form .form-control input[type=submit]:hover {
-  background: #de4646;
-  color: #ffffff;
-}
 
 .all-blogs .blog-table {
   outline: 1px solid rgba(255, 255, 255, 0.4);
@@ -690,7 +552,7 @@ header nav .new-post {
 }
 
 .code-block {
-  background: rgb(55, 65, 81) !important;
+  background: var(--code-block) !important;
   color: #fff !important;
   border-radius: 5px;
   position: relative;
@@ -709,7 +571,7 @@ header nav .new-post {
   top: 10px;
   right: 10px;
   width: 30px;
-  background-color: #000;
+  background-color: var(--copy-btn);
   cursor: pointer;
   border: 1px solid rgb(184, 184, 184);
 }
@@ -1014,4 +876,8 @@ footer ul {
 
 .about-title {
   margin-top: 2rem;
+}
+
+.no-post {
+  color: #ccc;
 }/*# sourceMappingURL=style.css.map */
