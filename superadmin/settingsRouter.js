@@ -96,11 +96,11 @@ router.post('/updateDetails', upload.single('userImage'), (req, res) => {
         profile_image: fileName
     }, (err, user) => {
         if (!err) {
-            req.session.user.name = info.fullname
-            req.session.user.bio = info.bio
-            req.session.user.user_name = info.user_name
-            req.session.user.profile_image = fileName
-            res.redirect('/superadmin/settings')
+            User.findOne({user_name: req.session.user.user_name},(err, person)=>{
+                req.session.user = person
+                res.locals.userData = person
+                res.redirect('/superadmin/settings')
+            })
         }
     })
 })

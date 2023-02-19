@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
                         let myDate = user.createdAt
                         let final = date - myDate
                         let dateINDays = Math.round(final / 1000 / 60 / 60 / 24)
-                        let remaining = 60 - dateINDays
+                        let remaining = process.env.TRIAL_DAYS - dateINDays
                         resolve(remaining)
                     }else{
                         resolve({})
@@ -108,12 +108,11 @@ router.post('/updateDetails', upload.single('userImage'), (req, res) => {
         profile_image: fileName
     }, (err, user) => {
         if (!err) {
-            req.session.user.name = info.fullname
-            req.session.user.bio = info.bio
-            req.session.user.user_name = info.user_name
-            req.session.user.profile_image = fileName
-            res.locals.userData = req.session.user
-            res.redirect('/user/settings')
+            User.findOne({user_name: req.session.user.user_name},(err, person)=>{
+                req.session.user = person
+                res.locals.userData = person
+                res.redirect('/user/settings')
+            })
         }
     })
 })

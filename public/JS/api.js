@@ -77,8 +77,8 @@ function apiRefresh() {
     setTimeout(function () {
         $.post("/api/myartcles", {},
             function (response) {
+                let articleContainer = document.getElementById('article');
                 if (response && response.length > 0) {
-                    let articleContainer = document.getElementById('article');
                     if (articleContainer) {
                         articleContainer.innerHTML = '';
                         response.forEach(post => {
@@ -90,6 +90,8 @@ function apiRefresh() {
                             articleContainer.innerHTML += article;
                         });
                     }
+                }else{
+                    articleContainer.innerHTML = '<h3>No articles</h3>'
                 }
             }
         );

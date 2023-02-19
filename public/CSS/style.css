@@ -77,9 +77,10 @@ table {
   --blog-post-gap: 1.5rem;
   --blog-post-bg: #28363f;
   --page-padding: 7px 1.1rem;
-  --bg-read-post:#db1818;
-  --copy-btn:#000;
-  --code-block:rgb(55, 65, 81);
+  --bg-read-post: #db1818;
+  --copy-btn: #000;
+  --code-block: rgb(55, 65, 81);
+  --border-color: #ccc;
 }
 
 .btnAccount {
@@ -826,6 +827,33 @@ footer ul {
     top: 10%;
   }
 }
+.publisher .author {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.publisher .author small {
+  color: var(--text-color);
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+}
+.publisher .author h3 {
+  color: var(--text-color);
+}
+.publisher .author .author-image {
+  width: 80px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  display: block;
+  margin: auto;
+  margin-bottom: 0.6rem;
+}
+
 @media only screen and (min-width: 768px) {
   header nav {
     display: flex;
@@ -868,6 +896,11 @@ footer ul {
   .modal .modal-content code {
     overflow-x: scroll;
     width: 500px;
+  }
+  .post-columns {
+    display: grid;
+    grid-template-columns: 2fr 0.6fr;
+    gap: 0.5rem;
   }
 }
 .about-txt {

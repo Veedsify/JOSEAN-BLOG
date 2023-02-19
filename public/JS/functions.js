@@ -207,54 +207,65 @@ $("#featuredImg").change(function (e) {
 // audit function 
 
 function thisUser(user, action) {
-    let confirm = window.confirm('Do you want to ' + action + ' ' + user)
-    if (confirm === true) {
-        if (action === 'delete') {
-            $.ajax({
-                type: "DELETE",
-                url: "/superadmin/users/delete",
-                data: {
-                    user
-                },
-                success: function (response) {
-                    runResponse(response)
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000);
-                }
-            });
-        } else if (action === 'disable') {
-            $.ajax({
-                type: "PUT",
-                url: "/superadmin/users/update",
-                data: {
-                    user,
-                    action
-                },
-                success: function (response) {
-                    runResponse(response)
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000);
-                }
-            });
-        } else if (action === 'enable') {
-            $.ajax({
-                type: "PUT",
-                url: "/superadmin/users/update",
-                data: {
-                    user,
-                    action
-                },
-                success: function (response) {
-                    runResponse(response)
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000);
-                }
-            });
+    swal({
+        text: 'Do you want to ' + action + ' ' + user,
+        className: 'bg-page-bg',
+        buttons: {
+            cancel: true,
+            confirm: {
+                text: 'Yes',
+                className: 'bg-danger'
+            },
         }
-    }
+    }).then(response => {
+        if (response === true) {
+            if (action === 'delete') {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/superadmin/users/delete",
+                    data: {
+                        user
+                    },
+                    success: function (response) {
+                        runResponse(response)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                    }
+                });
+            } else if (action === 'disable') {
+                $.ajax({
+                    type: "PUT",
+                    url: "/superadmin/users/update",
+                    data: {
+                        user,
+                        action
+                    },
+                    success: function (response) {
+                        runResponse(response)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                    }
+                });
+            } else if (action === 'enable') {
+                $.ajax({
+                    type: "PUT",
+                    url: "/superadmin/users/update",
+                    data: {
+                        user,
+                        action
+                    },
+                    success: function (response) {
+                        runResponse(response)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                    }
+                });
+            }
+        }
+    })
 }
 
 
@@ -735,7 +746,7 @@ $('#resetEmail').click(function (e) {
 
 
 
-$(".disableVpost").on('click',function (e) { 
+$(".disableVpost").on('click', function (e) {
     e.preventDefault();
     swal({
         text: 'Are you sure you want to disable this post?',
@@ -747,14 +758,14 @@ $(".disableVpost").on('click',function (e) {
                 className: 'bg-primary',
             }
         }
-    }).then(result =>{
-        if(result == true){
+    }).then(result => {
+        if (result == true) {
             let parent = e.target.closest('form')
             parent.submit()
         }
     })
 });
-$(".enableVpost").on('click',function (e) { 
+$(".enableVpost").on('click', function (e) {
     e.preventDefault();
     swal({
         text: 'Are you sure you want to enable this post?',
@@ -766,14 +777,14 @@ $(".enableVpost").on('click',function (e) {
                 className: 'bg-primary',
             }
         }
-    }).then(result =>{
-        if(result == true){
+    }).then(result => {
+        if (result == true) {
             let parent = e.target.closest('form')
             parent.submit()
         }
     })
 });
-$(".deleteVpost").on('click',function (e) { 
+$(".deleteVpost").on('click', function (e) {
     e.preventDefault();
     swal({
         text: 'Are you sure you want to delete this post?',
@@ -785,8 +796,8 @@ $(".deleteVpost").on('click',function (e) {
                 className: 'bg-primary',
             }
         }
-    }).then(result =>{
-        if(result == true){
+    }).then(result => {
+        if (result == true) {
             let parent = e.target.closest('form')
             parent.submit()
         }

@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>User Grid | BloggyStories </title>
+    <title>Users Visibility | BloggyStories </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta content="BloggyStories" name="author">
@@ -26,7 +26,7 @@
 
 </head>
 
-<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg" >
+<body data-layout-mode="<%- clMode %>" data-topbar="<%- clMode %>" data-sidebar="<%- clMode %>" data-sidebar-size="lg">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -34,102 +34,96 @@
     <div id="layout-wrapper">
 
 
-        <%- include('includes/header.ejs') %> 
+        <%- include('includes/header.ejs') %>
 
-        <!-- ========== Left Sidebar Start ========== -->
-        <%- include('includes/'+ nav +'.ejs') %>
-            <!-- Left Sidebar End -->
+            <!-- ========== Left Sidebar Start ========== -->
+            <%- include('includes/'+ nav +'.ejs') %>
+                <!-- Left Sidebar End -->
 
 
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
+                <!-- ============================================================== -->
+                <!-- Start right Content here -->
+                <!-- ============================================================== -->
+                <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
+                    <div class="page-content">
+                        <div class="container-fluid">
 
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">User Grid</h4>
+                            <!-- start page title -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0 font-size-18">User Grid</h4>
 
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
-                                            <li class="breadcrumb-item active">Authors</li>
-                                        </ol>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a>
+                                                </li>
+                                                <li class="breadcrumb-item active">Authors</li>
+                                            </ol>
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-                        <!-- end page title -->
+                            <!-- end page title -->
 
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <h5 class="card-title">Users<span
-                                            class="text-muted fw-normal ms-2">(<%- userLength %>)</span></h5>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                                    <div>
-                                        <a href="#" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <h5 class="card-title">Users<span class="text-muted fw-normal ms-2">(<%-
+                                                    userLength %>)</span></h5>
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
-                        <!-- end row -->
+                            <!-- end row -->
 
-                        <div class="row">
-                            <% users.forEach(user=>{ %>
-                                <div class="col-xl-3 col-sm-6">
-                                    <div class="card text-center">
-                                        <div class="card-body">
+                            <div class="row">
+                                <% users.forEach(user=>{ %>
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card text-center">
+                                            <div class="card-body">
 
-                                            <div class="mx-auto mb-4">
-                                                <img src="<%- user.profile_image  %>" alt=""
-                                                    class="avatar-xl rounded-circle img-thumbnail">
+                                                <div class="mx-auto mb-4">
+                                                    <img src="<%- user.profile_image  %>" alt=""
+                                                        class="avatar-xl rounded-circle img-thumbnail">
+                                                </div>
+                                                <h5
+                                                    class="font-size-16 mb-1 d-flex align-items-center justify-content-center">
+                                                    <a href="#" class="text-dark"><%- user.name %></a><span
+                                                        class="dot ms-2 d-inline-block <% if(user.statusAdmin === 'public'){%> <%- 'bg-success'  %><%}else{%><%- 'bg-danger'  %><% } %>  rounded-circle"
+                                                        style="height: 5px;width: 5px;"></span>
+                                                </h5>
+                                                <p class="text-muted mb-2"><%- user.user_name %></p>
+
                                             </div>
-                                            <h5
-                                                class="font-size-16 mb-1 d-flex align-items-center justify-content-center">
-                                                <a href="#" class="text-dark"><%- user.name %></a><span
-                                                    class="dot ms-2 d-inline-block <% if(user.statusAdmin === 'public'){%> <%- 'bg-success'  %><%}else{%><%- 'bg-danger'  %><% } %>  rounded-circle"
-                                                    style="height: 5px;width: 5px;"></span></h5>
-                                            <p class="text-muted mb-2"><%- user.user_name %></p>
 
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-outline-light text-truncate"
+                                                    onclick="thisUser('<%-  user.user_name %>','enable')">Enable</button>
+                                                <button type="button" class="btn btn-outline-light text-truncate"
+                                                    onclick="thisUser('<%-  user.user_name %>','disable')">Disable</button>
+                                                <button type="button"
+                                                    class="btn btn-outline-light bg-danger text-white text-truncate"
+                                                    onclick="thisUser('<%-  user.user_name %>','delete')">Delete</button>
+
+                                            </div>
                                         </div>
-
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-outline-light text-truncate"
-                                                onclick="thisUser('<%-  user.user_name %>','enable')">Enable</button>
-                                            <button type="button" class="btn btn-outline-light text-truncate"
-                                                onclick="thisUser('<%-  user.user_name %>','disable')">Disable</button>
-                                            <button type="button"
-                                                class="btn btn-outline-light bg-danger text-white text-truncate"
-                                                onclick="thisUser('<%-  user.user_name %>','delete')">Delete</button>
-
-                                        </div>
+                                        <!-- end card -->
                                     </div>
-                                    <!-- end card -->
-                                </div>
-                                <% }) %>
-                        </div>
+                                    <% }) %>
+                            </div>
 
-                    </div> <!-- container-fluid -->
+                        </div> <!-- container-fluid -->
+                    </div>
+                    <!-- End Page-content -->
+
+
+
                 </div>
-                <!-- End Page-content -->
-
-
-                
-            </div>
-            <!-- end main content-->
+                <!-- end main content-->
 
     </div>
 
@@ -144,9 +138,11 @@
     <script src="/assets/libs/node-waves/waves.min.js"></script>
     <script src="/assets/libs/feather-icons/feather.min.js"></script>
 
+    <script src="/JS/sweetalert.min.js"></script>
 
     <script src="/JS/functions.js"></script>
-<script src="/JS/api.js"></script>    <script src="/assets/js/app.js"></script>
+    <script src="/JS/api.js"></script>
+    <script src="/assets/js/app.js"></script>
     <script>
         feather.replace()
     </script>

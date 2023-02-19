@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Email Inbox | BloggyStories </title>
+    <title>Create and Manage Alerts | BloggyStories </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta content="BloggyStories" name="author">
@@ -99,8 +99,8 @@
                                                                     class="d-inline-block mt-2 text-capitalize btn-sm btn btn-info">
                                                                     <%- alert.page %> Users Alert</span></p>
                                                         <button class="btn btn-sm btn-danger deleteAlert col-3"
-                                                            data-alert="<%- alert._id  %>"><i
-                                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                                            data-alert="<%- alert._id  %>"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></button>
                                                     </li>
                                                     <% }) %>
                                             </ul>
@@ -131,7 +131,8 @@
                                         <div>
                                             <div class="mb-3">
                                                 <label for="">Alert Location:</label>
-                                                <select id="location" class="form-control form-select" required name="location">
+                                                <select id="location" class="form-control form-select" required
+                                                    name="location">
                                                     <option value="paid" selected>Paid Users</option>
                                                     <option value="free">Free Users</option>
                                                 </select>
@@ -173,6 +174,9 @@
 
     <script src="/assets/js/app.js"></script>
     <script src="/JS/functions.js"></script>
+    <script src="/JS/sweetalert.min.js"></script>
+    <script src="/JS/admin-note.js"></script>
+    <script src="/JS/api.js"></script>
     <script>
         feather.replace()
     </script>
