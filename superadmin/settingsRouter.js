@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     })
     let blogs = await new Promise((resolve, reject) => {
         Blog.find({ author_username: users.user_name }, (err, blog) => {
-            resolve(blog)
+            resolve(blog);
         })
     })
     res.render('admin/profile', { users: users, blogs: blogs })
@@ -28,7 +28,6 @@ router.post('/delete-my-account-clicked', (req, res, next) => {
         css: 'good',
         message: 'A verification code was sent to you'
     })
-
 })
 router.post('/delete-my-account-continue', (req, res, next) => {
 
@@ -86,22 +85,40 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-router.post('/updateDetails', upload.single('userImage'), (req, res) => {
+router.post('/updateDetails', upload.single('userImage'), async (req, res) => {
     let info = req.body
-    User.updateOne({ user_name: req.session.user.user_name, role: 'superadmin' }, {
-        name: info.fullname,
-        bio: info.bio,
-        user_name: info.user_name,
-        email: info.email,
-        profile_image: fileName
-    }, (err, user) => {
-        if (!err) {
-            User.findOne({user_name: req.session.user.user_name},(err, person)=>{
-                req.session.user = person
-                res.locals.userData = person
-                res.redirect('/superadmin/settings')
-            })
-        }
+
+    let person = await new Promise((resolve, reject) => {
+        User.updateOne({ user_name: req.session.user.user_name, role: 'superadmin' }, {
+            name: info.fullname,
+            bio: info.bio,
+            user_name: info.user_name,
+            email: info.email,
+            profile_image: fileName
+        }, (err, user) => {
+            if (!err) {
+                User.findOne({ user_name: info.user_name }, (err, person) => {
+                    resolve(person)
+                })
+            }
+        })
     })
+    let updatePosts = await new Promise((resolve, reject) => {
+        Blog.updateMany({
+            author_username: req.session.user.user_name
+        }, {
+            author_name: info.fullname,
+            author_username: info.user_name,
+            author_image: person.profile_image,
+        }, (err, blog) => {
+            if (!err) {
+                resolve(blog)
+            }
+        })
+    })
+
+    res.locals.userData = person
+    req.session.user = person
+    res.redirect('/superadmin/settings')
 })
 module.exports = router;        

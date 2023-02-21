@@ -27,6 +27,10 @@ ol {
   padding-left: 3rem;
 }
 
+ul li {
+  list-style: none;
+}
+
 button {
   outline: none;
 }
@@ -288,7 +292,7 @@ header nav .menu-links li a .btn {
 .hero {
   min-height: 100vh;
   display: grid;
-  background: url(/IMAGES/hero.gif);
+  background: url(/IMAGES/hero2.gif);
   background-position: top;
   background-size: cover;
   background-attachment: fixed;
@@ -827,6 +831,10 @@ footer ul {
     top: 10%;
   }
 }
+.publisher p,
+.publisher h4 {
+  color: var(--text-color);
+}
 .publisher .author {
   border: 1px solid var(--border-color);
   padding: 1rem;
@@ -836,20 +844,23 @@ footer ul {
   justify-content: center;
   flex-direction: column;
 }
-.publisher .author small {
+.publisher .author a {
+  background: var(--btn-color);
+  padding: 5px 13px;
+  border-radius: 3px;
   color: var(--text-color);
-  text-align: center;
-  text-overflow: ellipsis;
-  font-size: 0.9rem;
-}
-.publisher .author h3 {
-  color: var(--text-color);
+  background-color: #6468c5;
+  border: none;
+  font-size: 0.8rem;
+  text-decoration: none;
 }
 .publisher .author .author-image {
   width: 80px;
   border-radius: 50%;
   aspect-ratio: 1/1;
   display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin: auto;
   margin-bottom: 0.6rem;
 }

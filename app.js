@@ -1,5 +1,3 @@
-
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -13,12 +11,11 @@ require('dotenv').config()
 const MongoDBStore = require('express-mongodb-session')(session);
 const app = express();
 
-
 // Creates a new MongoDBStore.
 const store = new MongoDBStore({
   uri: process.env.DB_URL,
   collection: 'sessions'
-});
+})
 
 store.on('error', function (error) {
   console.log(error);
@@ -48,7 +45,6 @@ app.use('', express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/posts', postRouter);
 app.use('/admin', adminRouter);
-
 
 
 // catch 404 and forward to error handler

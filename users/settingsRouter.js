@@ -28,11 +28,11 @@ router.get('/', async (req, res, next) => {
                         let dateINDays = Math.round(final / 1000 / 60 / 60 / 24)
                         let remaining = process.env.TRIAL_DAYS - dateINDays
                         resolve(remaining)
-                    }else{
+                    } else {
                         resolve({})
                     }
                 }
-            }catch(err){
+            } catch (err) {
                 console.error(err)
             }
         })
@@ -98,22 +98,54 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-router.post('/updateDetails', upload.single('userImage'), (req, res) => {
+router.post('/updateDetails', upload.single('userImage'), async (req, res) => {
     let info = req.body
-    User.updateOne({ user_name: req.session.user.user_name }, {
-        name: info.fullname,
-        bio: info.bio,
-        user_name: info.user_name,
-        email: info.email,
-        profile_image: fileName
-    }, (err, user) => {
-        if (!err) {
-            User.findOne({user_name: req.session.user.user_name},(err, person)=>{
-                req.session.user = person
-                res.locals.userData = person
-                res.redirect('/user/settings')
-            })
+    await new Promise((resolve, reject)=>{
+        User.findOne({
+            user_name: info.user_name
         }
+        ,(err, user)=>{
+            try{
+
+                if(user.length > 0){
+                    reject()    
+                }
+            }catch(e){
+                res.redirect('user/settings?user=exists')
+            }
+        })
     })
+
+    let person = await new Promise((resolve, reject) => {
+        User.updateOne({ user_name: req.session.user.user_name, role: 'superadmin' }, {
+            name: info.fullname,
+            bio: info.bio,
+            user_name: info.user_name,
+            email: info.email,
+            profile_image: fileName
+        }, (err, user) => {
+            if (!err) {
+                User.findOne({ user_name: info.user_name }, (err, person) => {
+                    resolve(person)
+                })
+            }
+        })
+    })
+    let updatePosts = await new Promise((resolve, reject) => {
+        Blog.updateMany({
+            author_username: req.session.user.user_name
+        }, {
+            author_name: info.fullname,
+            author_username: info.user_name,
+            author_image: person.profile_image,
+        }, (err, blog) => {
+            if (!err) {
+                resolve(blog)
+            }
+        })
+    })
+    res.locals.userData = person
+    req.session.user = person
+    res.redirect('/user/settings')
 })
 module.exports = router;

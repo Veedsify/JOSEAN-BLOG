@@ -28,6 +28,10 @@ ol {
     padding-left: 3rem;
 }
 
+ul li{
+    list-style: none;
+}
+
 button {
     outline: none;
 
@@ -306,7 +310,7 @@ header {
 .hero {
     min-height: 100vh;
     display: grid;
-    background: url(/IMAGES/hero.gif);
+    background: url(/IMAGES/hero2.gif);
     background-position: top;
     background-size: cover;
     background-attachment: fixed;
@@ -935,33 +939,42 @@ footer {
     }
 }
 
-.publisher .author {
-    border: 1px solid var(--border-color);
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.publisher {
 
-    small {
-        color: var(--text-color);
-        text-align: center;
-        text-overflow: ellipsis;
-        font-size: .9rem;
-    }
-
-    h3 {
+    p,
+    h4 {
         color: var(--text-color);
     }
 
-    .author-image {
-        width: 80px;
-        border-radius: 50%;
-        aspect-ratio: 1/1;
-        display: block;
-        margin: auto;
-        margin-bottom: .6rem;
+    .author {
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        a {
+            background: var(--btn-color);
+            padding: 5px 13px;
+            border-radius: 3px;
+            color: var(--text-color);
+            background-color: #6468c5;
+            border: none;
+            font-size: .8rem;
+            text-decoration: none;
+        }
+
+        .author-image {
+            width: 80px;
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            display: block;
+            object-fit: cover;
+            margin: auto;
+            margin-bottom: .6rem;
+        }
     }
 }
 

@@ -9,6 +9,7 @@ const { default: slugify } = require('slugify');
 const { User, Blog, Notify } = require('../db/db')
 const getDate = require('../function/date');
 const newpostmail = require('../mailer/newPostMail');
+const { randomChars } = require('../function/gethash');
 const options = { headerIds: false };
 
 
@@ -110,7 +111,7 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
     let post = req.body.post
-    let slugTitle = slugify(postTitle)
+    let slugTitle = randomChars(5) + slugify(postTitle)
     let html = converter.makeHtml(post);
     let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
     var newblog;
@@ -206,7 +207,7 @@ router.post('/updateBlog/:id', upload.single('featuredImage'), async (req, res) 
     let postTitle = req.body.postTitle
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
-    let slugTitle = slugify(postTitle)
+    let slugTitle =  randomChars(5) + slugify(postTitle)
     let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
     let post = req.body.post
     let oldDetails = await new Promise(resolve => {
