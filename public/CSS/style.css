@@ -831,7 +831,7 @@ footer ul {
     top: 10%;
   }
 }
-.publisher p,
+.publisher h5,
 .publisher h4 {
   color: var(--text-color);
 }
@@ -843,6 +843,7 @@ footer ul {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 2rem;
 }
 .publisher .author a {
   background: var(--btn-color);
@@ -863,6 +864,10 @@ footer ul {
      object-fit: cover;
   margin: auto;
   margin-bottom: 0.6rem;
+}
+
+.article .content {
+  line-height: 2;
 }
 
 @media only screen and (min-width: 768px) {
@@ -908,12 +913,20 @@ footer ul {
     overflow-x: scroll;
     width: 500px;
   }
+  /* Make the columns stack on top of each other for smaller screens */
   .post-columns {
     display: grid;
-    grid-template-columns: 2fr 0.6fr;
-    gap: 0.5rem;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
   }
 }
+.about-content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
 .about-txt {
   line-height: 2;
 }

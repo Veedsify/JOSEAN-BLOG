@@ -100,24 +100,9 @@ const upload = multer({ storage: storage });
 
 router.post('/updateDetails', upload.single('userImage'), async (req, res) => {
     let info = req.body
-    await new Promise((resolve, reject)=>{
-        User.findOne({
-            user_name: info.user_name
-        }
-        ,(err, user)=>{
-            try{
-
-                if(user.length > 0){
-                    reject()    
-                }
-            }catch(e){
-                res.redirect('user/settings?user=exists')
-            }
-        })
-    })
 
     let person = await new Promise((resolve, reject) => {
-        User.updateOne({ user_name: req.session.user.user_name, role: 'superadmin' }, {
+        User.updateOne({ user_name: req.session.user.user_name, role: 'user' }, {
             name: info.fullname,
             bio: info.bio,
             user_name: info.user_name,
@@ -128,6 +113,8 @@ router.post('/updateDetails', upload.single('userImage'), async (req, res) => {
                 User.findOne({ user_name: info.user_name }, (err, person) => {
                     resolve(person)
                 })
+            } else {
+                res.redirect('/user/settings?username=error')
             }
         })
     })

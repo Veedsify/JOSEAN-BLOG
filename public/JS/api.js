@@ -91,7 +91,9 @@ function apiRefresh() {
                         });
                     }
                 }else{
-                    articleContainer.innerHTML = '<h3>No articles</h3>'
+                    if(articleContainer){
+                        articleContainer.innerHTML = '<h3>No articles</h3>'
+                    }
                 }
             }
         );

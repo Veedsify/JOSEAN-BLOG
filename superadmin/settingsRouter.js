@@ -100,6 +100,8 @@ router.post('/updateDetails', upload.single('userImage'), async (req, res) => {
                 User.findOne({ user_name: info.user_name }, (err, person) => {
                     resolve(person)
                 })
+            } else {
+                res.redirect('/user/settings?username=error')
             }
         })
     })

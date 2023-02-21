@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Document Title -->
-    <title><%- post.title %>  | Josean's Martinez</title>
+    <title><%- post.title %> | Josean's Martinez</title>
     <meta name="category" content="<%- post.category  %> ">
     <!-- FAVICON -->
     <link rel="shortcut icon" href="/IMAGES/logo.svg" type="image/x-icon">
@@ -28,30 +28,34 @@
 
 <body class="post-page">
     <%- include('includes/preloader.ejs') %>
-    <header>
-        <%- include('includes/navbar.ejs') %>
-    </header>
-    <main>
-        <section class="post-section">
-            <h1 class="post-title"><%- post.title %></h1>
-            
-            <div class="post-columns">
+        <header>
+            <%- include('includes/navbar.ejs') %>
+        </header>
+        <main>
+            <section class="post-section">
+                <h1 class="post-title"><%- post.title %></h1>
 
-                <article class="article">
-                    <%- post.post %>
-                </article>
-                <div class="publisher">
-                    <p>Author Details</p>
-                    <div class="author">
-                        <img src=" <%- post.author_image %>" alt="" class="author-image">
-                        <h4><%- post.author_name %></h4>
-                        <a href="/author/">Learn More.</a>
+                <div class="post-columns">
+
+                    <article class="article">
+                        <div class="content">
+
+                            <%- post.post %>
+                        </div>
+                    </article>
+                    <div class="publisher">
+                        <h5>Author Details</h5>
+                        <div class="author">
+                            <img src=" <%- post.author_image %>" alt="" class="author-image">
+                            <h4><%- post.author_name %></h4>
+                            <a href="/author/">Learn More.</a>
+                        </div>
+                        <h5>More from this Author</h5>
                     </div>
                 </div>
-            </div>
-             
-        </section>
-    </main>
+
+            </section>
+        </main>
 </body>
 
 </html>

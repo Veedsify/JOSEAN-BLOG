@@ -47,5 +47,14 @@ if (urlParams) {
             }
         })
     }
+    if (urlParams.get('username') == 'error') {
+        swal({
+            text: 'Sorry, the username you entered has already been taken',
+            className: 'bg-page-bg',
+            button: {
+                className: 'bg-primary'
+            }
+        })
+    }
 
 }

@@ -3,20 +3,24 @@ const mongoose = require('mongoose');
 // Creates a new mongoose. Schema with the given name email and password.
 const UserSchema = new mongoose.Schema({
     name: String,
-    user_name: String,
+    user_name: {
+        type: String,
+        required: true,
+        unique: true // this makes the email field unique
+    },
     email: String,
     password: String,
-    role:String,
-    bio:String,
-    membership:String,
+    role: String,
+    bio: String,
+    membership: String,
     verification: String,
     verified: String,
-    status:String,
+    status: String,
     statusAdmin: String,
-    profile_image:String,
-    reset_id:String,
+    profile_image: String,
+    reset_id: String,
     trial: String,
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now
     },
