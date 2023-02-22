@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
         return res.redirect('/register?session=paid')
     }
     const data = {
-        plan: 'price_1MaoN4IdV652my8rdX5I2GC3',
+        plan: process.env.SUBSCRIPTION_PLAN,
         public_key: process.env.STRIPE_PUBLIC_KEY,
         success: `${SERVER_URL}/register/pay?paid=success`,
         cancel: `${SERVER_URL}/register/pay/canceled`

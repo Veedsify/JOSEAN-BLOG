@@ -1,5 +1,3 @@
-
-
 let blogPost = document.querySelectorAll('[data-link]')
 
 let copyBtn = document.querySelectorAll('.copybtn')
@@ -140,7 +138,7 @@ $("#load-more-post").click(function (e) {
         }, beforeSend: function () {
             let img = '<div class="loadImagebox"><img src ="/IMAGES/loader.gif" class="loadmoreimg" ></div>';
             postGrid.innerHTML += img
-            $("#load-more-post").html('Loading ' + categoryData + ' Articles...')
+            $("#load-more-post").html('Loading ' + 'More' + ' Articles...')
         }
     });
 

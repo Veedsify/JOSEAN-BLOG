@@ -51,7 +51,7 @@ function insideAdmin(data) {
         </div>
         <div class="form-group mb-4">
             <label for="user_name" class="text-left">Username:</label>
-            <input type="text" id="user_name" name="user_name" class="form-control" value="${data.user_name}">
+            <input type="text" readonly id="user_name" name="user_name" class="form-control" value="${data.user_name}">
         </div>
     </form>
 `;

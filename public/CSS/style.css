@@ -47,6 +47,7 @@ button:active {
 
 html {
   scroll-behavior: smooth;
+  font-size: 82.5%;
 }
 
 blockquote,
@@ -758,7 +759,7 @@ header nav .menu-links li a .btn {
   justify-content: center;
 }
 .loadmore .load-more-post {
-  padding: 14px 37px;
+  padding: 10px 30px;
   background-color: var(--blog-post-bg);
   color: #fff;
   border-radius: 5px;
@@ -924,7 +925,7 @@ footer ul {
 .about-content {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .about-txt {

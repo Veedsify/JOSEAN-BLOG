@@ -17,15 +17,13 @@
         rel="stylesheet">
 
     <!-- STYLESHEETS -->
-
     <link rel="stylesheet" href="/CSS/style.css">
-
+    
     <!-- SCRIPTS -->
     <script src="/JS/jquery.js" defer></script>
     <script src="/JS/script.js" defer></script>
     <script src="https://unpkg.com/ityped@1.0.3/dist/index.min.js"></script>
     <script type="module" src="/JS/typing.js" defer></script>
-
 </head>
 
 <body data-mode="dark">
@@ -74,7 +72,7 @@
                                         </div>
                                     </a>
                                     <div class="authors-info">
-                                        <img src="<%- post.author_image %>" alt="<%- post.author_name %>"
+                                        <img loading="lazy"  src="<%- post.author_image %>" alt="<%- post.author_name %>"
                                             class="author-image">
                                         <strong><a href="/<%- post.author_username %>"><%- post.author_name
                                                     %></a></strong>

@@ -105,9 +105,11 @@
                                                             <td>
                                                                 <% if(post.statusAdmin === 'public') {%> 
                                                                     <span class="ms-2 d-inline-block btn btn-outline-success  btn-sm "><%- 'Approved'  %></span>
-                                                                    <% }else{ %> 
-                                                                        <span class="ms-2 d-inline-block btn btn-outline-warning btn-sm  "><%- 'Pending..'  %></span>
-                                                                          <% } %>
+                                                                    <% }else if(post.statusAdmin === 'hidden' && post.review == 'yes'){ %> 
+                                                                        <span class="ms-2 d-inline-block btn btn-outline-danger btn-sm  "><%- 'Rejected'  %></span>
+                                                                          <% } else if(post.statusAdmin === 'hidden' && post.review == 'no'){ %> 
+                                                                            <span class="ms-2 d-inline-block btn btn-outline-warning btn-sm  "><%- 'Pending'  %></span>
+                                                                              <% } %>
                                                             </td>
                                                             </td>
                                                             <td>

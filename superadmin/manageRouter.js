@@ -93,7 +93,7 @@ router.post('/response', async (req, res, next) => {
             sender_image: req.session.user.profile_image,
             reciever: getUser.user_name,
             reciever_image: getUser.profile_image,
-            message: infos.stmt,
+            message: 'Your post was not accepted due to '+infos.stmt,
             seen: 'no'
         })
 

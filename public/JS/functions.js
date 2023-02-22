@@ -113,6 +113,12 @@ $("#resetPass").click(function (e) {
                         button: {
                             className: 'bg-primary'
                         }
+                    }).then(response => {
+                        if (response === true) {
+                            setTimeout(() => {
+                                window.location.href = '/login'
+                            }, 2000);
+                        }
                     })
                 }
             })
@@ -314,7 +320,8 @@ function sendBlogPost() {
                 className: 'btn-danger'
             }
         })
-    } if (featuredImg[0].files.length <= 0) {
+    }
+    if (featuredImg[0].files.length <= 0) {
         return swal({
             className: 'bg-page-bg',
             text: 'Sorry, your post needs a featured image',
@@ -323,6 +330,62 @@ function sendBlogPost() {
             }
         })
     }
+    document.querySelector('#post-form').submit()
+}
+
+function sendBlogPostUpdate() {
+    let posttitle = $('#post-title').val();
+    let postcategory = $('#post-category').val();
+    let postdescription = $('#post-description').val();
+    let post = $('#post').val();
+    let featuredImg = $('#featuredImg');
+
+
+    if (posttitle.length < 10) {
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Sorry Title Length Has To Be More Than 10',
+            button: {
+                className: 'btn-danger'
+            }
+        })
+    }
+    if (postcategory.length < 3) {
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Sorry, Post Category Is Too Short',
+            button: {
+                className: 'btn-danger'
+            }
+        })
+    }
+    if (postdescription.length <= 20) {
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Post Description Min Characters 20',
+            button: {
+                className: 'btn-danger'
+            }
+        })
+    }
+    if (post.length <= 600) {
+        return swal({
+            className: 'bg-page-bg',
+            text: 'Sorry, your post need to be longer than 600 Characters',
+            button: {
+                className: 'btn-danger'
+            }
+        })
+    }
+    // if (featuredImg[0].files.length <= 0) {
+    //     return swal({
+    //         className: 'bg-page-bg',
+    //         text: 'Sorry, your post needs a featured image',
+    //         button: {
+    //             className: 'btn-danger'
+    //         }
+    //     })
+    // }
     document.querySelector('#post-form').submit()
 }
 // Responce Function

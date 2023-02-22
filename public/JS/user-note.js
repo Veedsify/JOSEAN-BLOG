@@ -1,4 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
+function removeQueryParam(queryParam,data) {
+    // Get the current URL
+    let currentUrl = window.location.href;
+
+    // Remove the specified query parameter from the URL
+    let newUrl = currentUrl.replace(`?${queryParam}=${data}`, '');
+
+    // Update the URL in the browser
+    window.history.replaceState({}, document.title, newUrl);
+}
 
 if (urlParams) {
     if (urlParams.get('post') == 'success') {
@@ -9,6 +19,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('post','success');
     }
 
     if (urlParams.get('message') == 'success') {
@@ -19,6 +30,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('message','success');
     }
     if (urlParams.get('action') == 'enabled') {
         swal({
@@ -28,6 +40,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('action','enabled');
     }
     if (urlParams.get('action') == 'disabled') {
         swal({
@@ -37,6 +50,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('action','disabled');
     }
     if (urlParams.get('action') == 'delete') {
         swal({
@@ -46,6 +60,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('action','delete');
     }
     if (urlParams.get('username') == 'error') {
         swal({
@@ -55,6 +70,7 @@ if (urlParams) {
                 className: 'bg-primary'
             }
         })
+        removeQueryParam('username','error');
     }
 
 }

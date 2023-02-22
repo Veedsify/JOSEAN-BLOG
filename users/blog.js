@@ -111,10 +111,14 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
     let post = req.body.post
-    let slugTitle = randomChars(5) + slugify(postTitle)
+    let slugTitle = randomChars(5) + '_' + slugify(postTitle)
     let html = converter.makeHtml(post);
     let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
     var newblog;
+
+    if (req.session.user.statusAdmin === 'hidden') {
+        res.redirect('/logout')
+    } 
 
     if (req.session.user.membership === 'paid') {
 
@@ -136,19 +140,31 @@ router.post('/create', upload.single('featuredImage'), (req, res) => {
             author_image: req.session.user.profile_image,
             author_username: req.session.user.user_name
         })
-        if (req.session.user.statusAdmin === 'hidden') {
-            res.redirect('/user/blogs/new?auth=banned')
-        } else {
-            newblog.save((err) => {
-                if (!err) {
-                    let link = req.protocol + '://' + req.get('host')
-                    User.findOne({ role: 'superadmin' }, (err, user) => {
-                        newpostmail(user.name, user.email, link)
+
+        newblog.save((err) => {
+            if (!err) {
+                let link = req.protocol + '://' + req.get('host')
+                User.findOne({ role: 'superadmin' }, (err, user) => {
+                    newpostmail(user.name, user.email, link)
+                    let notification = new Notify({
+                        sender: req.session.user.user_name,
+                        sender_image: req.session.user.profile_image,
+                        reciever: user.user_name,
+                        reciever_image: user.profile_image,
+                        message: `User ${req.session.user.user_name} just added a new post that needs your approval`,
+                        seen: 'no'
                     })
-                    res.redirect('/user/blogs/visibility?post=success')
-                }
-            })
-        }
+
+                    notification.save((err, notify) => {
+                        if (!err) {
+                            return notify;
+                        }
+                    })
+                })
+                res.redirect('/user/blogs/visibility?post=success')
+            }
+        })
+
     } else {
 
 
@@ -207,7 +223,7 @@ router.post('/updateBlog/:id', upload.single('featuredImage'), async (req, res) 
     let postTitle = req.body.postTitle
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
-    let slugTitle =  randomChars(5) + slugify(postTitle)
+    let slugTitle = randomChars(5) + slugify(postTitle)
     let category = postCategory.substr(0, 1).toUpperCase() + postCategory.substr(1);
     let post = req.body.post
     let oldDetails = await new Promise(resolve => {
@@ -218,10 +234,10 @@ router.post('/updateBlog/:id', upload.single('featuredImage'), async (req, res) 
     var html;
     if (req.session.user.membership == 'paid') {
         html = req.body.post
-    }else{
+    } else {
         html = converter.makeHtml(req.body.post)
     }
-        let newBlog = {
+    let newBlog = {
         title: postTitle,
         post: html,
         postMarkdown: post,

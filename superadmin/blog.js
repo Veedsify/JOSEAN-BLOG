@@ -44,7 +44,7 @@ router.post('/create',upload.single('featuredImage'),(req,res)=>{
     let postCategory = req.body.postCategory
     let postDescription = req.body.postDescription
     let post = req.body.post
-    let slugTitle = randomChars(5) + slugify(postTitle) 
+    let slugTitle = randomChars(5) + '_' + slugify(postTitle) 
     let category = postCategory.substr(0,1).toUpperCase() + postCategory.substr(1);
 
 
